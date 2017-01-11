@@ -1,0 +1,575 @@
+BACKUP ~Drake/backup~
+AUTHOR ~Artemius_I~
+AUTO_TRA ~Drake/translations/%s~
+LANGUAGE ~English~
+         ~English~
+         ~Drake/translations/english/Drake.tra~
+
+BEGIN ~Drake NPC for Baldur's Gate: Enhanced Edition~
+
+APPEND ~STATE.IDS~ // adds custom IsValidForPartyDialogue state
+  ~0x80101FEF CD_STATE_NOTVALID~
+  UNLESS ~CD_STATE_NOTVALID~
+  
+COPY ~Drake/areas~ ~override~
+COPY ~Drake/audio~ ~override~
+COPY ~Drake/items~ ~override~
+COPY ~Drake/Portraits~ ~override~
+
+EXTEND_TOP ~AR3307.bcs~ ~Drake/Scripts/AR3307.baf~
+EXTEND_TOP ~AR0705.bcs~ ~Drake/Scripts/AR0705.baf~
+
+//AUDIO
+
+LAF HANDLE_AUDIO END
+
+COPY ~Drake/creatures/C0Drake.cre~ ~override/C0Drake.cre~
+  SAY NAME1 ~Drake~
+  SAY NAME2 ~Drake~
+  WRITE_ASCII 0x248 ~C0Drake~ #8  //override script
+  WRITE_ASCII 0x280 ~C0Drake~ #32  //DV
+  WRITE_ASCII 0x2cc ~C0Drake~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~DrakeM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~DrakeL~ #8   //medium portrait
+  SAY BIO ~When asked about his past, DRAKE gives a sardonic laugh and responds that history would breathe easier if his past was left forgotten. A cleric of Tyr in his mid-thirties, second son of the Caulfield family, former ensign in the Amnian militia and, with a touch of irony when mentioning it, recruit of the Radiant Heart auxiliary, he considers himself 'that thing they can't get rid of' within the Order. He openly admits that his unorthodox views on the tenets of the Order as well as the distribution of justice makes him something of a social pariah with both his fellows of the Radiant Heart and his family, almost all of whom have a history of service within the Order. According to him, while him being stationed outside of Amn was officially a mission to root out evil that plagued the Sword Coast, he believes it was nothing more than a formal means of sending him away and allowing his superiors to forget about him. Such an assignment seems to be to his preference, however, as he believes justice is best served with the edge of a blade - or in his case, the head of a hammer.~
+  SAY MORALE ~They say discretion is the better part of valor.~
+  SAY HAPPY ~Hmm, not bad, not bad. Even those sods at the Order could learn a thing or two.~
+  SAY UNHAPPY_ANNOYED ~You really sure you know what in the name of all nine layers of Hell you're doing?~
+  SAY UNHAPPY_SERIOUS ~I can't tell if you're stupidly oblivious or... if you actually like making people hate you more than me. Either way, I suggest you stop.~
+  SAY UNHAPPY_BREAKING_POINT ~That's it. I think even drinking myself into a stupor wouldn't be enough to ignore all of this tosh. Next time we meet, it'll be hammer first. To the Hells with you.~
+  SAY LEADER ~Heh, so I'm the boss now, is that right? Wonder what the old coots in the Order would think if they saw where I am now... hope you won't regret this.~
+  SAY TIRED ~Tyr's buttocks, what I wouldn't do for a warm fire and a stiff drink right now...~
+  SAY BORED ~This standing around is just like waiting in attendance back in the Order, right down to the boredom. Can we get a move on?~
+  SAY BATTLE_CRY1 ~I'll show you true justice!~
+  SAY BATTLE_CRY2 ~I've got your judgment right here!~
+  SAY BATTLE_CRY3 ~Best say your prayers... while you still can.~
+  SAY BATTLE_CRY4 ~I've got a hammer and boot waiting to meet your arse!~
+  SAY BATTLE_CRY5 ~Poor sod's just a dead man walking.~
+  SAY DAMAGE ~Oof!~
+  SAY DYING ~Ugh, how... shameful.~
+  SAY HURT ~Agh... much as I'd like to see Tyr, I doubt he'd be eager to judge my arse this soon. Mind... offering a hand here?~
+  SAY AREA_FOREST ~If I knew we'd be trekking through the forests, I'd have worn sturdier boots.~
+  SAY AREA_CITY ~The smell of ale and stale vomit in the gutters is quite welcoming, don't you think?~
+  SAY AREA_DUNGEON ~Hah... I'd say a prayer, but I doubt even the gods could hear us where we are now.~
+  SAY AREA_DAY ~Not a bad day to dish out some judgment, don't you think?~
+  SAY AREA_NIGHT ~The lowest of the low thrive in the dark... and I'll be ready to put 'em right.~
+  SAY SELECT_COMMON1 ~Yeah?~ [C0BLANK]
+  SAY SELECT_COMMON2 ~Need something?~ [C0BLANK]
+  SAY SELECT_COMMON3 ~I'm listening.~ [C0BLANK]
+  SAY SELECT_COMMON4 ~Give your orders.~ [C0BLANK]
+  SAY SELECT_COMMON5 ~What is it?~ [C0BLANK]
+  SAY SELECT_COMMON6 ~Got something to say?~ [C0BLANK]
+  SAY SELECT_ACTION1 ~Right, right.~
+  SAY SELECT_ACTION2 ~Simple enough.~
+  SAY SELECT_ACTION3 ~As you say, friend.~
+  SAY SELECT_ACTION4 ~You going to give me something to do already?~
+  SAY SELECT_ACTION5 ~What's wrong with you this time? Broken limbs?~
+  SAY SELECT_ACTION6 ~Quiet, please... I've got one hell of a headache.~
+  SAY SELECT_ACTION7 ~You still owe me several drinks, you know.~
+  SAY CRITICAL_HIT ~Hah! Looks like the scales favor *me*!~
+  SAY CRITICAL_MISS ~Tch...! You didn't see that.~
+  SAY TARGET_IMMUNE ~Not even a scratch? Well now, this is something.~
+  SAY INVENTORY_FULL ~Afraid even two hands aren't enough for this hunk of junk. Get someone else to hold it.~
+  SAY SPELL_DISRUPTED ~Wasn't my fault for botching that prayer for once.~
+  SAY SET_A_TRAP ~This'll give the next bugger a nice shock.~
+  SAY HIDDEN_IN_SHADOWS ~No one expects justice coming from the shadows.~
+  SAY PICKED_POCKET ~Whoops... you dropped this.~
+  
+  COMPILE ~Drake/Dialogue/C0Drake.d~
+  COMPILE ~Drake/Dialogue/BC0Drake.d~
+  COMPILE ~Drake/Dialogue/C0DrakeJ.d~
+  COMPILE ~Drake/Dialogue/C0DrakeP.d~
+  COMPILE ~Drake/Dialogue/C0DStone.d~
+  COMPILE ~Drake/Dialogue/C0DThf01.d~
+  
+  COMPILE ~Drake/Scripts/C0Drake.baf~
+  COMPILE ~Drake/Scripts/C0DrakeD.baf~
+  COMPILE ~Drake/Scripts/C0DReset.baf~
+  COMPILE ~Drake/Scripts/C0DStone.baf~
+  COMPILE ~Drake/Scripts/C0DThf02.baf~
+  COMPILE ~Drake/Scripts/C0DAR1.baf~
+  
+APPEND ~pdialog.2da~
+~C0Drake        C0DrakeP	C0DrakeJ	C0DrakeD~
+UNLESS ~C0Drake~
+
+APPEND ~interdia.2da~
+~C0Drake       BC0Drake C0DrakEE~
+UNLESS ~C0Drake~
+
+// Creatures
+
+COPY ~Drake/creatures/c0dstone.cre~ ~override/c0dstone.cre~
+WRITE_ASCII 0x248 ~c0dstone~  #8  // override
+WRITE_ASCII 0x2cc ~c0dstone~  #8  // dialogue
+WRITE_ASCII 0x280 ~c0dstone~ #32 // death variable
+SAY NAME1 ~Stoneheart~
+SAY NAME2 ~Stoneheart~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+
+COPY_EXISTING ~slythe.cre~ ~override/c0dthf01.cre~
+WRITE_ASCII 0x2cc ~c0dthf01~  #8  // dialogue
+WRITE_EVALUATED_ASCII SCRIPT_CLASS  ~c0dthf01~ #8
+WRITE_ASCII 0x280 ~c0dthf01~ #32 // death variable
+SAY NAME1 ~Aiden Vail~
+SAY NAME2 ~Aiden Vail~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+SAY INITIAL_MEETING ~~
+SAY UNHAPPY_BREAKING_POINT ~~
+SAY BATTLE_CRY1 ~~
+SAY BATTLE_CRY2 ~~
+SAY BATTLE_CRY3 ~~
+SAY DAMAGE ~~
+SAY DYING ~~
+SAY SELECT_COMMON1 ~~
+SAY SELECT_COMMON2 ~~
+SAY SELECT_COMMON3 ~~
+SAY SELECT_COMMON4 ~~
+SAY SELECT_COMMON5 ~~
+REMOVE_CRE_ITEM ~scrl2k~
+REMOVE_CRE_ITEM ~misc78~
+REMOVE_CRE_ITEM ~clck06~
+REMOVE_CRE_ITEM ~xbow04~
+REMOVE_CRE_ITEM ~sw1h10~
+REMOVE_CRE_ITEM ~leat04~
+REMOVE_CRE_ITEM ~mage04~
+ADD_CRE_ITEM ~leat08~ #0 #0 #0 ~NONE~ ~armor~
+ADD_CRE_ITEM ~c0dsw1h~ #0 #0 #0 ~NONE~ ~weapon1~
+ADD_CRE_ITEM ~dagg15~ #0 #0 #0 ~NONE~ ~shield~
+
+COPY_EXISTING ~nimbul.cre~ ~override/c0dthf02.cre~
+WRITE_ASCII 0x2cc ~c0dthf02~  #8  // dialogue
+WRITE_EVALUATED_ASCII SCRIPT_CLASS  ~c0dthf02~ #8
+WRITE_ASCII 0x280 ~c0dthf02~ #32 // death variable
+SAY NAME1 ~Gideon~
+SAY NAME2 ~Gideon~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+SAY INITIAL_MEETING ~Hi, friend.~ [GENMG06]
+SAY UNHAPPY_BREAKING_POINT ~~
+SAY BATTLE_CRY1 ~Sorry, friend, but you've got a date down under.~ [GENMT05]
+SAY BATTLE_CRY2 ~Sorry, friend, but you've got a date down under.~ [GENMT05]
+SAY BATTLE_CRY3 ~Sorry, friend, but you've got a date down under.~ [GENMT05]
+SAY DAMAGE ~~
+SAY DYING ~~
+SAY SELECT_COMMON1 ~Hi, friend.~ [GENMG06]
+SAY SELECT_COMMON2 ~Hi, friend.~ [GENMG06]
+SAY SELECT_COMMON3 ~Hi, friend.~ [GENMG06]
+SAY SELECT_COMMON4 ~Hi, friend.~ [GENMG06]
+SAY SELECT_COMMON5 ~Hi, friend.~ [GENMG06]
+REMOVE_CRE_ITEM ~ring21~
+REMOVE_CRE_ITEM ~boot04~
+REMOVE_CRE_ITEM ~scrl6d~
+REMOVE_CRE_ITEM ~ax1h04~
+REMOVE_CRE_ITEM ~scrl3b~
+ADD_CRE_ITEM ~chan13~ #0 #0 #0 ~NONE~ ~armor~
+
+COPY_EXISTING ~marek.cre~ ~override/c0dthf03.cre~
+WRITE_ASCII 0x2cc ~c0dthf03~  #8  // dialogue
+WRITE_EVALUATED_ASCII SCRIPT_CLASS  ~c0dthf03~ #8
+WRITE_ASCII 0x280 ~c0dthf03~ #32 // death variable
+SAY NAME1 ~Klaus~
+SAY NAME2 ~Klaus~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+REMOVE_CRE_ITEM ~dagg03~
+REMOVE_CRE_ITEM ~COMPB08~
+REMOVE_CRE_ITEM ~AROW01~
+REMOVE_CRE_ITEM ~BOW08~
+REMOVE_CRE_ITEM ~BOW08~
+ADD_CRE_ITEM ~dagg16~ #40 #0 #0 ~NONE~ ~weapon1~
+ADD_CRE_ITEM ~brac03~ #40 #0 #0 ~NONE~ ~gloves~
+ADD_CRE_ITEM ~ring06~ #40 #0 #0 ~NONE~ ~lring~
+ADD_CRE_ITEM ~c0dring~ #40 #0 #0 ~NONE~ ~rring~
+
+// Items
+
+COPY ~Drake/items/c0dsw1h.itm~ ~override~
+SAY NAME1 ~Long Sword~
+SAY NAME2 ~Venom Edge +3~
+SAY DESC ~Aiden Vail was as much a skilled fencer as he was a master thief, but the secret to his success within the ranks of the Shadow Thieves can be attributed to this magical sword. Runes inlaid across the grip heighten the wielder's senses, making them aware of hidden assaults. Additionally, the blade is coated with a slow-acting but potent venom, no doubt to give Vail a greater edge in combat.
+
+STATISTICS:
+
+Equipped abilities:
+ - Dexterity: +1
+ - Immunity to backstab
+
+Combat abilities:
+ - Hit target suffers 2 point of poison damage per round for 10 rounds (Save vs. Poison at -2 negates)
+
+THAC0: +3
+Damage: 1d8+3, +2 poison damage
+Damage type: Slashing
+Speed Factor: 3
+Proficiency Type: Long Sword
+Type: One-handed
+Requires:
+ 6 Strength
+
+Weight: 3~
+
+COPY ~Drake/items/c0dring.itm~ ~override~
+SAY NAME1 ~Ring~
+SAY NAME2 ~Night's Ring~
+SAY DESC ~A treasured item for rogues and plunderers, this magical ring is capable of bestowing even the most inept thief with the skills of a master, as well as surrounding them with a shroud which protects them from means of magical detection.
+
+STATISTICS:
+
+Equipped abilities:
+ - Open Locks: +25%
+ - Pick Pockets: +25%
+ - Find Traps: +25%
+ - Non-detection
+ 
+Weight: 0~
+ 
+COPY ~Drake/items/c0dlock.itm~ ~override~
+SAY NAME1 ~Locket~
+SAY NAME2 ~Caulfield Locket~
+SAY DESC ~This brass metal locket has been a treasured family heirloom within the Caulfield family for several generations. Although its monetary value seems negligible at best, it seems to have picked up some enchantments over the decades that it has been carried.
+
+A hand-drawn portrait of a younger Drake, enchanted to never fade, sits in the center of the locket when opened.
+
+STATISTICS:
+
+Equipped abilities:
+ - Luck: +1
+ - THAC0 +1 (melee only)
+ - Missile Damage Resistance: +25%
+ 
+Weight: 1~
+
+// Drake-Sirene
+ACTION_IF FILE_EXISTS_IN_GAME ~bc0drake.dlg~ AND FILE_EXISTS_IN_GAME ~bc0siren.dlg~
+THEN BEGIN
+  PRINT ~Adding crossmod banters between Drake and Sirene~
+COMPILE ~Drake/dialogue/crossmod/sirene.d~
+END
+
+////////////////////////////////////// Siege of Dragonspear
+/*
+BEGIN ~Drake NPC for Baldur's Gate: Siege of Dragonspear~
+REQUIRE_COMPONENT ~Drake/Drake.tp2~ ~0~ ~Main component must be installed~
+
+COPY ~Drake/creatures/C02Drake.cre~ ~override/C02Drake.cre~
+  SAY NAME1 ~Drake~
+  SAY NAME2 ~Drake~
+  WRITE_ASCII 0x248 ~C0Drake~ #8  //override script
+  WRITE_ASCII 0x280 ~C0Drake~ #32  //DV
+  WRITE_ASCII 0x2cc ~C0Drake~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~DrakeM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~DrakeL~ #8   //medium portrait
+  SAY BIO ~When asked about his past, DRAKE gives a sardonic laugh and responds that history would breathe easier if his past was left forgotten. A cleric of Tyr in his mid-thirties, second son of the Caulfield family, former ensign in the Amnian militia and, with a touch of irony when mentioning it, recruit of the Radiant Heart auxiliary, he considers himself 'that thing they can't get rid of' within the Order. He openly admits that his unorthodox views on the tenets of the Order as well as the distribution of justice makes him something of a social pariah with both his fellows of the Radiant Heart and his family, almost all of whom have a history of service within the Order. According to him, while him being stationed outside of Amn was officially a mission to root out evil that plagued the Sword Coast, he believes it was nothing more than a formal means of sending him away and allowing his superiors to forget about him. Such an assignment seems to be to his preference, however, as he believes justice is best served with the edge of a blade - or in his case, the head of a hammer.
+  
+  Though Drake was prepared to return to Amn after the resolution of the iron crisis, the threat of the Shining Lady's crusade has given him cause to remain at Baldur's Gate and take part in the march to Dragonspear. He seems eager to find out the reasons behind the crusade's existence.~
+  SAY MORALE ~They say discretion is the better part of valor.~
+  SAY HAPPY ~Hmm, not bad, not bad. Even those sods at the Order could learn a thing or two.~
+  SAY UNHAPPY_ANNOYED ~You really sure you know what in the name of all nine layers of Hell you're doing?~
+  SAY UNHAPPY_SERIOUS ~I can't tell if you're stupidly oblivious or... if you actually like making people hate you more than me. Either way, I suggest you stop.~
+  SAY UNHAPPY_BREAKING_POINT ~That's it. I think even drinking myself into a stupor wouldn't be enough to ignore all of this tosh. Next time we meet, it'll be hammer first. To the Hells with you.~
+  SAY LEADER ~Heh, so I'm the boss now, is that right? Wonder what the old coots in the Order would think if they saw where I am now... hope you won't regret this.~
+  SAY TIRED ~Tyr's buttocks, what I wouldn't do for a warm fire and a stiff drink right now...~
+  SAY BORED ~This standing around is just like waiting in attendance back in the Order, right down to the boredom. Can we get a move on?~
+  SAY BATTLE_CRY1 ~I'll show you true justice!~
+  SAY BATTLE_CRY2 ~I've got your judgment right here!~
+  SAY BATTLE_CRY3 ~Best say your prayers... while you still can.~
+  SAY BATTLE_CRY4 ~I've got a hammer and boot waiting to meet your arse!~
+  SAY BATTLE_CRY5 ~Poor sod's just a dead man walking.~
+  SAY DAMAGE ~Oof!~
+  SAY DYING ~Ugh, how... shameful.~
+  SAY HURT ~Agh... much as I'd like to see Tyr, I doubt he'd be eager to judge my arse this soon. Mind... offering a hand here?~
+  SAY AREA_FOREST ~If I knew we'd be trekking through the forests, I'd have worn sturdier boots.~
+  SAY AREA_CITY ~The smell of ale and stale vomit in the gutters is quite welcoming, don't you think?~
+  SAY AREA_DUNGEON ~Hah... I'd say a prayer, but I doubt even the gods could hear us where we are now.~
+  SAY AREA_DAY ~Not a bad day to dish out some judgment, don't you think?~
+  SAY AREA_NIGHT ~The lowest of the low thrive in the dark... and I'll be ready to put 'em right.~
+  SAY SELECT_COMMON1 ~Yeah?~ [C0BLANK]
+  SAY SELECT_COMMON2 ~Need something?~ [C0BLANK]
+  SAY SELECT_COMMON3 ~I'm listening.~ [C0BLANK]
+  SAY SELECT_COMMON4 ~Give your orders.~ [C0BLANK]
+  SAY SELECT_COMMON5 ~What is it?~ [C0BLANK]
+  SAY SELECT_COMMON6 ~Got something to say?~ [C0BLANK]
+  SAY SELECT_ACTION1 ~Right, right.~
+  SAY SELECT_ACTION2 ~Simple enough.~
+  SAY SELECT_ACTION3 ~As you say, friend.~
+  SAY SELECT_ACTION4 ~You going to give me something to do already?~
+  SAY SELECT_ACTION5 ~My hand is itching for some justice.~
+  SAY SELECT_ACTION6 ~'There once was a fellow named... hm-hm-hmmm...'~
+  SAY SELECT_ACTION7 ~You still owe me several drinks, you know.~
+  SAY CRITICAL_HIT ~Hah! Looks like the scales favor *me*!~
+  SAY CRITICAL_MISS ~Tch...! You didn't see that.~
+  SAY TARGET_IMMUNE ~Not even a scratch? Well now, this is something.~
+  SAY INVENTORY_FULL ~Afraid even two hands aren't enough for this hunk of junk. Get someone else to hold it.~
+  SAY SPELL_DISRUPTED ~Wasn't my fault for botching that prayer for once.~
+  SAY SET_A_TRAP ~This'll give the next bugger a nice shock.~
+  SAY HIDDEN_IN_SHADOWS ~No one expects justice coming from the shadows.~
+  SAY PICKED_POCKET ~Whoops... you dropped this.~
+
+APPEND ~pdialog.2da~ ~C0Drake C02DrakP C02DrakJ~
+  UNLESS ~C0Drake~
+  
+APPEND ~bddialog.2da~ ~C0Drake C02DrakP C02DrakJ~
+  UNLESS ~C0Drake~
+
+APPEND ~interdia.2da~ ~C0Drake C02DrakB~
+  UNLESS ~C0Drake~*/
+  
+BEGIN ~Optional: Universal crossbows, crossbow proficiency for Drake~
+REQUIRE_COMPONENT ~Drake/Drake.tp2~ ~0~ ~Main component must be installed~
+
+//AMEND WEAPPROF.2da_______________________________________________________________
+//
+COPY_EXISTING ~weapprof.2da~ ~override~
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 6 1   // cleric
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 13 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 17 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 18 1  // multiclasses ^v
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 20 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 21 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 4 1   // MAGE
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 22 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 23 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 24 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 25 1  // specialists ^v
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 26 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 27 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 28 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 29 1
+//__________________________________________________________________________________
+
+
+//CROSSBOW PROF FOR OTHER CLERICS___________________________________________________
+//
+DEFINE_ACTION_FUNCTION mod_cleric_profs BEGIN
+	OUTER_SET count = 0
+
+	ACTION_FOR_EACH class IN
+                  cleric
+
+	BEGIN
+		OUTER_SPRINT $clerics("%count%") "%class%"
+		OUTER_SET ++count
+	END
+
+	COPY_EXISTING kitlist.2da override
+		READ_2DA_ENTRIES_NOW kitlist 3
+		FOR (row = 2; row < kitlist; ++row) BEGIN // Skip past the vanilla kits
+			READ_2DA_ENTRY_FORMER kitlist row 1 label
+			READ_2DA_ENTRY_FORMER kitlist row 8 class
+			PATCH_IF class = 3 BEGIN // cleric
+				SPRINT $clerics("%count%") "%label%"
+				++count
+			END
+		END
+	BUT_ONLY
+
+	COPY_EXISTING ~WEAPPROF.2DA~ override
+		READ_2DA_ENTRIES_NOW weapprof 3
+		COUNT_2DA_COLS cols
+		PHP_EACH clerics AS _ => name BEGIN
+			FOR (col = 0; col < cols - 1; ++col) BEGIN
+				READ_2DA_ENTRY_FORMER weapprof 0 col column_name
+				PATCH_IF "%column_name%" STRING_EQUAL_CASE "%name%" BEGIN
+					SET_2DA_ENTRY_LATER wweapprof 26 (col + 1) 1
+				END
+			END
+		END
+		SET_2DA_ENTRIES_NOW wweapprof 1
+		PRETTY_PRINT_2DA
+	BUT_ONLY
+END
+
+LAF mod_cleric_profs END
+//__________________________________________________________________________________
+
+
+//CROSSBOW USABILITY________________________________________________________________
+//
+DEFINE_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+  INT_VAR
+    offset = 0
+  STR_VAR
+    desc = ~~
+    unusable_regexp = ~~
+    unusable_replacement = ~~
+    class_regexp = ~~ //
+    class_prefix = ~~ //
+BEGIN
+  INNER_PATCH_SAVE desc ~%desc%~ BEGIN
+    REPLACE_TEXTUALLY ~%unusable_regexp%~ ~%unusable_replacement%~
+  END
+  PATCH_IF ((~%desc%~ STRING_CONTAINS_REGEXP ~^%unusable_replacement%~) == 0) BEGIN
+    INNER_PATCH_SAVE usab_block ~%desc%~ BEGIN
+      REPLACE_TEXTUALLY ~\(.*[%LNL%%MNL%%WNL%]\)*%unusable_replacement%~ ~~
+    END
+    INNER_PATCH_SAVE usab_block_new ~%usab_block%~ BEGIN
+      REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%][- %TAB%]*$~ ~~
+      REPLACE_TEXTUALLY ~^[- %TAB%]*~ ~%class_prefix%~
+      REPLACE_TEXTUALLY ~%mage_regexp%~ ~~
+    END
+    INNER_PATCH_SAVE desc ~%desc%~ BEGIN
+      REPLACE_TEXTUALLY EXACT_MATCH ~%usab_block%~ ~%usab_block_new%~
+    END
+    INNER_PATCH_SAVE compare ~%desc%~ BEGIN 
+      REPLACE_TEXTUALLY ~^%unusable_replacement%.*[%LNL%%MNL%%WNL%]%class_prefix%[^- %TAB%]~ ~~
+    END
+    PATCH_IF (~%desc%~ STRING_EQUAL ~%compare%~) BEGIN
+      INNER_PATCH_SAVE desc ~%desc%~ BEGIN
+        REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]%unusable_replacement%.*~ ~~
+      END
+    END
+    SAY_EVALUATED ~%offset%~ ~%desc%~
+  END
+END
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+    READ_BYTE 0x31 "prof" ELSE 0
+    PATCH_IF ("%prof%" = 103) BEGIN
+      READ_BYTE 0x1f "fighter"
+      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
+        READ_BYTE   0x20 "mage"
+        WRITE_BYTE 0x20 ("%mage%" BAND "0b11111011")
+        PATCH_FOR_EACH offset IN
+          ~0x50~
+          ~0x54~
+        BEGIN
+          READ_LONG ~%offset%~ desc_strref
+          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
+            READ_STRREF ~%offset%~ desc
+           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+           	  STR_VAR
+           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
+           	    unusable_replacement = ~Not Usable By:~
+           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bMage.*~
+           	    class_prefix = ~ ~
+           	END
+          END
+        END
+      END
+    END
+    READ_SHORT ~0x1c~ ~type~
+    PATCH_IF (~%type%~ = ~31~) BEGIN
+      READ_BYTE 0x1f "fighter"
+      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
+        READ_BYTE   0x20 "mage"
+        WRITE_BYTE 0x20 ("%mage%" BAND "0b11111011")
+        PATCH_FOR_EACH offset IN
+          ~0x50~
+          ~0x54~
+        BEGIN
+          READ_LONG ~%offset%~ desc_strref
+          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
+            READ_STRREF ~%offset%~ desc
+           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+           	  STR_VAR
+           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
+           	    unusable_replacement = ~Not Usable By:~
+           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bMage.*~
+           	    class_prefix = ~ ~
+           	END
+          END
+        END
+      END
+    END
+  END
+  BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+    READ_BYTE 0x31 "prof" ELSE 0
+    PATCH_IF ("%prof%" = 103) BEGIN
+      READ_BYTE 0x1f "fighter"
+      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
+        READ_BYTE   0x1E "cleric"
+        WRITE_BYTE 0x1E ("%cleric%" BAND "0b01111111")
+        READ_BYTE   0x1F "cleric-mage"
+        WRITE_BYTE 0x1F ("%cleric-mage%" BAND "0b00111000")
+        PATCH_FOR_EACH offset IN
+          ~0x50~
+          ~0x54~
+        BEGIN
+          READ_LONG ~%offset%~ desc_strref
+          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
+            READ_STRREF ~%offset%~ desc
+           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+           	  STR_VAR
+           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
+           	    unusable_replacement = ~Not Usable By:~
+           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bCleric.*~
+           	    class_prefix = ~ ~
+           	END
+          END
+        END
+      END
+    END
+    READ_SHORT ~0x1c~ ~type~
+    PATCH_IF (~%type%~ = ~31~) BEGIN
+      READ_BYTE 0x1f "fighter"
+      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
+        READ_BYTE   0x1E "cleric"
+        WRITE_BYTE 0x1E ("%cleric%" BAND "0b01111111")
+        READ_BYTE   0x1F "cleric-mage"
+        WRITE_BYTE 0x1F ("%cleric-mage%" BAND "0b00111000")
+        PATCH_FOR_EACH offset IN
+          ~0x50~
+          ~0x54~
+        BEGIN
+          READ_LONG ~%offset%~ desc_strref
+          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
+            READ_STRREF ~%offset%~ desc
+           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+           	  STR_VAR
+           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
+           	    unusable_replacement = ~Not Usable By:~
+           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bCleric.*~
+           	    class_prefix = ~ ~
+           	END
+          END
+        END
+      END
+    END
+  END
+  BUT_ONLY_IF_IT_CHANGES
+  
+// Drake - proficiencies
+
+ACTION_IF FILE_EXISTS_IN_GAME ~c0drake.cre~ THEN BEGIN
+COPY_EXISTING ~C0Drake.cre~ ~override~
+  READ_LONG 0x2c4 "fx_off"
+  READ_LONG 0x2c8 "fx_num"
+  FOR (index = 0 ; index < fx_num ; index = index + 1) BEGIN
+    READ_LONG ("%fx_off%" + 0x08 + ("%index%" * 0x108)) "type"
+    READ_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) "weap"
+    PATCH_IF (("%type%" = 233) AND ("%weap%" = 107)) BEGIN // sling
+      WRITE_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) 103  // crossbow
+  REMOVE_CRE_ITEM ~slng01~
+  REMOVE_CRE_ITEM ~bull01~
+  ADD_CRE_ITEM ~xbow01~ #0 #0 #0 ~NONE~ ~inv1~
+  ADD_CRE_ITEM ~bolt01~ #20 #0 #0 ~NONE~ ~quiver1~
+  ADD_CRE_ITEM ~bolt01~ #20 #0 #0 ~NONE~ ~quiver2~
+  ADD_CRE_ITEM ~bolt01~ #20 #0 #0 ~NONE~ ~quiver3~
+  END
+  END
+  
+ACTION_IF FILE_EXISTS_IN_GAME ~c02drake.cre~ THEN BEGIN
+COPY_EXISTING ~Drake/creatures/C02Drake.cre~ ~override~
+  READ_LONG 0x2c4 "fx_off"
+  READ_LONG 0x2c8 "fx_num"
+  FOR (index = 0 ; index < fx_num ; index = index + 1) BEGIN
+    READ_LONG ("%fx_off%" + 0x08 + ("%index%" * 0x108)) "type"
+    READ_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) "weap"
+    PATCH_IF (("%type%" = 233) AND ("%weap%" = 107)) BEGIN // sling
+      WRITE_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) 103  // crossbow
+  REMOVE_CRE_ITEM ~slng02~
+  REMOVE_CRE_ITEM ~bull03~
+  REMOVE_CRE_ITEM ~bull02~
+  REMOVE_CRE_ITEM ~bull01~
+  ADD_CRE_ITEM ~xbow03~ #0 #0 #0 ~NONE~ ~inv1~
+  ADD_CRE_ITEM ~bolt03~ #40 #0 #0 ~NONE~ ~quiver1~
+  ADD_CRE_ITEM ~bolt02~ #40 #0 #0 ~NONE~ ~quiver2~
+  ADD_CRE_ITEM ~bolt01~ #40 #0 #0 ~NONE~ ~quiver3~
+  END
+  END
+  END
+  END
+//__________________________________________________________________________________

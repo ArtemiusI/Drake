@@ -1,0 +1,87 @@
+IF
+	Global("C0DrakeStoneheart","Global",0)
+	InParty("C0Drake")
+	See("C0Drake")
+THEN
+RESPONSE #100
+	StartDialogueNoSet(Player1)
+END
+
+IF
+	Global("C0DrakeStoneheart","Global",3)
+	!Allegiance(Myself,ALLY)
+THEN
+RESPONSE #100
+	ChangeEnemyAlly(Myself,ALLY)
+END
+
+IF
+  ActionListEmpty()
+  ActuallyInCombat()
+  HaveSpell(ASSASSIN_POISON)
+  !CheckSpellState(Myself,POISON_WEAPON)
+THEN
+RESPONSE #100
+  Spell(Myself,ASSASSIN_POISON)
+END
+
+IF
+  ActionListEmpty()
+  HasItem("POTN10",Myself)
+  Range(NearestEnemyOf(Myself),4)
+  !StateCheck(Myself,STATE_INVISIBLE)
+  !CheckSpellState(Myself,CANNOT_TURN_INVISIBLE)
+  !CheckStatGT(NearestEnemyOf(Myself),0,TRUE_SIGHT)
+  !CheckStatGT(SecondNearestEnemyOf(Myself),0,TRUE_SIGHT)
+  !CheckStatGT(ThirdNearestEnemyOf(Myself),0,TRUE_SIGHT)
+  !CheckStatGT(FourthNearestEnemyOf(Myself),0,TRUE_SIGHT)
+  !CheckStatGT(FifthNearestEnemyOf(Myself),0,TRUE_SIGHT)
+  !CheckStatGT(SixthNearestEnemyOf(Myself),0,TRUE_SIGHT)
+  ActuallyInCombat()
+THEN
+  RESPONSE #100
+    UseItem("POTN10",Myself)
+    DisplayString(Myself,31249) // '*quaffs a potion*'
+END
+
+IF
+  ActionListEmpty()
+  StateCheck(Myself,STATE_INVISIBLE)
+  ActuallyInCombat()
+THEN
+  RESPONSE #100
+   EquipMostDamagingMelee()
+   AttackOneRound(NearestEnemyOf(Myself))
+   Continue()
+END
+
+IF
+  ActionListEmpty()
+  !StateCheck(Myself,STATE_INVISIBLE)
+  !IsWeaponRanged(Myself)
+  CanEquipRanged()
+  !Range(NearestEnemyOf(Myself),4)
+THEN
+  RESPONSE #100
+    EquipRanged()
+    Continue()
+END
+
+IF
+  ActuallyInCombat()
+THEN
+  RESPONSE #100
+    AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+  Global("C0DrakeStoneheart","GLOBAL",3)
+  Dead("c0dthf01")
+  Dead("c0dthf02")
+  Dead("c0dthf03")
+THEN
+  RESPONSE #100
+	SetGlobal("C0DrakeStoneheart","GLOBAL",4)
+	ChangeEnemyAlly(Myself,NEUTRAL)
+	StartDialogueNoSet(Player1)
+END

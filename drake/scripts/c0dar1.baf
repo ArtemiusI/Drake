@@ -1,0 +1,12 @@
+IF
+	Global("C0DrakeStoneheart","GLOBAL",2)
+	Global("C0DrakeThiefSpawn","C0DAR1",0)
+THEN
+RESPONSE #100
+	SetGlobal("C0DrakeThiefSpawn","C0DAR1",1)
+	CreateCreature("C0DTHF01",[361.211],SE)
+	CreateCreature("C0DTHF02",[342.297],NE)
+	CreateCreature("C0DTHF03",[454.280],NW)
+	CreateCreature("C0DSTONE",[335.429],N)
+	Continue()
+END
