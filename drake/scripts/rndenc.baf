@@ -1,0 +1,11 @@
+IF
+  GlobalLT("bd_plot","global",390)
+  Global("C02DrakeQuest","GLOBAL",3)
+  !GlobalTimerNotExpired("BD_TIMER_URE","GLOBAL")
+THEN
+  RESPONSE #40
+    SetGlobalTimer("BD_TIMER_URE","GLOBAL",EIGHT_HOURS)
+    ForceRandomEncounter("c02dr1")
+  RESPONSE #60
+    SetGlobalTimer("BD_TIMER_URE","GLOBAL",EIGHT_HOURS)
+END

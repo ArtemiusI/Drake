@@ -111,7 +111,6 @@ IF
       Global("C0DrakeTalk","GLOBAL",14)
 	  Global("C0DrakeTalk","GLOBAL",16)
 	  Global("C0DrakeTalk","GLOBAL",22)
-	  Global("C0DrakeTalk","GLOBAL",24)
 THEN
   RESPONSE #100
     StartDialogueNoSet(Player1)
@@ -132,11 +131,11 @@ IF
 	  Global("C0DrakeTalk","GLOBAL",3)
       Global("C0DrakeTalk","GLOBAL",5)
       Global("C0DrakeTalk","GLOBAL",7)
+      Global("C0DrakeTalk","GLOBAL",11)
       Global("C0DrakeTalk","GLOBAL",13)
 	  Global("C0DrakeTalk","GLOBAL",15)
 	  Global("C0DrakeTalk","GLOBAL",17)
 	  Global("C0DrakeTalk","GLOBAL",21)
-	  Global("C0DrakeTalk","GLOBAL",23)
 THEN
   RESPONSE #100
 	IncrementGlobal("C0DrakeTalk","GLOBAL",1)
@@ -403,7 +402,7 @@ IF
 	See(Player1)
 THEN
   RESPONSE #100
-	SetGlobal("C0DrakeWolfFlirt","GLOBAL",0)
+	SetGlobal("C0DrakeWolfFlirt","GLOBAL",1)
 	StartDialogueNoSet(Player1)
 END
 
@@ -536,4 +535,27 @@ THEN
 RESPONSE #100
 SetGlobal("C0DrakeDrunkTalk","GLOBAL",4)
 StartDialogueNoSet(Player1)
+END
+
+// Frozen Aegis
+
+IF
+	HasItemEquipedReal("c0dhamm",Myself)
+	See([ENEMY])
+	Global("ColdfaithAegis","LOCALS",0)
+THEN
+RESPONSE #100
+	SetGlobal("ColdfaithAegis","LOCALS",1)
+	ApplySpellRES("c0dhamm4",Myself)
+END
+
+IF
+	Global("ColdfaithAegis","LOCALS",1)
+	OR(2)
+	!HasItemEquipedReal("c0dhamm",Myself)
+	!See([ENEMY])
+THEN
+RESPONSE #100
+	SetGlobal("ColdfaithAegis","LOCALS",0)
+	ApplySpellRES("c0dhamm5",Myself)
 END

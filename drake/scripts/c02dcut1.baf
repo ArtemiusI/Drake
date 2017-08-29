@@ -1,0 +1,24 @@
+IF
+  True()
+THEN
+  RESPONSE #100
+	CutsceneId(Player1)
+	StartCutsceneMode()
+	MoveToPoint([355.318])
+Wait(1)
+FaceObject("C0Drake")
+Wait(1)
+ActionOverride("C0Drake",FaceObject("bdnantri"))
+DisplayStringHead("C0Drake",@3)
+Wait(2)
+ActionOverride("bdnantri",Face(NW))
+Wait(2)
+ActionOverride("bdnantri",Face(SE))
+Wait(2)
+ActionOverride("C0Drake",FaceObject(Player1))
+Wait(2)
+PlaySound("gulp")
+DisplayStringHead("C0Drake",16233)
+Wait(2)
+ActionOverride("C0Drake",StartDialogueNoSet(Player1))
+END

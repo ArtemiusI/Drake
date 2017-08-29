@@ -5,7 +5,7 @@ BEGIN C0DRAKEJ
 // TALK 1
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",2)~ THEN C0DRAKEJ t1
-~I think you deserve at least a little praise for what you've accomplished so far, <CHARNAME>, for someone so new to this life. It takes some skill to bring down one as powerful as Bassilus... even if he was utterly mad, still, quite impressive.~
+~I think you deserve at least a little praise for what you've accomplished so far, <CHARNAME>, for someone so new to this life. It takes some skill to bring down one as powerful as Bassilus... even if he was utterly mad, still, quite impressive.~ [C0DRAK02]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -73,7 +73,7 @@ END
 // TALK 2
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",4)~ THEN C0DRAKEJ t2
-~So what's this business with this man you're after, then? Personal grudge?~
+~So what's this business with this man you're after, then? I suppose you've got some sort of personal grudge against him.~ [C0DRAK18]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 == C0DRAKEJ IF ~InParty("Imoen")~ THEN ~I've, ah, heard a thing or two from your friend, Imoen, but she'd rather you tell me yourself if you're willing. Not that any of this is my business at all, mind you.~
@@ -138,7 +138,7 @@ END
 // TALK 3
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",6)~ THEN C0DRAKEJ t3
-~The Sword Coast really is a home for the worst of mankind. I can't say the Order was wrong to send me here, even if it was only to get rid of me.~
+~The Sword Coast really is a home for the worst of mankind. I can't say the Order was wrong to send me here, even if it was only to get rid of me.~ [C0DRAK03]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -283,7 +283,7 @@ END
 // TALK 4
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",8)~ THEN C0DRAKEJ t4
-~How do you feel about all this killing, eh, <CHARNAME>? I can't imagine you're all too familiar with it while sheltered in that library of yours.~
+~How do you feel about all this killing, eh, <CHARNAME>? I can't imagine you're all too familiar with it while sheltered in that library of yours.~ [C0DRAK04]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -371,7 +371,7 @@ END
 // TALK 5
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",10)~ THEN C0DRAKEJ t5
-~Aaaand fifty-five... fifty-six... ha!~
+~Aaaand fifty-five... fifty-six... ha!~ [C0DRAK05]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -555,7 +555,7 @@ END
 // TALK 6
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",12)~ THEN C0DRAKEJ t6
-~Look, <CHARNAME>, I owe you an apology. You know, for my attitude last time. I didn't mean to go off on a tirade, I just tend to get worse than I usually am whenever my brother gets involved.~
+~Look, <CHARNAME>, I owe you an apology. You know, for my attitude last time. I didn't mean to go off on a tirade, I just tend to get worse than I usually am whenever my brother gets involved.~ [C0DRAK06]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -625,7 +625,7 @@ END
 // TALK 7
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",14)~ THEN C0DRAKEJ t7
-~You know, I've never understood why us Amnians held northerners in such contempt. You're not so different from our lot.~
+~You know, I've never understood why us Amnians held northerners in such contempt. You're not so different from our lot.~ [C0DRAK07]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -691,7 +691,7 @@ END
 // TALK 8
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",16)~ THEN C0DRAKEJ t8
-~Fancy a drink, <CHARNAME>? You're looking a mite peaked. Perhaps this could warm you up a little.~
+~Fancy a drink, <CHARNAME>? You're looking a mite peaked. Perhaps this could warm you up a little.~ [C0DRAK08]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -717,6 +717,7 @@ END
 IF ~~ t8.2
 SAY ~This, my friend, is firewine. A brewer I know once bought the recipe from a Rashemi traveller years ago. He called it 'jhuild', or at least, that's how I think it's said.~
 = ~I was given a bottle of the stuff before I left home, and it's been sitting in my pack this whole time, unopened. Thought I'd share some of it with you.~
+IF ~!InParty("Minsc") !InParty("Dynaheir")~ + t8.2d
 + ~InParty("Minsc") InParty("Dynaheir")~ + ~Why not share it with our Rashemi friends?~ + t8.2a
 + ~InParty("Minsc") !InParty("Dynaheir")~ + ~Why not share it with our Rashemi friend?~ + t8.2b
 + ~!InParty("Minsc") InParty("Dynaheir")~ + ~Why not share it with our Rashemi friend?~ + t8.2c
@@ -845,7 +846,7 @@ END
 // TALK 9
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",18)~ THEN C0DRAKEJ t9
-~It's good that we managed to put a stop to those scum working in those mines, but I'll admit the whole affair still leaves a bitter taste in my mouth.~
+~It's good that we managed to put a stop to those scum working in those mines, but I'll admit the whole affair still leaves a bitter taste in my mouth.~ [C0DRAK09]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 == C0DRAKEJ ~We've scored a victory this day, but we're not finished yet, are we? So what now, <CHARNAME>? Do we find this 'Iron Throne' and face them head on?~
@@ -934,7 +935,7 @@ END
 // TALK 10
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",20)~ THEN C0DRAKEJ t10
-~Sorry about that business with Vance and the Shadow Thieves, <CHARNAME>. I know it was sudden and I shouldn't have pulled you into the whole mess.~
+~Sorry about that business with Vance and the Shadow Thieves, <CHARNAME>. I know it was sudden and I shouldn't have pulled you into the whole mess.~ [C0DRAK10]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -1088,7 +1089,7 @@ END
 END
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",22)~ THEN C0DRAKEJ t11
-~Hey. Have a moment to spare?~
+~Hey. Have a moment to spare?~ [C0DRAK11]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -1152,7 +1153,7 @@ END
 // TALK 12
 
 CHAIN IF ~Global("C0DrakeBhaalspawnTalk","GLOBAL",1)~ THEN C0DRAKEJ t12
-~Well now, isn't that a rather dark expression you're wearing on your puss. Bad news?~
+~Well now, isn't that a rather dark expression you're wearing on your puss. Bad news?~ [C0DRAK12]
 DO ~IncrementGlobal("C0DrakeBhaalspawnTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -1255,7 +1256,7 @@ END
 // TALK 13
 
 CHAIN IF ~Global("C0DrakeTalk","GLOBAL",24)~ THEN C0DRAKEJ t13
-~You're really ready for this, huh? That Sarevok fellow is right ahead of us, if I'm not wrong. You really planning on killing him?~
+~You're really ready for this, huh? That Sarevok fellow is right ahead of us, if I'm not wrong. You really planning on killing him?~ [C0DRAK13]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
 END
@@ -1551,7 +1552,7 @@ EXTERN ICHARY 2
 
 // Jamie + Samantha
 
-I_C_T SAMANT 9 C0DrakeSAMANT9
+I_C_T SAMANT 7 C0DrakeSAMANT7
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~By Tyr, <CHARNAME>, you really need practice. Well, let's make sure no one comes to harm from your poor attempts at flirting, hmm?~
 END
 
@@ -1831,25 +1832,22 @@ DO ~Enemy()~ EXIT
 EXTEND_TOP HUSAM2 6
 + ~Dead("c0dthf01")
 Dead("c0dthf02")
-Dead("c0dthf03")~ + ~Shadow Thieves? We killed three of your agents that were hiding underground.~ EXTERN HUSAM2 C0DrakeHusam
+Dead("c0dthf03")
+Global("C0DrakeHusam","GLOBAL",0)~ + ~Shadow Thieves? We killed three of your agents that were hiding underground.~ DO ~SetGlobal("C0DrakeHusam","GLOBAL",1)~ EXTERN HUSAM2 C0DrakeHusam
 END
 
 CHAIN HUSAM2 C0DrakeHusam
 ~Ah, yes... so that nasty bit of business was you, then? Gave us quite a nasty shock when we discovered the dreaded Aiden Vail rotting in a hole beneath the sewers.~
 == HUSAM2 ~Have no fear, though. Vail and his guildmates was operating beyond our orders, and for our best interests, we have no intention of avenging his death. So, if I might ask again, who are you?~
 == C0DRAKEJ IF ~InParty("C0Drake")~ THEN ~*snort* In other words, he's perfectly happy to throw the matter of his own associates aside for his own best interests. Sure you still want to hear them out, <CHARNAME>?~
-END
-++ ~We're just mercenaries. We've been hired by Duke Eltan to investigate the Iron Throne.~ EXTERN HUSAM2 9
-++ ~We're currently operating with Zhentarim backing. They've had their identities misused as well.~ EXTERN HUSAM2 10
-++ ~We're working with Harper assistance.~ EXTERN HUSAM2 11
-++ ~You don't need to know who we are.~ EXTERN HUSAM2 12
+COPY_TRANS HUSAM2 6
 
 // Bassilus dead
 
 APPEND C0DRAKEJ
 
 IF ~Global("C0DrakeBassilus","GLOBAL",2)~ bassilus
- SAY ~Huh. I knew he was mad, but not as mad as this. Still, he's face down in the dirt now, so that's the end of that.~
+ SAY ~Huh. I knew he was mad, but not as mad as this. Still, he's face down in the dirt now, so that's the end of that.~ [C0DRAK14]
  = ~I suppose I should say a few words like I'm supposed to. *ahem* "May Tyr's justice treat this one fairly, da-bluh-bluh-bluh, this and that, something else, don't trip on your way to the Hells, done."~
  ++ ~That's it? Not very professional of you.~ + bassilus.1
  ++ ~A prayer's too good for scum like this.~ + bassilus.2
@@ -1910,7 +1908,7 @@ END
 // Undercellars
 
 CHAIN IF ~Global("C0DrakeUndercellar","GLOBAL",1)~ THEN C0DrakeJ cellar
-~*sniff* Smell that, <CHARNAME>? That is the smell of cheap lotus. Poor sods are destroying themselves here and they don't even know it.~
+~*sniff* Smell that, <CHARNAME>? That is the smell of cheap lotus. Poor sods are destroying themselves here and they don't even know it.~ [C0DRAK15]
 DO ~SetGlobal("C0DrakeUndercellar","GLOBAL",2)~
 == C0DRAKEJ ~Or perhaps they do, but they despise their lives so much that they don't even care. Sad, really.~
 == XANJ IF ~InParty("XAN")~ THEN ~I can certainly sympathize with them if that was the case. At least they have accepted the futility of life and are attempting to wring some pleasure from it.~
@@ -1947,7 +1945,7 @@ IF ~~ + cellar4
 END
 
 IF ~~ cellar2
-SAY ~By law, it's illegal. Not that anyone desperate enough to resort to lotus to solve their laws gives half a blighted damn about the law, so yes, it's highly popular.~
+SAY ~By law, it's illegal. Not that anyone desperate enough to resort to lotus to solve their issues gives half a blighted damn about the law, so yes, it's highly popular.~
 = ~If you ever find yourself in Athkatla, drop by at the Copper Coronet's back rooms. They'll make this place look as sinful as an Ilmatari chapel.~
 IF ~~ + cellar4
 END
@@ -1980,7 +1978,7 @@ END
 // Golden Pantaloons
 
 IF ~Global("C0DrakePantaloons","GLOBAL",1)~ pantaloons
-SAY ~Oh, no. I can't believe it. I thought it was a joke when I heard it the first time, but I never would've thought the damn things actually existed.~
+SAY ~Oh, no. I can't believe it. I thought it was a joke when I heard it the first time, but I never would've thought the damn things actually existed.~ [C0DRAK16]
 = ~I knew nobles were one step away from eccentricity into full-blown madness, but how could anyone in their right minds walk around wearing anything this gaudy?~
 = ~...you're not going to give it back to the man, are you? I think you're doing him a favor taking these off his hands.~
 IF ~~ DO ~SetGlobal("C0DrakePantaloons","GLOBAL",2)~ EXIT
@@ -1989,7 +1987,7 @@ END
 // Dead Marl
 
 IF ~Global("C0DrakeMarlKilled","GLOBAL",1)~ marl
-SAY ~Was that necessary?~
+SAY ~Was that necessary?~ [C0DRAK17]
 ++ ~I tried to talk him down. He left me no choice.~ + marl1
 ++ ~No, but it was fun.~ + marl2
 ++ ~I sent him to join his son. I'd consider that doing him a favor.~ + marl3
@@ -2013,7 +2011,7 @@ END
 // Nashkel
 
 IF ~Global("C0DrakeNashkel","GLOBAL",1)~ nashkel
-SAY ~Ah, Nashkel. Not quite Athkatla, but it's the closest I've been to home in a while. I never thought I'd be back on Amnian land so soon, even if it is still just the borders.~
+SAY ~Ah, Nashkel. Not quite Athkatla, but it's the closest I've been to home in a while. I never thought I'd be back on Amnian land so soon, even if it is still just the borders.~ [C0DRAK21]
 ++ ~Is the capital of Amn all that different?~ + nashkel1
 ++ ~Have you ever been here before?~ + nashkel2
 ++ ~No time for this right now. We've got work to this.~ + nashkel0
@@ -2044,7 +2042,7 @@ END
 // Nashkel Carnival
 
 IF ~Global("C0DrakeCarnival","GLOBAL",1)~ carnival
-SAY ~Well now, this is a fresh sight. The circus comes by Athkatla from time to time, but I don't think I've seen one set up quite as grandly as this.~
+SAY ~Well now, this is a fresh sight. The circus comes by Athkatla from time to time, but I don't think I've seen one set up quite as grandly as this.~ [C0DRAK22]
 = ~It's a shame Tomas and Claudia aren't here with me to see this. They'd have gone wild, no doubt. Maybe there's a thing or two that might interest us here, though, hmm?~
 IF ~~ DO ~SetGlobal("C0DrakeCarnival","GLOBAL",2)~ EXIT
 END
@@ -2052,14 +2050,14 @@ END
 // Petrine's Cat
 
 IF ~Global("C0DrakePetrineCat","GLOBAL",1)~ petrine
-SAY ~Really, <CHARNAME>? Was there any reason you decided to do that, or do you simply enjoy seeing the exposed entrails of poor, helpless kittens? If so, you're one sick and twisted person.~
+SAY ~Really, <CHARNAME>? Was there any reason you decided to do that, or do you simply enjoy seeing the exposed entrails of poor, helpless kittens? If so, you're one sick and twisted person.~ [C0DRAK23]
 IF ~~ DO ~SetGlobal("C0DrakePetrineCat","GLOBAL",2)~ EXIT
 END
 
 // Stoneheart
 
 IF ~Global("C0DrakeStoneheartTalk","GLOBAL",1)~ stone
-SAY ~Smug, arrogant bastard! I see he hasn't changed one damned bit.~
+SAY ~Smug, arrogant bastard! I see he hasn't changed one damned bit.~ [C0DRAK20]
 ++ ~Whoa, you seem upset. Is something wrong?~ + stone1
 ++ ~Not a friend of yours?~ + stone2
 END
@@ -2082,7 +2080,7 @@ END
 // Angelo
 
 IF ~Global("C0DrakeAngelo","GLOBAL",2)~ angelo
-SAY~"Justice may be blind, but I'm not," huh? I would have expected nothing else from one whose justice is sold to the highest bidder.~
+SAY~"Justice may be blind, but I'm not," huh? I would have expected nothing else from one whose justice is sold to the highest bidder.~ [C0DRAK24]
 	++ ~You sound angry. Did that Angelo person offend you?~ + angelo1
 	++ ~We've got more to worry about than your ponderings, Drake.~ + angelo0
 END
@@ -2138,7 +2136,7 @@ END
 // Low Reputation; warning
 
 IF ~Global("C0DrakeLowRep","GLOBAL",1)~ lowrep
-SAY ~You know, <CHARNAME>, when I said I'd join you to bring down some evil bastards here on the Sword Coast, this wasn't what I had in mind.~
+SAY ~You know, <CHARNAME>, when I said I'd join you to bring down some evil bastards here on the Sword Coast, this wasn't what I had in mind.~ [C0DRAK27]
 ++ ~We haven't killed enough evil men for you?~ + lowrep1
 ++ ~I'm the leader here, and we do as I say.~ + lowrep2
 ++ ~If you're not satisfied, you're free to leave.~ + lowrep3
@@ -2162,7 +2160,7 @@ END
 // Drunk talk 1, drunk
 
 IF ~Global("C0DrakeDrunkTalk","GLOBAL",1)~ drunk1
-SAY ~Ah, it's a damn shame you don't have any good drinks here up north. It's almost embarrassing to g... get piss-faced off of this crap.~
+SAY ~Ah, it's a damn shame you don't have any good drinks here up north. It's almost embarrassing to g... get piss-faced off of this crap.~ [C0DRAK25]
 = ~H-here, you try this last one for yourself. One more and I'll... I'll... probably do something t... to embarrass my dear old father again, heh.~
 ++ ~But you're not around your father right now.~ + drunk1.1
 ++ ~Sure, I can't say no to extra drinks.~ + drunk1.2
@@ -2206,7 +2204,7 @@ END
 // Drunk talk 2, sober
 
 IF ~Global("C0DrakeDrunkTalk","GLOBAL",3)~ drunk2
-SAY ~Ugh, my head... blast it, why do I keep torturing myself like this? Ugh, where's my Tyr-damned hammer? I'd sooner crack my skull open than deal with this crap...~
+SAY ~Ugh, my head... blast it, why do I keep torturing myself like this? Ugh, where's my Tyr-damned hammer? I'd sooner crack my skull open than deal with this crap...~ [C0DRAK26]
 ++ ~Feeling alright there, Drake?~ + drunk2.1
 ++ ~That'll teach you to drink to excess.~ + drunk2.2
 END
@@ -2230,7 +2228,7 @@ END
 // Low Reputation; break
 
 IF ~Global("C0DrakeRepBreak","GLOBAL",1)~ repbreak
-SAY ~Hmm, pity. You know, I did think you were better than this, <CHARNAME>.~
+SAY ~Hmm, pity. You know, I did think you were better than this, <CHARNAME>.~ [C0DRAK28]
 ++ ~Well, you were wrong, weren't you?~ + repbreak1
 ++ ~I've made a few mistakes. I can still make up for them.~ + repbreak2
 ++ ~What are you going to do about it?~ + repbreak3
@@ -2265,7 +2263,7 @@ IF ~~ DO ~SetGlobal("C0DrakeRepBreak","GLOBAL",2) SetGlobal("C0DrakeJoined","GLO
 END
 
 IF ~IsGabber(Player1) CombatCounter(0) !Detect([ENEMY])~ THEN BEGIN pid
- SAY ~Need something, <CHARNAME>?~
+ SAY ~Need something, <CHARNAME>?~ [C0DRA023]
 	+ ~HPPercentGT(Myself,74) RandomNum(4,1)~ + ~How are you?~ + a1
 	+ ~HPPercentGT(Myself,74) RandomNum(4,2)~ + ~How are you?~ + a2
 	+ ~HPPercentGT(Myself,74) RandomNum(4,3)~ + ~How are you?~ + a3

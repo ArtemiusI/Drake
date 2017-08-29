@@ -1,7 +1,7 @@
 BEGIN C0DRAKEP
 
 IF ~Global("C0DrakeJoined","LOCALS",1)~ p1
- SAY ~How now, what's this? Are you suggesting you have no further need of my assistance? You are? Well, then, because I'm feeling generous, I'll give you the chance to reconsider.~
+ SAY ~How now, what's this? Are you suggesting you have no further need of my assistance? You are? Well, then, because I'm feeling generous, I'll give you the chance to reconsider.~ [C0DRAK29]
  	++ ~I'm serious. I have no need for you right now.~ + p2
  	++ ~Fine, stay with me then.~ + p3
 END
@@ -17,7 +17,7 @@ IF ~~ DO ~JoinParty()~ EXIT
 END
 
 IF ~Global("C0DrakeJoined","LOCALS",0)~ p4
- SAY ~Well, look who's come crawling back. Perhaps you've developed a bit of wisdom and realized how necessary I am? But before that, this one's on me, <CHARNAME>. Come, put your feet up, and let's get drunk together.~
+ SAY ~Well, look who's come crawling back. Perhaps you've developed a bit of wisdom and realized how necessary I am? But before that, this one's on me, <CHARNAME>. Come, put your feet up, and let's get drunk together.~ [C0DRAK30]
 	++ ~Maybe another time. Right now, we have places to be.~ + p5
 	++ ~On second thought, I'm going to leave now.~ + p6
 END

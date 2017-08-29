@@ -204,6 +204,22 @@ DO ~SetGlobal("C0DrakeDynaheir1","GLOBAL",1)~
 == BC0DRAKE ~I'm a pragmatist, madam. Not enough of those exist in our faith, and so I remain, much as others may wish me gone. I hope that answer will satisfy 'thee'.~
 EXIT
 
+CHAIN IF ~InParty("C0Drake")
+See("C0Drake")
+!StateCheck("Dynaheir",CD_STATE_NOTVALID)
+!StateCheck("C0Drake",CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+Global("C0DrakeDynaheir2","GLOBAL",0)~ THEN BDYNAH C0DrakeDynaheir2
+~Thou art of noble birth, art thou not, Drake?~
+DO ~SetGlobal("C0DrakeDynaheir2","GLOBAL",1)~
+== BC0DRAKE ~Aye, that I am, madam witch.~
+== BDYNAH ~I wouldst ne'er have imagined it. Thy demeanor is quite opposite to the nobility I hath known.~
+== BC0DRAKE ~I do tend to garner such reactions from 'proper folk'. ~
+== BC0DRAKE ~You are perceptive, madam. In truth, the Caulfields are no blue bloods. Our family are what you might call 'raised nobles'. We were of common birth once, until we were granted our place in society.~
+== BDYNAH ~~
+EXIT
+
 // Edwin
 
 CHAIN IF ~InParty("Edwin")
@@ -472,6 +488,23 @@ DO ~SetGlobal("C0DrakeKivan1","GLOBAL",1)~
 == BKIVAN ~You believe I have it easier? I know you have good intentions, but I would appreciate it if you did not trivialize my situation so.~
 == BC0DRAKE ~Fair enough, no more talk of this, then. In a situation like this, I think it's most appropriate to get piss drunk and forget about our sorrows instead. How's it sound?~
 == BKIVAN ~I appreciate the offer, but I will pass. Some of us must use our tools with a level of finesse.~
+EXIT
+
+CHAIN IF ~InParty("Kivan")
+See("Kivan")
+!StateCheck("Kivan",CD_STATE_NOTVALID)
+!StateCheck("C0Drake",CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+Global("C0DrakeKivan2","GLOBAL",0)~ THEN BC0DRAKE C0DrakeKivan1
+~Kivan, my friend. I have a question I would like to ask you.~
+DO ~SetGlobal("C0DrakeKivan2","GLOBAL",1)~
+== BKIVAN ~You may ask. I do not promise to answer.~
+== BC0DRAKE ~This murdering fiend that took your beloved's life... will you be satisfied once you've had your revenge?~
+== BKIVAN ~I cannot see what the answer to such a question would mean to you, Drake.~
+== BC0DRAKE ~Not much, if you prefer that I speak frankly. But I am curious. You're a good man at heart, but you know... there's more good to be done in life than killing one monster... no matter how grievous its crimes may be.~
+== BKIVAN ~Perhaps you are right. But revenge is all I have left to drive me. Once I have slain Tazok, I have no intention of remaining in this realm any longer. I shall make the journey to Arvandor, where my beloved Deheriana awaits me.~
+== BC0DRAKE ~Suit yourself. I know my words alone wouldn't change your mind. But it's a damn waste of a good man.~
 EXIT
 
 // Minsc
@@ -874,6 +907,25 @@ DO ~SetGlobal("C0DrakeRasaad","GLOBAL",2)~
 == BC0DRAKE ~And did you...?~
 == BRASAAD ~I am a little ashamed to say that we did. My brother and I drank an entire bottle each, and by the morning, we had passed out on the ground after trying to invent a new fighting style. The other monks were... displeased, to say the least.~
 == BC0DRAKE ~Ha! Now that's the kind of story I like to hear. I like you, Rasaad. You're a good man. Keep the bottle... I think you'd appreciate it far more than I.~
+EXIT
+
+CHAIN IF ~InParty("Rasaad")
+See("Rasaad")
+Dead("rsgamaz")
+!StateCheck("Rasaad",CD_STATE_NOTVALID)
+!StateCheck("C0Drake",CD_STATE_NOTVALID)
+CombatCounter(0)
+!See([ENEMY])
+Global("C0DrakeRasaad2","GLOBAL",0)~ THEN BC0DRAKE C0DrakeRasaad3
+~I'm sorry about your brother.~
+DO ~SetGlobal("C0DrakeRasaad2","GLOBAL",1)~
+== BRASAAD ~As am I.~
+== BC0DRAKE ~It must have been hard on you to find out about the way he... ended up. I don't blame you if you feel overwhelmed. Anyone would.~
+== BRASAAD ~I... it is still painful to think that Gamaz has passed. I missed him, and when I saw him again, he... well, you already know.~
+== BC0DRAKE ~Aye... though if you don't mind me saying... at least you were there to hear his last words. I didn't even get that chance.~
+== BRASAAD ~My friend, I'm-~
+== BC0DRAKE ~No, I'm sorry. That was insensitive of me, truly. This shouldn't be about me. But I did mean it. About being sorry, that is.~
+== BRASAAD ~I know, Drake. Thank you.~
 EXIT
 
 // Dorn

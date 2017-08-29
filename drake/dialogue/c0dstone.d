@@ -13,7 +13,7 @@ InParty("C0Drake")
 Global("C0DrakeStoneheart","GLOBAL",0)~ THEN C0DSTONE stoneheart2
 ~Well, well. Look who's sober enough to have finally made their way here. Long time, Caulfield.~
 DO ~SetGlobal("C0DrakeStoneheart","GLOBAL",1)~
-== C0DRAKEJ ~Stoneheart. What an unexpected... pleasure.~
+== C0DRAKEJ ~Stoneheart. What an unexpected... pleasure.~ [C0DRAK19]
 == C0DSTONE ~You've had me counting the days on my fingers before you finally arrived, my old friend. Slacking on the job? If I didn't know you, I'd think there was something wrong with you. As it stands, I'm amazed you're here at all.~
 == C0DRAKEJ ~You have no idea what I've been through. It's been nothing but work for me.~
 == C0DSTONE ~Yes, I'm sure. I'd ask you to sit down for a drink, but I'd assume you'd be out of it by the end of the day and leave me with the tab, as always.~
@@ -87,7 +87,8 @@ CHAIN C0DSTONE stoneheart9
 == C0DSTONE ~Moving together will draw upon too much attention, however. If I lead you there, they'll catch us coming long before we make it. There is a grate in the southern district of the city that will lead you to the right tunnels. Hopefully, I'll meet you there.~
 == C0DRAKEJ ~We'll be there. Won't we, <CHARNAME>?~
 == C0DSTONE ~I hope so. See you around.~
-DO ~EscapeAreaMove("AR0225",3613,2221,SE) AddJournalEntry(@1,QUEST)~ EXIT
+END
+IF ~~ DO ~EscapeAreaMove("AR0225",3613,2221,SE)~ UNSOLVED_JOURNAL @1 EXIT
 
 CHAIN C0DSTONE stoneheart10
 ~I fear I have little to offer from my own pockets. I have no personal wealth, unlike your friend Caulfield here, and acquiring a reward from my superiors will take time.~
@@ -102,7 +103,8 @@ CHAIN C0DSTONE stoneheart11
 == C0DSTONE ~True enough... I have reason to believe the Shadow Thieves have made their home in the sewers beneath Baldur's Gate. Go to the southern district and search for a grate. It will bring you to the right tunnels. Hopefully, you'll change your mind soon... and I'll still be there.~
 == C0DRAKEJ ~Think on it, <CHARNAME>. The Shadow Thieves are among the worst scum in human skin to walk Amn. It's a rare chance to be able to deal a blow to them.~
 == C0DSTONE ~I have no more time to spare, sadly. See you around... I hope.~
-DO ~EscapeAreaMove("AR0225",3613,2221,SE) AddJournalEntry(@1,QUEST)~ EXIT
+END
+IF ~~ DO ~EscapeAreaMove("AR0225",3613,2221,SE)~ UNSOLVED_JOURNAL @1 EXIT
 
 CHAIN IF WEIGHT #-1
 ~OR(2)
@@ -256,11 +258,12 @@ CHAIN C0DRAKEJ sh4.7
 EXTERN C0DSTONE sh4.6
 
 CHAIN C0DSTONE sh4.6
-~Oh, yes, I almost forgot... you should have a reward for your assistance, <CHARNAME>. I may have no gold to offer, but perhaps this will be useful to you.~
-DO ~GiveItemCreate("c0dlock",Player1,0,0,0)~
-= ~Drake should recognize it - after all, he was the one who gifted it to me. It's a Caulfield family heirloom - one of two, as I recall, the other being their ancestral hammer, Coldfaith. Don't ask him why he gave it to me. It's quite an embarrassing tale.~
+~Oh, yes, I almost forgot... you should have a reward for your assistance, <CHARNAME>. I may have no gold to offer, but perhaps these items will be useful to you. I found a box containing these magical scrolls somewhere in the sewer passages, no doubt left behind by some mage. And as for the locket, well...~
+DO ~GiveItemCreate("book06",Player1,0,0,0) GiveItemCreate("scrl1w",Player1,0,0,0) GiveItemCreate("scrl2g",Player1,0,0,0) GiveItemCreate("c0dlock",Player1,0,0,0)~
+= ~Drake should recognize it - after all, he was the one who gifted it to me a long time ago. It's a Caulfield family heirloom - one of two, as I recall, the other being their ancestral hammer, Coldfaith. Don't ask him why he gave it to me. It's quite an embarrassing tale.~
 == C0DRAKEJ IF ~InParty("C0Drake")~ THEN ~You've told <PRO_HIMHER> enough just by opening your big mouth, you damned fool.~
 == C0DSTONE IF ~InParty("C0Drake")~ THEN ~Maybe you're right. Still, you should have it back. Your father would throw a fit if it became known you gave it away, after all.~
 == C0DRAKEJ IF ~InParty("C0Drake")~ THEN ~*snort* As though we didn't already spit fire at each other every time we spoke?~
 == C0DSTONE ~I hope this will suffice. With that, I think I will take my leave. May the gods watch over you, friend.~
-DO ~RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",600) EscapeArea() EraseJournalEntry(@1) AddJournalEntry(@2,QUEST_DONE)~ EXIT
+END
+IF ~~ DO ~RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",600) EscapeArea() EraseJournalEntry(@1)~ SOLVED_JOURNAL @2 EXIT

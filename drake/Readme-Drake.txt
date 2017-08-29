@@ -20,12 +20,6 @@ Drake Caulfield is a priest of Tyr in his mid-thirties and a recruit for the Rad
 
 He can be found in Beregost at the Burning Wizard Inn and will offer his services so you may work together to slay the evil priest Bassilus.
 
---------------------------------------
- Optional component: Crossbows for all
---------------------------------------
-
-While halfway through making the mod, I decided that Drake's army background made crossbows a better fit for him compared to slings. In order to allow him to use crossbows, however, I needed to make them usable for call classes. This component enables crossbows for clerics and mages and replaces Drake's sling proficiency with crossbow. In my opinion it makes him weaker but is more suitable for him.
-
 -----------------------
  Installation
 -----------------------
@@ -45,6 +39,7 @@ Drake will talk to the player character so long as the party maintains a reputat
 Author: Artemius_I
 Portrait: Lava Del'Vortel
 Alternative Portrait: NWN Vault
+Voicing: BillyYank
 
 ----------------------
  Change Log

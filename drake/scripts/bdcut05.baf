@@ -1,0 +1,9 @@
+IF
+  InParty("c0drake")
+  !Dead("c0drake")
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    ActionOverride("safana",JumpToPoint([577.337]))
+    ActionOverride("safana",Face(NE))
+END

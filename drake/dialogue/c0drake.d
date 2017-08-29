@@ -3,7 +3,7 @@
 BEGIN C0DRAKE
 
 IF ~Global("C0DrakeBG1Intro","GLOBAL",0)~ THEN BEGIN j0
- SAY ~Ho there! Yours is a fresh face I don't think I've seen around here. New to Beregost, are you?~
+ SAY ~Ho there! Yours is a fresh face I don't think I've seen around here. New to Beregost, are you?~ [C0DRAK01]
  + ~Gender(Player1,MALE)~ + ~I am, sir.~ DO ~SetGlobal("C0DrakeBG1Intro","GLOBAL",1)~ + j0.1a
  + ~Gender(Player1,FEMALE)~ + ~I am, sir.~ DO ~SetGlobal("C0DrakeBG1Intro","GLOBAL",1)~ + j0.1b
  ++ ~You don't seem like a local either.~ DO ~SetGlobal("C0DrakeBG1Intro","GLOBAL",1)~ + j0.2
