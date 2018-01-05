@@ -896,8 +896,9 @@ EXTERN BDALYTH 33
 
 // Barrel
 
-I_C_T2 BDBARREL 0 C0DrakeBDBARREL0
+I_C_T BDBARREL 0 C0DrakeBDBARREL0
 == C02DRAKJ IF ~IsValidForPartyDialogue("C0Drake")~ THEN ~*sniff* Smells about right. Anyone got a clean ladle on hand? It's never a good idea to taint good wine with one's touch.~
+== BDBARREL ~Take the barrel?~
 END
 
 // Bence
