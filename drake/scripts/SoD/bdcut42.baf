@@ -1,0 +1,16 @@
+IF
+	Global("C02DrakePaladinHelp","GLOBAL",1)
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    CreateCreature("c02elrik",[114.3434],NE)
+    CreateCreature("c02dkni1",[67.3532],NE)
+    CreateCreature("c02dkni2",[122.3581],NE)
+    CreateCreature("c02dkni3",[39.3502],NE)
+    CreateCreature("c02tomas",[183.3551],NE)
+    ChangeEnemyAlly("c02dkni1",NEUTRAL)
+    ChangeEnemyAlly("c02elrik",NEUTRAL)
+    ChangeEnemyAlly("c02dkni2",NEUTRAL)
+    ChangeEnemyAlly("c02dkni3",NEUTRAL)
+    ChangeEnemyAlly("c02tomas",NEUTRAL)
+END

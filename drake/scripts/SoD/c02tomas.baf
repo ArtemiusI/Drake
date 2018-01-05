@@ -1,0 +1,128 @@
+IF
+	AreaCheck("c02dr1")
+	Global("C02DrakeQuest","GLOBAL",5)
+THEN
+	RESPONSE #100
+	EscapeArea()
+END
+
+IF
+	AreaCheck("bd3000")
+	Global("bd_plot","GLOBAL",395)
+	Global("Move","LOCALS",0)
+THEN
+	RESPONSE #100
+	JumpToPoint([1048.1501])
+	Face(SE)
+	SetGlobal("Move","LOCALS",1)
+END
+
+IF
+	AreaCheck("bd3000")
+	Global("C02Drake_bd_battle","GLOBAL",13)
+	Global("bd_battle","global",14)
+	Global("Shout","LOCALS",0)
+THEN
+	RESPONSE #100
+	EscapeArea()
+	SetGlobal("Shout","LOCALS",1)
+END
+
+IF
+	AreaCheck("bd3000")
+	Global("C02Drake_bd_battle","GLOBAL",23)
+	Global("bd_battle","global",24)
+	Global("Shout","LOCALS",0)
+THEN
+	RESPONSE #100
+	EscapeArea()
+	SetGlobal("Shout","LOCALS",1)
+END
+
+IF
+	AreaCheck("bd3000")
+	Global("C02Drake_bd_battle","GLOBAL",33)
+	Global("bd_battle","global",34)
+	Global("Move2","LOCALS",0)
+THEN
+	RESPONSE #100
+	EscapeArea()
+	SetGlobal("Shout","LOCALS",1)
+END
+
+IF
+  AreaCheck("bd3000")
+  GlobalGT("bd_battle_failed","bd3000",0)
+  Global("C02Drake_bd_battle","global",0)
+THEN
+  RESPONSE #100
+    EscapeAreaObject("allybase")
+END
+
+IF
+  AreaCheck("bd3000")
+  Global("bd_battle_failed","bd3000",0)
+  GlobalsGT("bd_battle","C02Drake_bd_battle")
+  Switch("C02Drake_bd_battle","global")
+THEN
+  RESPONSE #13
+    EscapeAreaObject("Western_lane")
+  RESPONSE #23
+    EscapeAreaObject("Central_lane")
+  RESPONSE #33
+    EscapeAreaObject("Eastern_lane")
+END
+
+IF
+  AreaCheck("bd3000")
+  Global("C02Drake_bd_battle","global",0)
+  GlobalGT("bd_battle","global",10)
+  GlobalLT("bd_battle","global",36)
+  Global("bd_battle_failed","bd3000",0)
+  See([ENEMY])
+THEN
+  RESPONSE #100
+    SetGlobal("bd_battle_failed","bd3000",1)
+END
+
+IF
+  AreaCheck("bd3000")
+  GlobalGT("bd_battle","global",40)
+  GlobalLT("bd_ai_controls","locals",3)
+  Global("C02Drake_bd_battle","global",0)
+THEN
+  RESPONSE #100
+    SetGlobal("bd_ai_controls","locals",3)
+    SetGlobal("bd_no_assist","locals",0)
+    ChangeEnemyAlly(Myself,GOODBUTBLUE)
+END
+
+IF
+	AreaCheck("bd3000")
+	GlobalGT("bd_battle","global",40)
+	Global("Charge","LOCALS",0)
+THEN
+	RESPONSE #100
+	ChangeAIScript("bdbcoal",CLASS)
+	SetGlobal("Charge","LOCALS",1)
+END
+
+IF
+	GlobalGT("bd_plot","global",420)
+	Global("Charge2","LOCALS",0)
+THEN
+	RESPONSE #100
+	ChangeAIScript("bdads1",OVERRIDE)
+	ChangeAIScript("bdasc",CLASS)
+	SetGlobal("Charge","LOCALS",1)
+END
+
+IF
+GlobalLT("bd_plot","global",450)
+Dead("bdashati")
+IsValidForPartyDialog("C0Drake")
+Global("C02TomasPostBattle","GLOBAL",0)
+THEN
+	RESPONSE #100
+	StartDialogueNoSet(Player1)
+END

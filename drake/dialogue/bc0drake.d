@@ -429,8 +429,8 @@ EXIT
 
 // Khalid
 
-CHAIN IF ~InParty("Khalid")
-See("Khalid")
+CHAIN IF ~InParty("C0Drake")
+See("C0Drake")
 !StateCheck("Khalid",CD_STATE_NOTVALID)
 !StateCheck("C0Drake",CD_STATE_NOTVALID)
 CombatCounter(0)

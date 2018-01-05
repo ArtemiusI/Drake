@@ -1,0 +1,338 @@
+COPY ~Drake/areas/sod~ ~override~
+COPY ~Drake/items/sod~ ~override~
+
+COPY ~Drake/creatures/SoD/C02Drake.cre~ ~override/C02Drake.cre~
+  SAY NAME1 ~Drake~
+  SAY NAME2 ~Drake~
+  WRITE_ASCII 0x248 ~C02Drake~ #8  //override script
+  WRITE_ASCII 0x280 ~C0Drake~ #32  //DV
+  WRITE_ASCII 0x2cc ~C02Drake~ #8   //pre-joining dialogue file
+  WRITE_ASCII 0X34 ~DrakeM~ #8   //small portrait
+  WRITE_ASCII 0x3c ~DrakeL~ #8   //medium portrait
+  SAY BIO ~When asked about his past, DRAKE gives a sardonic laugh and responds that history would breathe easier if his past was left forgotten. A cleric of Tyr in his mid-thirties, second son of the Caulfield family, former ensign in the Amnian militia and, with a touch of irony when mentioning it, recruit of the Radiant Heart auxiliary, he considers himself 'that thing they can't get rid of' within the Order. He openly admits that his unorthodox views on the tenets of the Order as well as the distribution of justice makes him something of a social pariah with both his fellows of the Radiant Heart and his family, almost all of whom have a history of service within the Order. According to him, while him being stationed outside of Amn was officially a mission to root out evil that plagued the Sword Coast, he believes it was nothing more than a formal means of sending him away and allowing his superiors to forget about him. Such an assignment seems to be to his preference, however, as he believes justice is best served with the edge of a blade - or in his case, the head of a hammer.
+  
+  Though Drake was prepared to return to Amn after the resolution of the iron crisis, the threat of the Shining Lady's crusade has given him cause to remain at Baldur's Gate and take part in the march to Dragonspear. He seems eager to find out the reasons behind the crusade's existence.~
+  SAY MORALE ~They say discretion is the better part of valor.~ [C0DRA001]
+  SAY HAPPY ~Hmm, not bad, not bad. Even those sods at the Order could learn a thing or two.~ [C0DRA002]
+  SAY UNHAPPY_ANNOYED ~You really sure you know what in the name of all nine layers of Hell you're doing?~ [C0DRA003]
+  SAY UNHAPPY_SERIOUS ~I can't tell if you're stupidly oblivious or... if you actually like making people hate you more than me. Either way, I suggest you stop.~ [C0DRA004]
+  SAY UNHAPPY_BREAKING_POINT ~That's it. I think even drinking myself into a stupor wouldn't be enough to ignore all of this tosh. Next time we meet, it'll be hammer first. To the Hells with you.~ [C0DRA005]
+  SAY LEADER ~Heh, so I'm the boss now, is that right? Wonder what the old coots in the Order would think if they saw where I am now... hope you won't regret this.~ [C0DRA006]
+  SAY TIRED ~Tyr's buttocks, what I wouldn't do for a warm fire and a stiff drink right now...~ [C0DRA007]
+  SAY BORED ~This standing around is just like waiting in attendance back in the Order, right down to the boredom. Can we get a move on?~ [C0DRA008]
+  SAY BATTLE_CRY1 ~I'll show you true justice!~ [C0DRA009]
+  SAY BATTLE_CRY2 ~I've got your judgment right here!~ [C0DRA010]
+  SAY BATTLE_CRY3 ~Best say your prayers... while you still can.~ [C0DRA011]
+  SAY BATTLE_CRY4 ~I've got a hammer and boot waiting to meet your arse!~ [C0DRA012]
+  SAY BATTLE_CRY5 ~Poor sod's just a dead man walking.~ [C0DRA013]
+  SAY DAMAGE ~Oof!~ [C0DRA014]
+  SAY DYING ~Ugh, how... shameful.~ [C0DRA015]
+  SAY HURT ~Agh... much as I'd like to see Tyr, I doubt he'd be eager to judge my arse this soon. Mind... offering a hand here?~ [C0DRA016]
+  SAY AREA_FOREST ~If I knew we'd be trekking through the forests, I'd have worn sturdier boots.~ [C0DRA017]
+  SAY AREA_CITY ~The smell of ale and stale vomit in the gutters is quite welcoming, don't you think?~ [C0DRA018]
+  SAY AREA_DUNGEON ~Hah... I'd say a prayer, but I doubt even the gods could hear us where we are now.~ [C0DRA019]
+  SAY AREA_DAY ~Not a bad day to dish out some judgment, don't you think?~ [C0DRA020]
+  SAY AREA_NIGHT ~The lowest of the low thrive in the dark... and I'll be ready to put 'em right.~ [C0DRA021]
+  SAY SELECT_COMMON1 ~Yeah?~ [C0DRA022]
+  SAY SELECT_COMMON2 ~Need something?~ [C0DRA023]
+  SAY SELECT_COMMON3 ~I'm listening.~ [C0DRA024]
+  SAY SELECT_COMMON4 ~Give your orders.~ [C0DRA025]
+  SAY SELECT_COMMON5 ~What is it?~ [C0DRA026]
+  SAY SELECT_COMMON6 ~Got something to say?~ [C0DRA027]
+  SAY SELECT_ACTION1 ~Right, right.~ [C0DRA028]
+  SAY SELECT_ACTION2 ~Simple enough.~ [C0DRA029]
+  SAY SELECT_ACTION3 ~As you say, friend.~ [C0DRA030]
+  SAY SELECT_ACTION4 ~You going to give me something to do already?~ [C0DRA031]
+  SAY SELECT_ACTION5 ~What's wrong with you this time? Broken limbs?~ [C0DRA032]
+  SAY SELECT_ACTION6 ~Quiet, please... I've got one hell of a headache.~ [C0DRA033]
+  SAY SELECT_ACTION7 ~You still owe me several drinks, you know.~ [C0DRA034]
+  SAY CRITICAL_HIT ~Hah! Looks like the scales favor *me*!~ [C0DRA035]
+  SAY CRITICAL_MISS ~Tch...! You didn't see that.~ [C0DRA036]
+  SAY TARGET_IMMUNE ~Not even a scratch? Well now, this is something.~ [C0DRA037]
+  SAY INVENTORY_FULL ~Afraid even two hands aren't enough for this hunk of junk. Get someone else to hold it.~ [C0DRA038]
+  SAY SPELL_DISRUPTED ~Wasn't my fault for botching that prayer for once.~ [C0DRA039]
+  SAY SET_A_TRAP ~This'll give the next bugger a nice shock.~ [C0DRA040]
+  SAY HIDDEN_IN_SHADOWS ~No one expects justice coming from the shadows.~ [C0DRA041]
+  SAY PICKED_POCKET ~Whoops... you dropped this.~ [C0DRA042]
+
+APPEND ~bddialog.2da~ ~C0Drake C02DrakP C02DrakJ C02DrakD~
+  UNLESS ~C0Drake~
+  
+COMPILE	~Drake/Dialogue/SoD/c02drake.d~
+		~Drake/Dialogue/SoD/c02drakj.d~
+		~Drake/Dialogue/SoD/c02elrik.d~
+		~Drake/Dialogue/SoD/c02tomas.d~
+		~Drake/Dialogue/SoD/dialog.d~
+		
+COMPILE ~Drake/Scripts/SoD/c02drake.baf~
+		~Drake/Scripts/SoD/c02elrik.baf~
+		~Drake/Scripts/SoD/c02dknig.baf~
+		~Drake/Scripts/SoD/c02tomas.baf~
+		~Drake/Scripts/SoD/c02dcut1.baf~
+		~Drake/Scripts/SoD/c02dcut2.baf~
+		~Drake/Scripts/SoD/c02dbant.baf~
+		~Drake/Scripts/SoD/c02drakd.baf~
+
+EXTEND_TOP ~bd0103.bcs~ ~Drake/Scripts/SoD/bd0103.baf~
+EXTEND_TOP ~bd0106.bcs~ ~Drake/Scripts/SoD/bd0106.baf~
+EXTEND_TOP ~bd1000.bcs~ ~Drake/Scripts/SoD/bd1000.baf~
+EXTEND_TOP ~bd3000.bcs~ ~Drake/Scripts/SoD/bd3000.baf~
+EXTEND_TOP ~bd5000.bcs~ ~Drake/Scripts/SoD/rndenc.baf~
+EXTEND_TOP ~bd7100.bcs~ ~Drake/Scripts/SoD/bd7100.baf~
+EXTEND_TOP ~bd7300.bcs~ ~Drake/Scripts/SoD/rndenc.baf~
+EXTEND_TOP ~bd7400.bcs~ ~Drake/Scripts/SoD/rndenc.baf~
+EXTEND_BOTTOM ~bdcut05.bcs~ ~Drake/Scripts/SoD/bdcut05.baf~
+EXTEND_TOP ~bdcut40b.bcs~ ~Drake/Scripts/SoD/bdcut40b.baf~
+EXTEND_TOP ~bdcut40c.bcs~ ~Drake/Scripts/SoD/bdcut40c.baf~
+EXTEND_TOP ~bdcut40d.bcs~ ~Drake/Scripts/SoD/bdcut40d.baf~
+EXTEND_TOP ~bdcut42.bcs~ ~Drake/Scripts/SoD/bdcut42.baf~
+EXTEND_TOP ~bdcut58.bcs~ ~Drake/Scripts/SoD/bdcut58.baf~
+EXTEND_TOP ~bdcut61.bcs~ ~Drake/Scripts/SoD/bdcut61.baf~
+EXTEND_TOP ~bdparty.bcs~ ~Drake/Scripts/SoD/bdparty.baf~
+
+COPY ~drake/items/sod/c02dchan.itm~ ~override~
+SAY NAME1 ~Chain Mail~
+SAY NAME2 ~Armor of Salvation~
+SAY DESC ~This suit of silver chain mail provides the wearer with a sense of calm, as though nothing in the world could put their lives at risk. Divine magic imbued within the armor allows it to mend its wearer's wounds at a faster rate the more severe their wounds become.
+
+STATISTICS:
+
+Charge abilities:
+ - Preservation once per day. For the next 2 rounds, the wearer is unable to be brought below 1 Hit Point. This does not protect the wearer from being killed through means outside of damage.
+
+Equipped abilities:
+ - Immunity to fear and confusion
+ - Regenerate 1 Hit Point per round while above 50% Hit Points
+ - Regenerate 2 Hit Points per round while below 50% Hit Points
+ - Regenerate 3 Hit Points per round while below 25% Hit Points
+
+Armor Class: 2 (0 vs. slashing, 4 vs. crushing)
+Requires:
+ 6 Strength
+
+Weight: 9~
+
+COPY ~drake/items/sod/c02dplat.itm~ ~override~
+SAY NAME1 ~Full Plate Mail~
+SAY NAME2 ~Plate of Tyrran Might~
+SAY DESC ~Armors such as this are worn by high priests of Tyr, bestowing upon them both great protection and a stronger connection to the Maimed God.
+
+STATISTICS:
+
+Equipped abilities:
+ - Caster Level: +2 (Priests of Tyr), +1 (Other Clerics)
+ - Upon killing a target, cast Divine Favor on self
+
+Armor Class: 0 (-4 vs. slashing, -3 vs. piercing and missile)
+Requires:
+ 15 Strength
+
+Weight: 35~
+
+COPY ~drake/items/sod/c02dpla2.itm~ ~override~
+SAY NAME1 ~Full Plate Mail~
+SAY NAME2 ~Armor of the Ancestors~
+SAY DESC ~This suit of incredibly heavy armor once belonged to a tribe of savage warriors, said to have been worn by their forefathers in eons past. Despite its aged appearance, it is still remarkably durable albeit intimidating and displeasing to the eye. The armor was taken by a tribe of orogs after its owners were slaughtered in a raid.
+
+STATISTICS:
+
+Equipped abilities:
+ - THAC0: -2 penalty
+ - Charisma: -2
+ - Physical Damage Resistance: +10%
+
+Armor Class: -1 (-4 vs. slashing)
+Requires:
+ 12 Strength
+
+Weight: 80~
+
+COPY ~drake/items/sod/c02ds2h1.itm~ ~override~
+SAY NAME1 ~Two-handed Sword~
+SAY NAME2 ~Brutal Force +2~
+SAY DESC ~This massive weapon was clearly made for someone far larger and stronger than a typical human. Its size and weight allows it to deal ludicrous amounts of bodily harm to anyone unfortunate enough to be on the receiving end, but considering the wielder would require a giant's strength to even swing it with any real effectiveness, most warriors would find it impractical.
+
+STATISTICS:
+
+Combat abilities:
+- Each hit has a 20% chance to fatigue the wielder
+- Target must save vs. death or suffer 1d6 crushing damage and be stunned for 2 rounds
+
+Equipped abilities: 
+- Attacks per round set to 1
+
+THAC0: -1
+Damage: 1d10+6 (slashing)
+Speed Factor: 9
+Proficiency Type: Two-handed Sword
+Type: Two-handed
+Requires:
+ 18 Strength
+
+Weight: 30~
+
+COPY ~drake/items/sod/c02dxbow.itm~ ~override~
+SAY NAME1 ~Heavy Crossbow~
+SAY NAME2 ~The Suppressor~
+SAY DESC ~This heavy crossbow was once the favored weapon of Maeren Silus, prelate of the Order of the Radiant Heart two-hundred years ago. In times of war, the prelate wielded this weapon atop the walls of a besieged city, wielding this weapon with impeccable accuracy. Eyewitnesses recall how the bolts she launched struck with as much force as though they were fired from a ballista, knocking her foes off their feet.
+
+STATISTICS:
+
+Combat abilities:
+ - On a critical hit, gain one bonus attack per round for the next round
+ - Each hit has a 10% chance to knock the target unconscious for 1 round and send them flying on a failed save vs. breath.
+
+THAC0: +2
+Damage: +4
+Speed Factor: 9
+Proficiency Type: Crossbow
+Type: Two-handed
+Requires:
+ 12 Strength
+
+Weight: 12~
+
+COPY ~drake/items/sod/c02dshld.itm~ ~override~
+SAY NAME1 ~Large Shield~
+SAY NAME2 ~Grimjaws's Bulwark~
+SAY DESC ~It is said that this mighty shield was once carried by an avatar of Tyr during the Time of Troubles. Whether such a claim is true, especially with the god's maimed hand, is widely disputed, but there is no argument towards the shield's effectiveness. Its size gives its bearer near immunity to missiles while raised, while its weight makes it an effective battering ram for when the enemy is within striking range.
+
+STATISTICS:
+
+Charge abilities:
+ - Physical Mirror once per day
+
+Equipped abilities:
+ - Armor Class: +3, an extra +5 vs. missiles
+ - When the wielder is hit in melee range, 20% chance to deal 2d6 crushing damage to the attacker and stun them for 1 round on a failed save vs. breath.
+
+Requires:
+ 13 Strength
+
+Weight: 12~
+
+COPY ~drake/items/sod/c02dhelm.itm~ ~override~
+SAY NAME1 ~Helmet~
+SAY NAME2 ~Helm of the Exalted~
+SAY DESC ~Fain the Foolhardy, a knight of the Order of the Radiant Heart, once wore this helmet during a campaign against a cadre of evil mages. During the battle, his companions were defeated in the battle, some driven mad by the mages' vile enchantments, until only he remained, held in stasis by magical force. With no voice to cry out with, he uttered a silent prayer to Tyr, whom responded by blessing his treasured helm with the power to break hostile enchantments. Freed from the mages' bindings, Fain raised his sword once more and slew them all, one by one, as he shrugged off each and every one of their spells with the blessings of his god.
+
+STATISTICS:
+
+Charge abilities:
+ - Acclamation three times per day
+
+Equipped abilities:
+ - Protects against critical hits
+ - Saving Throws: +3
+ - When helpless, 20% chance per round to cast Acclamation on self
+
+Weight: 3~
+
+COPY ~drake/items/sod/c02dhamm.itm~ ~override~
+SAY NAME1 ~Hammer~
+SAY NAME2 ~Fiend-Queller +3~
+SAY DESC ~This hammer seems to have some degree of awareness, as it glows with a silvery radiance when close to those of evil intent. However, its true power is unleashed when wielded against creatures of the Lower Planes, against which each swing smites with furious righteousness.
+
+STATISTICS:
+
+Combat abilities:
+- Deals 6 points of extra damage to fiends
+
+Equipped abilities:
+- Strength: +1
+
+THAC0: +3
+Damage: 1d4+4 (crushing), +4 damage vs. evil creatures
+Speed Factor: 1
+Proficiency Type: War Hammer
+Type: One-handed
+Requires:
+ 9 Strength
+
+Weight: 4~
+
+COPY ~drake/items/sod/c02dsw2h.itm~ ~override~
+SAY NAME1 ~Two-handed Sword~
+SAY NAME2 ~Blazing Justice +3~
+SAY DESC ~The favored weapon of Sir Elrik Redharbour, a veteran knight of the Order. Its burning red flames are said to seek those with evil in their hearts and burn their sins away with their flesh.
+
+STATISTICS:
+
+Equipped abilities:
+- Strength: +4
+- Armor Class: +4
+
+THAC0: +3
+Damage: 1d10+3 (slashing), 2d8+4 fire damage
+Speed Factor: 7
+Proficiency Type: Two-handed Sword
+Type: Two-handed
+Requires:
+ 13 Strength
+
+Weight: 9~
+
+// Creatures
+
+COPY ~Drake/creatures/SoD/c02tomas.cre~ ~override/c02tomas.cre~
+WRITE_ASCII 0x248 ~c02tomas~  #8  // override
+WRITE_ASCII 0x2cc ~c02tomas~  #8  // dialogue
+WRITE_ASCII 0x280 ~c02tomas~ #32 // death variable
+SAY NAME1 ~Tomas~
+SAY NAME2 ~Squire Tomas~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+
+COPY ~Drake/creatures/SoD/c02dknig.cre~ ~override/c02dkni1.cre~
+WRITE_ASCII 0x248 ~c02dknig~  #8  // override
+WRITE_ASCII 0x2cc ~c02dknig~  #8  // dialogue
+WRITE_ASCII 0x280 ~c02dkni1~ #32 // death variable
+SAY NAME1 ~Knight of the Order~
+SAY NAME2 ~Knight of the Order~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+
+COPY ~Drake/creatures/SoD/c02dknig.cre~ ~override/c02dkni2.cre~
+WRITE_ASCII 0x248 ~c02dknig~  #8  // override
+WRITE_ASCII 0x2cc ~c02dknig~  #8  // dialogue
+WRITE_ASCII 0x280 ~c02dkni2~ #32 // death variable
+SAY NAME1 ~Knight of the Order~
+SAY NAME2 ~Knight of the Order~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+
+COPY ~Drake/creatures/SoD/c02dknig.cre~ ~override/c02dkni3.cre~
+WRITE_ASCII 0x248 ~c02dknig~  #8  // override
+WRITE_ASCII 0x2cc ~c02dknig~  #8  // dialogue
+WRITE_ASCII 0x280 ~c02dkni3~ #32 // death variable
+SAY NAME1 ~Knight of the Order~
+SAY NAME2 ~Knight of the Order~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+
+COPY ~Drake/creatures/SoD/c02elrik.cre~ ~override/c02elrik.cre~
+WRITE_ASCII 0x248 ~c02elrik~  #8  // override
+WRITE_ASCII 0x2cc ~c02elrik~  #8  // dialogue
+WRITE_ASCII 0x280 ~c02elrik~ #32 // death variable
+SAY NAME1 ~Sir Elrik~
+SAY NAME2 ~Sir Elrik~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+SAY INITIAL_MEETING ~By all that's holy!~ [ELTAN04]
+SAY UNHAPPY_BREAKING_POINT ~~
+SAY BATTLE_CRY1 ~By all that's holy!~ [ELTAN04]
+SAY BATTLE_CRY2 ~By all that's holy!~ [ELTAN04]
+SAY BATTLE_CRY3 ~By all that's holy!~ [ELTAN04]
+SAY DAMAGE ~~ [ELTAN08]
+SAY DYING ~~ [ELTAN09]
+SAY SELECT_COMMON1 ~Honorable men are hard to come by.~ [ELTAN05]
+SAY SELECT_COMMON2 ~Honorable men are hard to come by.~ [ELTAN05]
+SAY SELECT_COMMON3 ~Honorable men are hard to come by.~ [ELTAN05]
+SAY SELECT_COMMON4 ~Honorable men are hard to come by.~ [ELTAN05]
+SAY SELECT_COMMON5 ~Honorable men are hard to come by.~ [ELTAN05]
+SAY SELECT_COMMON6 ~Honorable men are hard to come by.~ [ELTAN05]
+  
+COPY ~Drake/creatures/SoD/c02dorog.cre~ ~override~
+SAY NAME1 ~Orog Chieftain~
+SAY NAME2 ~Orog Chieftain~
+  WRITE_ASCII 0X34 ~~ #8   //small portrait
+
+// STORE
+
+COPY ~Drake/stores/c02dshop.sto~ ~override~
+SAY 0xc ~Order of the Radiant Heart~

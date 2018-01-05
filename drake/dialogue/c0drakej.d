@@ -181,7 +181,7 @@ SAY ~Perhaps I haven't mentioned this yet, but there's a reason why I'm allowed 
 END
 
 IF ~~ t3.5
-SAY ~Well, no. I mean, I do find it amusing to rile up the old tin-heads now and again, but that's now why I do it. It's complicated.~
+SAY ~Well, no. I mean, I do find it amusing to rile up the old tin-heads now and again, but that's not why I do it. It's complicated.~
 IF ~~ + t3.7
 END
 
@@ -2101,7 +2101,7 @@ END
 
 IF ~Global("C0DrakeWolfFlirt","GLOBAL",1)~ wolfflirt
 SAY ~*whistle* Smooth, <CHARNAME>. I didn't realize you had it in you. Looks like I can learn a thing or two from you no matter where we end up.~
-IF ~~ EXIT
+IF ~~ DO ~SetGlobal("C0DrakeWolfFlirt","GLOBAL",2)~ EXIT
 END
 
 // Helm of Opposite Alignment
@@ -2289,6 +2289,7 @@ IF ~IsGabber(Player1) CombatCounter(0) !Detect([ENEMY])~ THEN BEGIN pid
 	+ ~Class("C0Drake",FIGHTER_ALL) Global("C0DrakeDualClass","GLOBAL",0)~ + ~How does it feel now that you've become a warrior?~ DO ~SetGlobal("C0DrakeDualClass","GLOBAL",1)~ + dualclass
 	+ ~Class("C0Drake",THIEF_ALL) Global("C0DrakeDualClass","GLOBAL",0)~ + ~How does it feel now that you've become a rogue?~ DO ~SetGlobal("C0DrakeDualClass","GLOBAL",1)~ + dualclass2
 	+ ~Class("C0Drake",RANGER_ALL) Global("C0DrakeDualClass","GLOBAL",0)~ + ~How does it feel now that you've become a ranger?~ DO ~SetGlobal("C0DrakeDualClass","GLOBAL",1)~ + dualclass3
+	+ ~Class("C0Drake",MAGE_ALL) Global("C0DrakeDualClass","GLOBAL",0)~ + ~How does it feel now that you've become a mage?~ DO ~SetGlobal("C0DrakeDualClass","GLOBAL",1)~ + dualclass4
 	+ ~InParty("Eldoth") GlobalLT("C0DrakeTalk","GLOBAL",8) Global("C0DrakeHatesEldoth","GLOBAL",0)~ + ~I noticed you and Eldoth don't get along.~ DO ~SetGlobal("C0DrakeHatesEldoth","GLOBAL",1)~ + eldoth
 	+ ~InParty("Eldoth") !InParty("Garrick") GlobalGT("C0DrakeTalk","GLOBAL",7)
 	OR(2) Global("C0DrakeHatesEldoth","GLOBAL",0) Global("C0DrakeHatesEldoth","GLOBAL",1)~ + ~You seem to hold a grudge against Eldoth. Do you dislike minstrels?~ DO ~SetGlobal("C0DrakeHatesEldoth","GLOBAL",2)~ + eldoth2
@@ -2614,6 +2615,12 @@ END
 IF ~~ dualclass3
  SAY ~If you hadn't put me through all those training manuals and drilled all of this into me, I doubt it would've happened.~
  = ~I hear a few distant relatives of the Caulfield family were rangers. My grandfather on my mother's side was once a scout in the Amnian military. I think he would've approved, if he were still alive.~
+IF ~~ EXIT
+END
+
+IF ~~ dualclass4
+ SAY ~Me, a mage? Me, heir to a legacy of knights, giving up the armor for a bag of tomes and scrolls like the Cowled Wizards back home. Ha! I have to admit, I was completely blindsided.~
+ = ~No doubt the Order will have a few choice words in light of this unusual change. But I'm sure I'll make do somehow. In the meantime, we'll see if I don't set us all on fire before I make it home, eh?~
 IF ~~ EXIT
 END
 
