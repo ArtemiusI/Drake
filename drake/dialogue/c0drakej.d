@@ -1724,7 +1724,7 @@ END
 
 // Tenya
 
-I_C_T TENYA 5 C0DrakeTENYA5
+I_C_T2 TENYA 5 C0DrakeTENYA5
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~Ahh, hells, what have we gotten ourselves into? I say we take the kid at her word, <CHARNAME>. Children don't lie easily.~
 END
 

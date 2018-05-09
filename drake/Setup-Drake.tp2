@@ -10,23 +10,26 @@ LANGUAGE ~English~
          ~English~
          ~Drake/translations/english/Drake.tra~
 
-  BEGIN ~Baldur's Gate: Enhanced Edition only~
-SUBCOMPONENT ~Drake NPC for BG:EE~
+  BEGIN ~Drake NPC for Baldur's Gate: Enhanced Edition~
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE.~
 INCLUDE ~%MOD_FOLDER%/lib/drake_bg1.tpa~
-
-////////////////////////////////////// Siege of Dragonspear
-
-BEGIN ~Baldur's Gate: Enhanced Edition + Siege of Dragonspear~
-SUBCOMPONENT ~Drake NPC for BG:EE~ (FILE_EXISTS_IN_GAME ~bdcaelar.cre~)
-  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE.~
-INCLUDE ~%MOD_FOLDER%/lib/drake_bg1.tpa~
+ACTION_IF FILE_EXISTS_IN_GAME ~bdcaelar.cre~
+THEN BEGIN
+  PRINT ~Installing content for Siege of Dragonspear...~
 INCLUDE ~%MOD_FOLDER%/lib/drake_sod.tpa~
+END
 
-////////////////////////////////////// Crossbows
+PRINT ~OPTIONAL: Install Universal Crossbows, Crossbow Proficiency for Drake?
+[1] Yes
+[2] No~
 
-BEGIN ~Optional: Universal crossbows, crossbow proficiency for Drake~
-
+OUTER_SPRINT ~crossbow~ ~placeholder_value~
+OUTER_WHILE (!(IS_AN_INT ~crossbow~) OR (~crossbow~ > 0x5) OR (~crossbow~ < 0x1)) BEGIN
+  PRINT ~Please select 1 or 2 and press Enter.~
+  ACTION_READLN ~crossbow~
+END
+      ACTION_IF ("crossbow" = 1) THEN BEGIN
+	  
 //AMEND WEAPPROF.2da_______________________________________________________________
 //
 COPY_EXISTING ~weapprof.2da~ ~override~
@@ -284,3 +287,6 @@ COPY_EXISTING ~C02Drake.cre~ ~override~
   END
   END
 //__________________________________________________________________________________
+      END
+      ACTION_IF ("crossbow" = 2) THEN BEGIN
+      END
