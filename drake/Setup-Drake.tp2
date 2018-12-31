@@ -290,3 +290,34 @@ COPY_EXISTING ~C02Drake.cre~ ~override~
       END
       ACTION_IF ("crossbow" = 2) THEN BEGIN
       END
+	  
+PRINT ~Choose a portrait for Drake (check mod folder for portraits):~
+
+PRINT ~Please choose one of the following:
+[1] New BG1 Default by Artemius_I
+[2] BG2-style by Artemius_I
+[3] Original BG1 Default by Lava Del'Vortel~
+
+OUTER_SPRINT ~portrait~ ~placeholder_value~
+OUTER_WHILE (!(IS_AN_INT ~portrait~) OR (~portrait~ > 0x3) OR (~portrait~ < 0x1)) BEGIN
+  ACTION_READLN ~portrait~
+END
+      ACTION_IF ("portrait" = 1) THEN BEGIN
+		COPY ~%MOD_FOLDER%/portraits/DrakeL.bmp~ ~override/DrakeL.bmp~
+		COPY ~%MOD_FOLDER%/portraits/DrakeM.bmp~ ~override/DrakeM.bmp~
+		COPY ~%MOD_FOLDER%/portraits/DrakeS.bmp~ ~override/DrakeS.bmp~
+      PRINT ~Portrait: New BG1 Default by Artemius_I~
+      END
+      ACTION_IF ("portrait" = 2) THEN BEGIN
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake2.bmp~ ~override/DrakeL.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake2.bmp~ ~override/DrakeM.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake2.bmp~ ~override/DrakeS.bmp~
+      PRINT ~Portrait: BG2-style by Artemius_I~
+      END
+      ACTION_IF ("portrait" = 3) THEN BEGIN
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeL.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeM.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeD.bmp~
+      PRINT ~Portrait: Alternate 1 by Omar Diaz~
+      END
+	  END
