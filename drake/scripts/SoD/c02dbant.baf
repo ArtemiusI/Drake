@@ -1233,6 +1233,7 @@ RESPONSE #60
 	SetGlobal("C02DrakeRasaad2","MYAREA",70)
 RESPONSE #70
 	DisplayStringHead("Rasaad",~You may be right, Drake. I truly hope so.~)
+	SetGlobal("C02DrakeRasaad","GLOBAL",3)
 	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",4)
 	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",ONE_MINUTE)
 	RealSetGlobalTimer("C02_BANTER_DELAY","GLOBAL",THIRTY_MINUTES)
