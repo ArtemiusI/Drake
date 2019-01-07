@@ -1,6 +1,6 @@
 BACKUP ~Drake/backup~
 AUTHOR ~Artemius_I~
-VERSION ~1.0~
+VERSION ~1.21~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
@@ -318,6 +318,5 @@ END
 		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeL.bmp~
 		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeM.bmp~
 		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeD.bmp~
-      PRINT ~Portrait: Alternate 1 by Omar Diaz~
+      PRINT ~Portrait: Alternate 1 by Original BG1 Default by Lava Del'Vortel~
       END
-	  END
