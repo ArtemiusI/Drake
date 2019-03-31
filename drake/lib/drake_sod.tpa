@@ -88,8 +88,8 @@ EXTEND_TOP ~bdcut40d.bcs~ ~Drake/Scripts/SoD/bdcut40d.baf~
 EXTEND_TOP ~bdcut42.bcs~ ~Drake/Scripts/SoD/bdcut42.baf~
 EXTEND_TOP ~bdcut58.bcs~ ~Drake/Scripts/SoD/bdcut58.baf~
 EXTEND_TOP ~bdcut61.bcs~ ~Drake/Scripts/SoD/bdcut61.baf~
+EXTEND_TOP ~bdintro.bcs~ ~Drake/Scripts/SoD/bdintro.baf~
 EXTEND_TOP ~bdparty.bcs~ ~Drake/Scripts/SoD/bdparty.baf~
-EXTEND_TOP ~bdbaldur.bcs~ ~Drake/Scripts/SoD/bdbaldur.baf~
 
 COPY ~drake/items/sod/c02dchan.itm~ ~override~
 SAY NAME1 ~Chain Mail~

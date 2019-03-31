@@ -550,3 +550,1135 @@ THEN
     SetGlobal("C02DrakeQuest","GLOBAL",2)
 	StartDialogueNoSet([PC])
 END
+
+// BANTERS
+
+// Baeloth
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Baeloth")
+	Global("C02DrakeBaeloth","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeBaelothTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeBaeloth","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Baeloth")
+	Global("C02DrakeBaeloth","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeBaeloth","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeBaeloth_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeBaelothTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeBaeloth_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeBaeloth","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Baeloth")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeBaeloth","LOCALS",2)
+	    SetGlobal("C02DrakeBaeloth1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Corwin
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("CORWIN")
+	Global("C02DrakeCorwin","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeCorwinTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeCorwin","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("CORWIN")
+	Global("C02DrakeCorwin","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeCorwin","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeCorwin_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeCorwinTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeCorwin_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeCorwin","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("CORWIN")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeCorwinTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeCorwin","LOCALS",2)
+	    SetGlobal("C02DrakeCorwin1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeCorwin_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeCorwinTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeCorwin_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeCorwin","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("CORWIN")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeCorwin","LOCALS",3)
+	    SetGlobal("C02DrakeCorwin2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Dorn
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Dorn")
+	Global("C02DrakeDorn","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeDornTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeDorn","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Dorn")
+	Global("C02DrakeDorn","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeDorn","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeDorn_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeDornTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeDorn_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeDorn","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Dorn")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeDorn","LOCALS",2)
+	    SetGlobal("C02DrakeDorn1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeDorn_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeDornTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeDorn_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeDorn","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Dorn")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeDornTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeDorn","LOCALS",3)
+	    SetGlobal("C02DrakeDorn2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Dynaheir
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Dynaheir")
+	Global("C02DrakeDynaheir","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeDynaheirTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeDynaheir","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Dynaheir")
+	Global("C02DrakeDynaheir","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeDynaheir","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeDynaheir_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeDynaheirTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeDynaheir_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeDynaheir","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Dynaheir")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeDynaheir","LOCALS",2)
+	    SetGlobal("C02DrakeDynaheir1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeDynaheir_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeDynaheirTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeDynaheir_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeDynaheir","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Dynaheir")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeDynaheirTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeDynaheir","LOCALS",3)
+	    SetGlobal("C02DrakeDynaheir2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Edwin
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Edwin")
+	Global("C02DrakeEdwin","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeEdwinTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeEdwin","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Edwin")
+	Global("C02DrakeEdwin","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeEdwin","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeEdwin_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeEdwinTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeEdwin_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeEdwin","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Edwin")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeEdwin","LOCALS",2)
+	    SetGlobal("C02DrakeEdwin1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeEdwin_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeEdwinTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeEdwin_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeEdwin","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Edwin")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeEdwinTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeEdwin","LOCALS",3)
+	    SetGlobal("C02DrakeEdwin2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Glint
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Glint")
+	Global("C02DrakeGlint","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeGlintTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeGlint","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Glint")
+	Global("C02DrakeGlint","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeGlint","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeGlint_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeGlintTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeGlint_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeGlint","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Glint")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeGlint","LOCALS",2)
+	    SetGlobal("C02DrakeGlint1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeGlint_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeGlintTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeGlint_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeGlint","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Glint")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeGlintTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeGlint","LOCALS",3)
+	    SetGlobal("C02DrakeGlint2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Jaheira
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Jaheira")
+	Global("C02DrakeJaheira","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeJaheiraTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeJaheira","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Jaheira")
+	Global("C02DrakeJaheira","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeJaheira","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeJaheira_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeJaheiraTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeJaheira_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeJaheira","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Jaheira")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeJaheira","LOCALS",2)
+	    SetGlobal("C02DrakeJaheira1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeJaheira_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeJaheiraTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeJaheira_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeJaheira","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Jaheira")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeJaheiraTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeJaheira","LOCALS",3)
+	    SetGlobal("C02DrakeJaheira2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Khalid
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Khalid")
+	Global("C02DrakeKhalid","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeKhalidTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeKhalid","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Khalid")
+	Global("C02DrakeKhalid","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeKhalid","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeKhalid_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeKhalidTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeKhalid_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeKhalid","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Khalid")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeKhalid","LOCALS",2)
+	    SetGlobal("C02DrakeKhalid1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeKhalid_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeKhalidTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeKhalid_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeKhalid","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Khalid")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeKhalidTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeKhalid","LOCALS",3)
+	    SetGlobal("C02DrakeKhalid2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Mkhiin
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Mkhiin")
+	Global("C02DrakeMkhiin","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeMkhiinTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeMkhiin","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Mkhiin")
+	Global("C02DrakeMkhiin","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeMkhiin","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeMkhiin_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeMkhiinTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeMkhiin_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeMkhiin","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Mkhiin")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeMkhiin","LOCALS",2)
+	    SetGlobal("C02DrakeMkhiin1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeMkhiin_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeMkhiinTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeMkhiin_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeMkhiin","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Mkhiin")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeMkhiinTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeMkhiin","LOCALS",3)
+	    SetGlobal("C02DrakeMkhiin2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Minsc
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Minsc")
+	Global("C02DrakeMinsc","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeMinscTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeMinsc","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Minsc")
+	Global("C02DrakeMinsc","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeMinsc","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeMinsc_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeMinscTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeMinsc_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeMinsc","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Minsc")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeMinsc","LOCALS",2)
+	    SetGlobal("C02DrakeMinsc1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeMinsc_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeMinscTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeMinsc_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeMinsc","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Minsc")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeMinscTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeMinsc","LOCALS",3)
+	    SetGlobal("C02DrakeMinsc2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Neera
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Neera")
+	Global("C02DrakeNeera","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeNeeraTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeNeera","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Neera")
+	Global("C02DrakeNeera","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeNeera","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeNeera_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeNeeraTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeNeera_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeNeera","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Neera")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeNeera","LOCALS",2)
+	    SetGlobal("C02DrakeNeera1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeNeera_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeNeeraTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeNeera_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeNeera","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Neera")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeNeeraTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeNeera","LOCALS",3)
+	    SetGlobal("C02DrakeNeera2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Rasaad
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Rasaad")
+	Global("C02DrakeRasaad","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeRasaadTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeRasaad","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Rasaad")
+	Global("C02DrakeRasaad","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeRasaad","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeRasaad_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeRasaadTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeRasaad_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeRasaad","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Rasaad")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeRasaad","LOCALS",2)
+	    SetGlobal("C02DrakeRasaad1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeRasaad_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeRasaadTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeRasaad_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeRasaad","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Rasaad")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeRasaadTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeRasaad","LOCALS",3)
+	    SetGlobal("C02DrakeRasaad2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Safana
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Safana")
+	Global("C02DrakeSafana","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeSafanaTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeSafana","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Safana")
+	Global("C02DrakeSafana","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeSafana","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeSafana_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeSafanaTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeSafana_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeSafana","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Safana")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeSafana","LOCALS",2)
+	    SetGlobal("C02DrakeSafana1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeSafana_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeSafanaTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeSafana_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeSafana","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Safana")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeSafanaTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeSafana","LOCALS",3)
+	    SetGlobal("C02DrakeSafana2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Viconia
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Viconia")
+	Global("C02DrakeViconia","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeViconiaTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeViconia","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Viconia")
+	Global("C02DrakeViconia","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeViconia","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeViconia_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeViconiaTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeViconia_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeViconia","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Viconia")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeViconia","LOCALS",2)
+	    SetGlobal("C02DrakeViconia1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeViconia_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeViconiaTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeViconia_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeViconia","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Viconia")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobalTimerRandom("C02DrakeViconiaTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeViconia","LOCALS",3)
+	    SetGlobal("C02DrakeViconia2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Voghiln
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("Voghiln")
+	Global("C02DrakeVoghiln","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeVoghilnTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeVoghiln","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("Voghiln")
+	Global("C02DrakeVoghiln","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeVoghiln","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeVoghiln_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeVoghilnTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeVoghiln_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeVoghiln","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Voghiln")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeVoghiln","LOCALS",2)
+	    SetGlobal("C02DrakeVoghiln1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeVoghiln_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeVoghilnTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeVoghiln_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeVoghiln","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("Voghiln")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeVoghiln","LOCALS",3)
+	    SetGlobal("C02DrakeVoghiln2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Sirene
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("C0Sirene")
+	Global("C02DrakeSirene","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeSireneTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeSirene","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("C0Sirene")
+	Global("C02DrakeSirene","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeSirene","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeSirene_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeSireneTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeSirene_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeSirene","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("C0Sirene")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeSirene","LOCALS",2)
+	    SetGlobal("C02DrakeSirene1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeSirene_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeSireneTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeSirene_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeSirene","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("C0Sirene")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeSirene","LOCALS",3)
+	    SetGlobal("C02DrakeSirene2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+// Verrsza
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("L#1DVer")
+	Global("C02DrakeVerrsza","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeVerrszaTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeVerrsza","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("L#1DVer")
+	Global("C02DrakeVerrsza","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeVerrsza","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeVerrsza_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeVerrszaTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeVerrsza_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeVerrsza","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("L#1DVer")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeVerrsza","LOCALS",2)
+	    SetGlobal("C02DrakeVerrsza1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeVerrsza_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeVerrszaTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeVerrsza_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeVerrsza","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("L#1DVer")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeVerrsza","LOCALS",3)
+	    SetGlobal("C02DrakeVerrsza2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END

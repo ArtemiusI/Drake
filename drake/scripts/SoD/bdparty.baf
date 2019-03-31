@@ -10,11 +10,11 @@ IF
   !IsOverMe("C0Drake")
 THEN
   RESPONSE #2
-	EscapeAreaMove("BD1000",119,3607,E)
+	EscapeAreaMove("BD1000",536,3391,S)
   RESPONSE #3
-	EscapeAreaMove("BD7100",569,3606,NW)
+	EscapeAreaMove("BD7100",1118,3678,W)
   RESPONSE #4
-	EscapeAreaMove("BD3000",838,1754,N)
+	EscapeAreaMove("BD3000",1459,1476,SW)
 END
 
 IF
@@ -27,12 +27,12 @@ IF
 THEN
   RESPONSE #2
     SetGlobal("bd_npc_camp","locals",2)
-    SaveLocation("LOCALS","bd_default_loc",[119.3607])
+    SaveLocation("LOCALS","bd_default_loc",[536.3391])
   RESPONSE #3
     SetGlobal("bd_npc_camp","locals",2)
-    SaveLocation("LOCALS","bd_default_loc",[569.3606])
+    SaveLocation("LOCALS","bd_default_loc",[1118.3678])
   RESPONSE #4
     SetGlobal("bd_npc_camp","locals",2)
-    SaveLocation("LOCALS","bd_default_loc",[838.1754])
+    SaveLocation("LOCALS","bd_default_loc",[1459.1476])
     ChangeAIScript("bdasc3",CLASS)
 END
