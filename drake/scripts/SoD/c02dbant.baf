@@ -1343,7 +1343,6 @@ END
 
 IF
   !GlobalTimerNotExpired("BD_BANTER_DELAY","MYAREA")
-!RealGlobalTimerNotExpired("C02_BANTER_DELAY","GLOBAL")
 THEN
   RESPONSE #100
     SetAreaScript("",GENERAL)

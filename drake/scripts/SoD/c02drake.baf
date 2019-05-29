@@ -123,12 +123,14 @@ END
 // PLAYER TALKS
 
 IF
-    InParty(Myself)
-    Global("C02DrakeTalk","GLOBAL",0)
+	InParty(Myself)
+	Global("C02DrakeTalk","GLOBAL",0)
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
 THEN
   RESPONSE #100
-    RealSetGlobalTimer("C02DrakeTalkTimer","GLOBAL",300)
-    SetGlobal("C02DrakeTalk","GLOBAL",1)
+	IncrementGlobal("C02DrakeTalk","GLOBAL",1)
+	RealSetGlobalTimer("C02DrakeTalkTimer","GLOBAL",ONE_HOUR)
 END
 
 IF
@@ -142,44 +144,39 @@ THEN
 END
 
 IF
-    InParty(Myself)
-    See(Player1)
-    !StateCheck(Myself,CD_STATE_NOTVALID)
-    !StateCheck(Player1,CD_STATE_NOTVALID)
-    RealGlobalTimerExpired("C02DrakeTalkTimer","GLOBAL")
-    CombatCounter(0)
-    !See([ENEMY])
-	!Global("C0DrakeTalkStopped","GLOBAL",1)
-    OR(5)
-      Global("C02DrakeTalk","GLOBAL",2)
-      Global("C02DrakeTalk","GLOBAL",6)
-      Global("C02DrakeTalk","GLOBAL",8)
-      Global("C02DrakeTalk","GLOBAL",10)
-	  Global("C02DrakeTalk","GLOBAL",14)
+	InParty(Myself)
+	RealGlobalTimerExpired("C02AuraTalkTimer","GLOBAL")
+	OR(2)
+		Global("C02AuraTalk","GLOBAL",1)
+		GlobalTimerExpired("C02AuraTalkTimer2","GLOBAL")
+	Global("C0AuraTalkStopped","GLOBAL",0)
+	See(Player1)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	CombatCounter(0)
+	ReputationGT(Player1,8)
+	!See([ENEMY])
+	!AreaType(DUNGEON)
+	Switch("C02DrakeTalk","GLOBAL")
 THEN
-  RESPONSE #100
-	RealSetGlobalTimer("C02DrakeTalkTimer","GLOBAL",THIRTY_MINUTES)
-    StartDialogueNoSet(Player1)
-END
-
-IF
-    InParty(Myself)
-    See(Player1)
-    !StateCheck(Myself,CD_STATE_NOTVALID)
-    !StateCheck(Player1,CD_STATE_NOTVALID)
-    RealGlobalTimerExpired("C02DrakeTalkTimer","GLOBAL")
-    CombatCounter(0)
-    !See([ENEMY])
-    ReputationGT(Player1,9)
-    !Global("C0DrakeTalkStopped","GLOBAL",1)
-    OR(4)
-      Global("C02DrakeTalk","GLOBAL",1)
-      Global("C02DrakeTalk","GLOBAL",7)
-      Global("C02DrakeTalk","GLOBAL",9)
-	  Global("C02DrakeTalk","GLOBAL",13)
-THEN
-  RESPONSE #100
+  RESPONSE #1
 	IncrementGlobal("C02DrakeTalk","GLOBAL",1)
+	RealSetGlobalTimer("C02DrakeTalkTimer","GLOBAL",ONE_HOUR)
+	SetGlobalTimer("C02DrakeTalkTimer2","GLOBAL",ONE_DAY)
+	StartDialogueNoSet(Player1)
+  RESPONSE #7
+	IncrementGlobal("C02DrakeTalk","GLOBAL",1)
+	RealSetGlobalTimer("C02DrakeTalkTimer","GLOBAL",ONE_HOUR)
+	SetGlobalTimer("C02DrakeTalkTimer2","GLOBAL",THREE_DAYS)
+	StartDialogueNoSet(Player1)
+  RESPONSE #9
+	IncrementGlobal("C02DrakeTalk","GLOBAL",1)
+	RealSetGlobalTimer("C02DrakeTalkTimer","GLOBAL",ONE_HOUR)
+	SetGlobalTimer("C02DrakeTalkTimer2","GLOBAL",THREE_DAYS)
+	StartDialogueNoSet(Player1)
+  RESPONSE #13
+	IncrementGlobal("C02DrakeTalk","GLOBAL",1)
+	StartDialogueNoSet(Player1)
 END
 
 IF
@@ -193,10 +190,13 @@ IF
     ReputationGT(Player1,9)
 	Global("bd_dragon_ot","bd7210",1)
     !Global("C0DrakeTalkStopped","GLOBAL",1)
-      Global("C02DrakeTalk","GLOBAL",5)
+    Global("C02DrakeTalk","GLOBAL",5)
 THEN
   RESPONSE #100
 	IncrementGlobal("C02DrakeTalk","GLOBAL",1)
+	RealSetGlobalTimer("C02DrakeTalkTimer","GLOBAL",ONE_HOUR)
+	SetGlobalTimer("C02DrakeTalkTimer2","GLOBAL",THREE_DAYS)
+	StartDialogueNoSet(Player1)
 END
 
 IF
@@ -275,8 +275,9 @@ IF
 	Global("C02DrakeRomance","GLOBAL",0)
 THEN
   RESPONSE #100
+	RealSetGlobalTimer("C02DrakeRomanticTalkTimer","GLOBAL",ONE_HOUR)
+	SetGlobalTimer("C02DrakeRomanticTalkTimer2","GLOBAL",THREE_DAYS)
 	SetGlobal("C02DrakeRomance","GLOBAL",1)
-	RealSetGlobalTimer("C02DrakeRomanticTalkTimer","GLOBAL",THIRTY_MINUTES)
 END
 
 IF
@@ -284,7 +285,6 @@ IF
     See(Player1)
     !StateCheck(Myself,CD_STATE_NOTVALID)
     !StateCheck(Player1,CD_STATE_NOTVALID)
-    RealGlobalTimerExpired("C02DrakeRomanticTalkTimer","GLOBAL")
     CombatCounter(0)
     !See([ENEMY])
 	Global("C0DrakeMatch","GLOBAL",1)
@@ -308,12 +308,15 @@ IF
 		Global("C02DrakeRomanticTalk","GLOBAL",3)
 THEN
   RESPONSE #100
+	IncrementGlobal("C02DrakeRomanticTalk","GLOBAL",1)
     StartDialogueNoSet(Player1)
 END
 
 IF
     InParty(Myself)
     See(Player1)
+    RealGlobalTimerExpired("C02DrakeRomanticTalkTimer","GLOBAL")
+	GlobalTimerExpired("C02DrakeRomanticTalkTimer2","GLOBAL")
     !StateCheck(Myself,CD_STATE_NOTVALID)
     !StateCheck(Player1,CD_STATE_NOTVALID)
     CombatCounter(0)
@@ -327,6 +330,8 @@ IF
 		Global("C02DrakeRomanticTalk","GLOBAL",2)
 THEN
   RESPONSE #100
+	RealSetGlobalTimer("C02DrakeRomanticTalkTimer","GLOBAL",ONE_HOUR)
+	SetGlobalTimer("C02DrakeRomanticTalkTimer2","GLOBAL",THREE_DAYS)
 	IncrementGlobal("C02DrakeRomanticTalk","GLOBAL",1)
 END
 

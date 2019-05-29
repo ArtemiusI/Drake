@@ -802,7 +802,7 @@ CHAIN C02DRAKJ r1.x
 ~No, forget it. I know you're already committed to another. I should've never brought this up.~
 DO ~SetGlobal("C02DrakeRomanceActive","GLOBAL",3)~ EXIT
 
-CHAIN IF ~Global("C02DrakeRomanticTalk","GLOBAL",3)~ THEN C02DRAKJ r2
+CHAIN IF ~Global("C02DrakeRomanticTalk","GLOBAL",4)~ THEN C02DRAKJ r2
 ~It's getting close to the end. You do know that, right?~ [C0BLANK]
 DO ~IncrementGlobal("C02DrakeRomanticTalk","GLOBAL",1)~
 END
