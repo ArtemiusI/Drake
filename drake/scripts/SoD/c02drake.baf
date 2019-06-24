@@ -145,10 +145,10 @@ END
 
 IF
 	InParty(Myself)
-	RealGlobalTimerExpired("C02AuraTalkTimer","GLOBAL")
+	RealGlobalTimerExpired("C02DrakeTalkTimer","GLOBAL")
 	OR(2)
-		Global("C02AuraTalk","GLOBAL",1)
-		GlobalTimerExpired("C02AuraTalkTimer2","GLOBAL")
+		Global("C02DrakeTalk","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeTalkTimer2","GLOBAL")
 	Global("C0AuraTalkStopped","GLOBAL",0)
 	See(Player1)
 	!StateCheck(Player1,CD_STATE_NOTVALID)
