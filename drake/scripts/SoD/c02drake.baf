@@ -149,7 +149,7 @@ IF
 	OR(2)
 		Global("C02DrakeTalk","GLOBAL",1)
 		GlobalTimerExpired("C02DrakeTalkTimer2","GLOBAL")
-	Global("C0AuraTalkStopped","GLOBAL",0)
+	Global("C0DrakeTalkStopped","GLOBAL",0)
 	See(Player1)
 	!StateCheck(Player1,CD_STATE_NOTVALID)
 	!StateCheck(Myself,CD_STATE_NOTVALID)
