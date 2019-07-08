@@ -1,0 +1,26 @@
+// SoD - talk after Korlasz
+
+IF
+    InParty("C0Drake")
+    Global("C02DrakeCryptComment","bd0120",0)
+	Global("BDSH_Imoen_Floor","GLOBAL",3)
+	Global("BDSH_Rope","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("C02DrakeCryptComment","bd0120",1)
+    RealSetGlobalTimer("C02DrakeCryptCommentTimer","bd0120",5)
+END
+
+IF
+    InParty("C0Drake")
+    !StateCheck("C0Drake",CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !Detect([ENEMY])
+    RealGlobalTimerExpired("C02DrakeCryptCommentTimer","bd0120")
+    Global("C02DrakeCryptComment","bd0120",1)
+THEN
+  RESPONSE #100
+    SetGlobal("C02DrakeCryptComment","bd0120",2)
+	DisplayStringHead("C0Drake",~A job well done, if I do say so myself. What say we head to the nearest tavern and crack some of their finest kegs of ale once we are through with this sad place?~)
+END

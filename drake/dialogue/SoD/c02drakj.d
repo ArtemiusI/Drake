@@ -287,7 +287,7 @@ DO ~IncrementGlobal("C02DrakeTalk","GLOBAL",1)~
 END
 ++ ~They're morons.~ + t5.1
 ++ ~I don't think anything. They're just people in my way.~ + t5.2
-++ ~Caelar inspires genuine loyalty in her troops. I don't think the crusaders are geuninely evil.~ + t5.3
+++ ~Caelar inspires genuine loyalty in her troops. I don't think the crusaders are genuinely evil.~ + t5.3
 ++ ~I think that now's not the time to be discussing our enemies' philosophies with each other. Let's move.~ + t5.0
 
 CHAIN C02DRAKJ t5.0
@@ -446,7 +446,7 @@ EXTERN C02DRAKJ t6.13
 CHAIN C02DRAKJ t6.13
 ~Damn, this bottle's empty. Good thing I have two more in here...~
 = ~*gulp*~
-= ~To tell you the truth, I prefer ale. But Arabellan red was my Gabriel's favorite. Once a month, I'll empty a bottle or two in his memory.~
+= ~To tell you the truth, I prefer ale. But Arabellan red was Gabriel's favorite. Once a month, I'll empty a bottle or two in his memory.~
 = ~Personally, I've always found the aftertaste a bit much for my tongue. Good with cheese, though. A pity we don't have any.~
 = ~The last time we drank together was just before the incident at Murann. He was talking about going home to marry his beloved after we won the war. If only he knew...~
 END
@@ -868,7 +868,7 @@ CHAIN C02DRAKJ r3.5
 EXTERN C02DRAKJ r3.7
 
 CHAIN C02DRAKJ r3.6
-~Heh. I suppose some thing will never change. Though I doubt I'd be smiling so broadly if I everything then that I do now.~
+~Heh. I suppose some things will never change. Though I doubt I'd be smiling so broadly if I everything then that I do now.~
 EXTERN C02DRAKJ r3.7
 
 CHAIN C02DRAKJ r3.7

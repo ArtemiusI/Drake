@@ -706,11 +706,11 @@ RESPONSE #50
 	DisplayStringHead("Mkhiin",~If you can't talk, then maybe you should stop trying.~)
 	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
 	SetGlobal("C02DrakeMkhiin1","MYAREA",60)
-RESPONSE #40
+RESPONSE #60
 	DisplayStringHead("C0Drake",~...Do you play dice?~)
 	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",4)
 	SetGlobal("C02DrakeMkhiin1","MYAREA",70)
-RESPONSE #50
+RESPONSE #70
 	DisplayStringHead("Mkhiin",~Shut up.~)
 	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
 	SetGlobal("C02DrakeMkhiin1","MYAREA",-1)

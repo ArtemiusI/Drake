@@ -1,9 +1,10 @@
 BACKUP ~Drake/backup~
 AUTHOR ~Artemius_I~
-VERSION ~1.51~
+VERSION ~1.6~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
+  INCLUDE ~%MOD_FOLDER%/lib/alter_script.tpa~
 END
 AUTO_TRA ~Drake/translations/%s~
 LANGUAGE ~English~

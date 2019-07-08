@@ -75,12 +75,15 @@ COMPILE ~Drake/Scripts/SoD/c02drake.baf~
 
 EXTEND_TOP ~bd0103.bcs~ ~Drake/Scripts/SoD/bd0103.baf~
 EXTEND_TOP ~bd0106.bcs~ ~Drake/Scripts/SoD/bd0106.baf~
+EXTEND_TOP ~bd0120.bcs~ ~Drake/Scripts/SoD/bd0120.baf~
 EXTEND_TOP ~bd1000.bcs~ ~Drake/Scripts/SoD/bd1000.baf~
 EXTEND_TOP ~bd3000.bcs~ ~Drake/Scripts/SoD/bd3000.baf~
+EXTEND_TOP ~bd4100.bcs~ ~Drake/Scripts/SoD/bd4100.baf~
+EXTEND_TOP ~bd4300.bcs~ ~Drake/Scripts/SoD/bd4300.baf~
+EXTEND_TOP ~bd4601.bcs~ ~Drake/Scripts/SoD/bd4601.baf~
 EXTEND_TOP ~bd5000.bcs~ ~Drake/Scripts/SoD/rndenc.baf~
 EXTEND_TOP ~bd7100.bcs~ ~Drake/Scripts/SoD/bd7100.baf~
-EXTEND_TOP ~bd7300.bcs~ ~Drake/Scripts/SoD/rndenc.baf~
-EXTEND_TOP ~bd7400.bcs~ ~Drake/Scripts/SoD/rndenc.baf~
+EXTEND_TOP ~bd7210.bcs~ ~Drake/Scripts/SoD/bd7210.baf~
 EXTEND_BOTTOM ~bdcut05.bcs~ ~Drake/Scripts/SoD/bdcut05.baf~
 EXTEND_TOP ~bdcut40b.bcs~ ~Drake/Scripts/SoD/bdcut40b.baf~
 EXTEND_TOP ~bdcut40c.bcs~ ~Drake/Scripts/SoD/bdcut40c.baf~

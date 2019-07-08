@@ -1248,7 +1248,7 @@ IF ~~ EXIT
 END
 
 IF ~~ t12.11
-SAY ~That's more like it. We'll forget all this Bhaalspawn and legacy nonsense by the next day, at least for a little while. Surely that's better than stewing about here here, don't you think?~
+SAY ~That's more like it. We'll forget all this Bhaalspawn and legacy nonsense by the next day, at least for a little while. Surely that's better than stewing about it here, don't you think?~
 IF ~~ EXIT
 END
 END
@@ -2014,7 +2014,7 @@ IF ~Global("C0DrakeNashkel","GLOBAL",1)~ nashkel
 SAY ~Ah, Nashkel. Not quite Athkatla, but it's the closest I've been to home in a while. I never thought I'd be back on Amnian land so soon, even if it is still just the borders.~ [C0DRAK21]
 ++ ~Is the capital of Amn all that different?~ + nashkel1
 ++ ~Have you ever been here before?~ + nashkel2
-++ ~No time for this right now. We've got work to this.~ + nashkel0
+++ ~No time for this right now. We've got work to do.~ + nashkel0
 END
 
 IF ~~ nashkel0
