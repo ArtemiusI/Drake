@@ -1,0 +1,48 @@
+IF
+    InParty("C0Drake")
+	Global("C0DrakeMoveCamp","BD7100",0)
+THEN
+  RESPONSE #100
+    SetGlobal("C0DrakeMoveCamp","BD7100",1)
+END
+
+IF
+  Global("C0DrakeMoveCamp","BD7100",0)
+  !BeenInParty("C0Drake")
+  !Dead("C0Drake")
+  !InPartyAllowDead("C0Drake")
+THEN
+  RESPONSE #100
+    SetGlobal("C0DrakeMoveCamp","BD7100",1)
+    CreateCreature("C02Drake",[1118.3678],W)
+    ReallyForceSpellDeadRES("BDREJUVE","C0Drake")
+    ChangeEnemyAlly("C0Drake",NEUTRAL)
+    ChangeSpecifics("C0Drake",ALLIES)
+    ActionOverride("C0Drake",SetGlobal("bd_joined","LOCALS",0))
+    ActionOverride("C0Drake",SetGlobal("bd_retreat","LOCALS",0))
+    ActionOverride("C0Drake",SaveObjectLocation("LOCALS","bd_default_loc",Myself))
+    ActionOverride("C0Drake",ChangeAIScript("C02Drake",OVERRIDE))
+    ActionOverride("C0Drake",ChangeAIScript("BDCLER01",GENERAL))
+    Continue()
+END
+
+IF
+  Global("C0DrakeMoveCamp","BD7100",0)
+  BeenInParty("C0Drake")
+  !Dead("C0Drake")
+  !InPartyAllowDead("C0Drake")
+THEN
+  RESPONSE #100
+    SetGlobal("C0DrakeMoveCamp","BD7100",1)
+    MoveGlobal("BD7100","C0Drake",[1118.3678])
+    ActionOverride("C0Drake",Face(W))
+    ReallyForceSpellDeadRES("BDREJUVE","C0Drake")
+    ChangeEnemyAlly("C0Drake",NEUTRAL)
+    ChangeSpecifics("C0Drake",ALLIES)
+    ActionOverride("C0Drake",SetGlobal("bd_joined","LOCALS",0))
+    ActionOverride("C0Drake",SetGlobal("bd_retreat","LOCALS",0))
+    ActionOverride("C0Drake",SaveObjectLocation("LOCALS","bd_default_loc",Myself))
+    ActionOverride("C0Drake",ChangeAIScript("C02Drake",OVERRIDE))
+    ActionOverride("C0Drake",ChangeAIScript("BDCLER01",GENERAL))
+    Continue()
+END

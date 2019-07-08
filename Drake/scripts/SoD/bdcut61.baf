@@ -1,0 +1,9 @@
+IF
+  InParty("C0Drake")
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    SetGlobal("C0Drake_party_epilogue","global",1)
+    ActionOverride("C0Drake",LeaveParty())
+    ActionOverride("C0Drake",DestroyAllDestructableEquipment())
+END

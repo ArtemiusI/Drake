@@ -1,0 +1,22 @@
+IF
+  Global("C02Drake_bd_battle","global",22)
+THEN
+  RESPONSE #100
+    CutSceneId("bdcutid")
+    SetGlobal("C02Drake_bd_battle","global",23)
+    ChangeEnemyAlly("c02dkni1",GOODBUTBLUE)
+    ChangeEnemyAlly("c02elrik",GOODBUTBLUE)
+    ChangeEnemyAlly("c02dkni2",GOODBUTBLUE)
+    ChangeEnemyAlly("c02dkni3",GOODBUTBLUE)
+    ChangeEnemyAlly("c02tomas",GOODBUTBLUE)
+    ActionOverride("c02dkni1",JumpToPoint([975.985]))
+    ActionOverride("c02elrik",JumpToPoint([1025.1035]))
+    ActionOverride("c02dkni2",JumpToPoint([1075.1085]))
+    ActionOverride("c02dkni3",JumpToPoint([1125.1135]))
+    ActionOverride("c02tomas",JumpToPoint([1045.887]))
+    ActionOverride("c02dkni1",Face(NE))
+    ActionOverride("c02elrik",Face(NE))
+    ActionOverride("c02dkni2",Face(NE))
+    ActionOverride("c02dkni3",Face(NE))
+    ActionOverride("c02tomas",Face(NE))
+END

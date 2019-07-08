@@ -1,0 +1,14 @@
+// TALK 5
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C0DrakeTalk","GLOBAL",9)
+	TimeOfDay(NIGHT)
+	AreaType("OUTDOOR")
+THEN
+  RESPONSE #100
+    SetGlobal("C0DrakeTalk","GLOBAL",10)
+	StartDialogueNoSet(Player1)
+END

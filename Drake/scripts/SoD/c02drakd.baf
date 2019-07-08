@@ -1,0 +1,48 @@
+// TALK 2
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C02DrakeTalk","GLOBAL",3)
+	TimeOfDay(NIGHT)
+	AreaType("OUTDOOR")
+THEN
+  RESPONSE #100
+	RealSetGlobalTimer("C02DrakeTalkTimer","GLOBAL",THIRTY_MINUTES)
+    SetGlobal("C02DrakeTalk","GLOBAL",4)
+	StartDialogueNoSet(Player1)
+END
+
+// TALK 6
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("C02DrakeTalk","GLOBAL",11)
+	TimeOfDay(NIGHT)
+	AreaType("OUTDOOR")
+THEN
+  RESPONSE #100
+	RealSetGlobalTimer("C02DrakeTalkTimer","GLOBAL",THIRTY_MINUTES)
+    SetGlobal("C02DrakeTalk","GLOBAL",12)
+	StartDialogueNoSet(Player1)
+END
+
+// Drake-Voghiln
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    !StateCheck("Voghiln",CD_STATE_NOTVALID)
+	Global("C02DrakeVoghilnRestTalk","GLOBAL",0)
+	GlobalTimerExpired("C02DrakeVoghilnRestTalkTimer","GLOBAL")
+	TimeOfDay(NIGHT)
+	AreaType("OUTDOOR")
+THEN
+  RESPONSE #100
+    SetGlobal("C02DrakeVoghilnRestTalk","GLOBAL",1)
+	ActionOverride("Voghiln",StartDialogueNoSet(Player1))
+END

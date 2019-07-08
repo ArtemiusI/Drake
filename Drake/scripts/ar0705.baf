@@ -1,0 +1,8 @@
+IF
+	Global("C0StoneheartSpawn","AR0705",0)
+THEN
+RESPONSE #100
+	SetGlobal("C0StoneheartSpawn","AR0705",1)
+	CreateCreature("C0DStone",[1005.603],SW)
+	Continue()
+END
