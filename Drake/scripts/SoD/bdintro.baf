@@ -1,9 +1,0 @@
-IF
-	Global("SOD_fromimport","global",1)
-	InMyArea("C0Drake")
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
-		ActionOverride("C0Drake",SetDialog("C02DRAKJ"))
-		ActionOverride("C0Drake",ChangeAIScript("C02DRAKE",OVERRIDE))
-END

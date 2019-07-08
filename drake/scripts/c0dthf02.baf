@@ -1,7 +1,0 @@
-IF
-	See(Player1)
-	!Allegiance(Myself,ENEMY)
-THEN
-RESPONSE #100
-	StartDialogueNoSet(Player1)
-END
