@@ -217,7 +217,8 @@ DO ~SetGlobal("C0DrakeDynaheir2","GLOBAL",1)~
 == BDYNAH ~I wouldst ne'er have imagined it. Thy demeanor is quite opposite to the nobility I hath known.~
 == BC0DRAKE ~I do tend to garner such reactions from 'proper folk'. ~
 == BC0DRAKE ~You are perceptive, madam. In truth, the Caulfields are no blue bloods. Our family are what you might call 'raised nobles'. We were of common birth once, until we were granted our place in society.~
-== BDYNAH ~~
+== BDYNAH ~I see. But true nobility, beyond mere extravagance, is a matter of action, rather than blood. Thy actions mayst still be worthy of the title of noble. Wouldst thou not agree?~
+== BC0DRAKE ~Oh, I certainly do. But that, madam, is a calling for greater men. I, personally, am satisfied with my lot in life.~
 EXIT
 
 // Edwin

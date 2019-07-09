@@ -65,6 +65,7 @@ COPY ~Drake/creatures/C0Drake.cre~ ~override/C0Drake.cre~
   SAY SET_A_TRAP ~This'll give the next bugger a nice shock.~ [C0DRA040]
   SAY HIDDEN_IN_SHADOWS ~No one expects justice coming from the shadows.~ [C0DRA041]
   SAY PICKED_POCKET ~Whoops... you dropped this.~ [C0DRA042]
+  WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~OHTYR~))
   
   COMPILE ~Drake/Dialogue/C0Drake.d~
   COMPILE ~Drake/Dialogue/BC0Drake.d~
