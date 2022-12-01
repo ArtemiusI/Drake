@@ -1584,3 +1584,92 @@ THEN
 	    SetGlobal("C02DrakeVerrsza2","MYAREA",1)
 		SetAreaScript("C02DBANT",GENERAL)
 END
+
+// Emily
+IF
+	!AreaCheck("bd0120")
+	!AreaCheck("bd0130")
+	InParty(Myself)
+	InParty("X3Emily")
+	Global("C02DrakeEmily","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimerRandom("C02DrakeEmilyTalk","LOCALS",ONE_DAY,FOURTEEN_DAYS)
+		SetGlobal("C02DrakeEmily","LOCALS",1)
+END
+
+IF
+	OR(2)
+		!InParty(Myself)
+		!InParty("X3Emily")
+	Global("C02DrakeEmily","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("C02DrakeEmily","LOCALS",0)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeEmily_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeEmilyTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeEmily_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeEmily","LOCALS",1)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("X3Emily")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeEmily","LOCALS",2)
+	    SetGlobal("C02DrakeEmily1","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeEmily_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeEmilyTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeEmily_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeEmily","LOCALS",2)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("X3Emily")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeEmily","LOCALS",3)
+	    SetGlobal("C02DrakeEmily2","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END
+
+IF
+	OR(2)
+		Global("C02DrakeEmily_DEBUG","GLOBAL",1)
+		GlobalTimerExpired("C02DrakeEmilyTalk","LOCALS")
+	OR(2)
+		Global("C02DrakeEmily_DEBUG","GLOBAL",1)
+		!GlobalTimerNotExpired("BD_NPC_BANTER","GLOBAL")
+	GlobalTimerNotExpired("BD_AREA_BANTER_DELAY","MYAREA")
+	Global("C02DrakeEmily","LOCALS",3)
+	IsValidForPartyDialog(Myself)
+	IsValidForPartyDialog("X3Emily")  
+	!PartyRested()
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		BanterBlockTime(450)
+		SetGlobalTimer("BD_NPC_BANTER","GLOBAL",FOUR_HOURS)
+		SetGlobal("C02DrakeEmily","LOCALS",3)
+	    SetGlobal("C02DrakeEmily3","MYAREA",1)
+		SetAreaScript("C02DBANT",GENERAL)
+END

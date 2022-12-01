@@ -1193,6 +1193,123 @@ END
 ////////////////////////////MODS///////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 
+// EMILY
+
+IF
+	InMyArea(Player1)
+	!ActuallyInCombat()
+	!GlobalTimerNotExpired("BD_BANTER_DELAY","MYAREA")
+	GlobalGT("C02DrakeEmily1","MYAREA",0)
+	Switch("C02DrakeEmily1","MYAREA")
+THEN
+RESPONSE #1
+	DisplayStringHead("X3Emily",~Drake, do you have a moment?~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily1","MYAREA",10)
+RESPONSE #10
+	DisplayStringHead("C0Drake",~Aye, more than one. What's on your mind, blonde?~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily1","MYAREA",20)
+RESPONSE #20
+	DisplayStringHead("X3Emily",~I have a name, you know. It's Emily. Anyway... how do you feel about this whole war business?~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily1","MYAREA",30)
+RESPONSE #30
+	DisplayStringHead("C0Drake",~Asking a soldier about war? Now that's a loaded question if ever I heard one.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily1","MYAREA",40)
+RESPONSE #40
+	DisplayStringHead("X3Emily",~I'm not judging. I understand the sense of duty you must have. I was just wondering if you had doubts.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily1","MYAREA",50)
+RESPONSE #50
+	DisplayStringHead("C0Drake",~Why? Because our foes have a sense of right just as much as we have?~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily1","MYAREA",60)
+RESPONSE #60
+	DisplayStringHead("X3Emily",~Yes, that... exactly it. You took the words out of my mouth.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily1","MYAREA",70)
+RESPONSE #70
+	DisplayStringHead("C0Drake",~Don't think too hard on it, blonde. If you do, you'll never stop. Take that from someone who understands war.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily1","MYAREA",-1)
+END
+
+IF
+	InMyArea(Player1)
+	!ActuallyInCombat()
+	!GlobalTimerNotExpired("BD_BANTER_DELAY","MYAREA")
+	GlobalGT("C02DrakeEmily2","MYAREA",0)
+	Switch("C02DrakeEmily2","MYAREA")
+THEN
+RESPONSE #1
+	DisplayStringHead("X3Emily",~I can't do it, Drake. How can I ignore hurting people who aren't evil?~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily2","MYAREA",10)
+RESPONSE #10
+	DisplayStringHead("C0Drake",~Difficult, is it not? The most difficult battles are never against those you hate.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily2","MYAREA",20)
+RESPONSE #20
+	DisplayStringHead("X3Emily",~I know we're on the right. I stand by it, and that's why I fight. But... I know our foes must feel the same. I can feel it.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily2","MYAREA",30)
+RESPONSE #30
+	DisplayStringHead("C0Drake",~And yet, if you allow others to decide for you what's right, in a way, you have already lost.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily2","MYAREA",40)
+RESPONSE #40
+	DisplayStringHead("X3Emily",~Is that how you can bring yourself to fight so easily?~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily2","MYAREA",50)
+RESPONSE #50
+	DisplayStringHead("C0Drake",~I'm here because I believed opposing the crusade was the right choice. Those who stand against me simply made the wrong ones.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily2","MYAREA",60)
+RESPONSE #60
+	DisplayStringHead("C0Drake",~Sometimes... the wrong choice is not always evil in nature. That, you'll have to accept, and find the courage to fight regardless. That is war.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily2","MYAREA",70)
+RESPONSE #70
+	DisplayStringHead("X3Emily",~And there is truly no conciliation? Is there no other way than for one side to destroy the other?~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily2","MYAREA",80)
+RESPONSE #80
+	DisplayStringHead("C0Drake",~You ever find the answer to that question, blonde... you let me know.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily2","MYAREA",-1)
+END
+
+IF
+	InMyArea(Player1)
+	!ActuallyInCombat()
+	!GlobalTimerNotExpired("BD_BANTER_DELAY","MYAREA")
+	GlobalGT("C02DrakeEmily3","MYAREA",0)
+	Switch("C02DrakeEmily3","MYAREA")
+THEN
+RESPONSE #1
+	DisplayStringHead("C0Drake",~If doubts still plague you, blonde, just remember—they chose their side, just as you have. Where that takes them is not up to you.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily3","MYAREA",10)
+RESPONSE #10
+	DisplayStringHead("X3Emily",~I understand. Thank you for listening to me all this time.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily3","MYAREA",20)
+RESPONSE #20
+	DisplayStringHead("C0Drake",~It’s reassuring to confide with another who about your doubts.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily3","MYAREA",30)
+RESPONSE #30
+	DisplayStringHead("X3Emily",~Yes, that’s—hang on, who are you speaking of, me or you?~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily3","MYAREA",40)
+RESPONSE #40
+	DisplayStringHead("C0Drake",~Well... I wonder.~)
+	SetGlobalTimer("BD_BANTER_DELAY","MYAREA",5)
+	SetGlobal("C02DrakeEmily3","MYAREA",-1)
+END
+
 // SIRENE
 
 IF

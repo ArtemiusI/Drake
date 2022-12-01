@@ -7,10 +7,7 @@ IF ~~ DO ~SetGlobal("C02DrakeKickedmdd1330","global",1)
 SetGlobal("bd_joined","locals",0)~ EXIT
 END
 
-IF ~OR(2)
-	AreaCheck("BD0120")
-	AreaCheck("BD0130")
-	GlobalGT("bd_joined","LOCALS",0)~ p1
+IF ~GlobalGT("bd_joined","LOCALS",0)~ p1
 SAY ~Is our companionship to end so abruptly? I'm heartbroken.~
  	+ ~OR(2) AreaCheck("BD0120")
 	AreaCheck("BD0130")~ + ~Just wait here until I return.~ + p2
@@ -105,8 +102,8 @@ END
 
 CHAIN C02DRAKP quest.4
 ~Thank you, <CHARNAME>. It could be nothing... for all I know, they're simply held back by some small complications, but in case they're not... well, better to be safe than sorry.~
-EXIT
+DO ~AddJournalEntry(%Drake_SoD_Quest_1%,QUEST)~ EXIT
 
 CHAIN C02DRAKP quest.5
 ~*sigh* Well, I'll not rest easy not knowing if anything has happened, but I suppose we've bigger concerns on our hands. All right, I'll try and convince some of the commanders of the camp to deal with it in our stead. But I hope you might keep watch for any clues regardless... just in case.~
-EXIT
+DO ~AddJournalEntry(%Drake_SoD_Quest_1%,QUEST)~ EXIT

@@ -4,8 +4,14 @@ IF ~Global("C0DrakeJoined","LOCALS",1)~ p1
  SAY ~How now, what's this? Are you suggesting you have no further need of my assistance? You are? Well, then, because I'm feeling generous, I'll give you the chance to reconsider.~ [C0DRAK29]
  	++ ~I'm serious. I have no need for you right now.~ + p2
  	++ ~Fine, stay with me then.~ + p3
+	++ ~Stay here and wait for me.~ + p0
 END
- 
+
+IF ~~ p0
+ SAY ~Ah, is that how it shall be? Well, as you command. I've had my share of experience standing by in the army.~
+IF ~~ DO ~SetGlobal("C0DrakeJoined","LOCALS",0)~ EXIT
+END
+
 IF ~~ p2
  SAY ~How very disappointing. In that case, you'll find me drowning in a tankard of ale at the Friendly Arm Inn. Do come by and say hello.~
 IF ~~ DO ~SetGlobal("C0DrakeJoined","LOCALS",0) EscapeAreaMove("AR2301",593,530,NW)~ EXIT

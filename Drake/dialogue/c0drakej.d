@@ -39,7 +39,8 @@ END
 IF ~~ t1.4
 SAY ~Still, this is but the beginning of what I suspect will be quite an interesting bit of camaraderie. Perhaps you will continue to impress, or begin to disappoint me with mediocrity. Who knows?~
 + ~Global("C0DrakeMatch","GLOBAL",1)~ + ~Oh, I'll impress you, alright. You'll be falling head over heel for me soon enough.~ + t1.5
-++ ~Are all followers of Tyr as big of an arse as you?~ + t1.6
++ ~Kit(Player1,OHTYR)~ + ~I hope other brothers of the faith aren't this much of an arse.~ + t1.6
++ ~!Kit(Player1,OHTYR)~ + ~Are all followers of Tyr as big of an arse as you?~ + t1.6
 ++ ~I hope I'll live up to your expectations.~ + t1.7
 ++ ~Just follow me. I'll show you a thing or two to be impressed by.~ + t1.8
 END
@@ -845,7 +846,8 @@ END
 
 // TALK 9
 
-CHAIN IF ~Global("C0DrakeTalk","GLOBAL",18)~ THEN C0DRAKEJ t9
+CHAIN IF ~GlobalGT("Chapter","GLOBAL",4)
+Global("C0DrakeTalk","GLOBAL",18)~ THEN C0DRAKEJ t9
 ~It's good that we managed to put a stop to those scum working in those mines, but I'll admit the whole affair still leaves a bitter taste in my mouth.~ [C0DRAK09]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
@@ -1746,11 +1748,11 @@ END
 
 CHAIN C0DrakeJ theodon1
 ~Come now, my friend, I can't make you reconsider?~
-EXTERN WILLIA 10
+EXIT
 
 CHAIN C0DrakeJ theodon2
 ~Oh, sure, sure. Can't have you selling your dignity for nothing, can we? Ha!~
-EXTERN WILLIA 10
+EXIT
 
 // Tranzig
 
@@ -1982,6 +1984,14 @@ SAY ~Oh, no. I can't believe it. I thought it was a joke when I heard it the fir
 = ~I knew nobles were one step away from eccentricity into full-blown madness, but how could anyone in their right minds walk around wearing anything this gaudy?~
 = ~...you're not going to give it back to the man, are you? I think you're doing him a favor taking these off his hands.~
 IF ~~ DO ~SetGlobal("C0DrakePantaloons","GLOBAL",2)~ EXIT
+END
+
+// GENDER CHANGE
+
+IF ~Global("C0DrakeSexChange","GLOBAL",1)~ gender
+SAY ~Hmm. Well then.~
+= ~And here I thought I'd experienced just about everything.~
+IF ~~ DO ~SetGlobal("C0DrakeSexChange","GLOBAL",2)~ EXIT
 END
 
 // Dead Marl
@@ -2405,7 +2415,7 @@ END
 IF ~~ noble
  SAY ~*snort* You want the official answer, or the one that has some semblance of truth behind it?~
  = ~My family is, by status, on the same grounds as the minor Amnian nobility, that's true. Not that anyone with a drop of actual noble blood would admit to such, even if you tied them up and put a knife to their throat.~
- = ~Usually, one is of noble class when appointed within the Order. However, for my family that was the other way around. One of my ancestors of the Caulfield name, a follower of Torm, once saved a member of the Amnian royalty during a time of war. It's a story my father loved to tell us, again and again.~
+ = ~Usually, one is of noble class when appointed within the Order. However, for my family that was the other way around. One of my ancestors of the Caulfield name, a follower of Torm, once saved a member of the Amnian ruling class during a time of war. It's a story my father loved to tell us, again and again.~
  = ~For his heroism, he was inducted into the Radiant Heart and his household was elevated to nobility. Of course, the 'real' nobles hated that. We were commoners, our blood was 'dirty', so to speak. I'd say our rise in society's done us more harm than good.~
  = ~Not to say we haven't grown accustomed to it over the years. Nowadays, most everyone in my family's involved with the Order in some way. Some of us like it more than others.~
 IF ~~ EXIT

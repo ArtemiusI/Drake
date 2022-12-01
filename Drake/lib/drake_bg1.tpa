@@ -10,6 +10,13 @@ COPY ~Drake/Portraits~ ~override~
 EXTEND_TOP ~AR3307.bcs~ ~Drake/Scripts/AR3307.baf~
 EXTEND_TOP ~AR0705.bcs~ ~Drake/Scripts/AR0705.baf~
 
+// Journal
+ADD_JOURNAL TITLE (@0) @1 @2 USING ~%MOD_FOLDER%/translations/english/journal.tra~
+LOAD_TRA ~%MOD_FOLDER%/translations/%LANGUAGE%/journal.tra~
+OUTER_SET %Drake_BG1_Quest_1% = RESOLVE_STR_REF (@1)
+OUTER_SET %Drake_BG1_Quest_2% = RESOLVE_STR_REF (@2)
+LOAD_TRA ~%MOD_FOLDER%/translations/%LANGUAGE%/setup.tra~
+
 //AUDIO
 
 LAF HANDLE_AUDIO END
@@ -23,63 +30,56 @@ COPY ~Drake/creatures/C0Drake.cre~ ~override/C0Drake.cre~
   WRITE_ASCII 0X34 ~DrakeM~ #8   //small portrait
   WRITE_ASCII 0x3c ~DrakeL~ #8   //medium portrait
   SAY BIO ~When asked about his past, DRAKE gives a sardonic laugh and responds that history would breathe easier if his past was left forgotten. A cleric of Tyr in his mid-thirties, second son of the Caulfield family, former ensign in the Amnian militia and, with a touch of irony when mentioning it, recruit of the Radiant Heart auxiliary, he considers himself 'that thing they can't get rid of' within the Order. He openly admits that his unorthodox views on the tenets of the Order as well as the distribution of justice makes him something of a social pariah with both his fellows of the Radiant Heart and his family, almost all of whom have a history of service within the Order. According to him, while him being stationed outside of Amn was officially a mission to root out evil that plagued the Sword Coast, he believes it was nothing more than a formal means of sending him away and allowing his superiors to forget about him. Such an assignment seems to be to his preference, however, as he believes justice is best served with the edge of a blade - or in his case, the head of a hammer.~
-  SAY MORALE ~They say discretion is the better part of valor.~ [C0DRA001]
-  SAY HAPPY ~Hmm, not bad, not bad. Even those sods at the Order could learn a thing or two.~ [C0DRA002]
-  SAY UNHAPPY_ANNOYED ~You really sure you know what in the name of all nine layers of Hell you're doing?~ [C0DRA003]
-  SAY UNHAPPY_SERIOUS ~I can't tell if you're stupidly oblivious or... if you actually like making people hate you more than me. Either way, I suggest you stop.~ [C0DRA004]
-  SAY UNHAPPY_BREAKING_POINT ~That's it. I think even drinking myself into a stupor wouldn't be enough to ignore all of this tosh. Next time we meet, it'll be hammer first. To the Hells with you.~ [C0DRA005]
-  SAY LEADER ~Heh, so I'm the boss now, is that right? Wonder what the old coots in the Order would think if they saw where I am now... hope you won't regret this.~ [C0DRA006]
-  SAY TIRED ~Tyr's buttocks, what I wouldn't do for a warm fire and a stiff drink right now...~ [C0DRA007]
-  SAY BORED ~This standing around is just like waiting in attendance back in the Order, right down to the boredom. Can we get a move on?~ [C0DRA008]
-  SAY BATTLE_CRY1 ~I'll show you true justice!~ [C0DRA009]
-  SAY BATTLE_CRY2 ~I've got your judgment right here!~ [C0DRA010]
-  SAY BATTLE_CRY3 ~Best say your prayers... while you still can.~ [C0DRA011]
-  SAY BATTLE_CRY4 ~I've got a hammer and boot waiting to meet your arse!~ [C0DRA012]
-  SAY BATTLE_CRY5 ~Poor sod's just a dead man walking.~ [C0DRA013]
-  SAY DAMAGE ~Oof!~ [C0DRA014]
-  SAY DYING ~Ugh, how... shameful.~ [C0DRA015]
-  SAY HURT ~Agh... much as I'd like to see Tyr, I doubt he'd be eager to judge my arse this soon. Mind... offering a hand here?~ [C0DRA016]
-  SAY AREA_FOREST ~If I knew we'd be trekking through the forests, I'd have worn sturdier boots.~ [C0DRA017]
-  SAY AREA_CITY ~The smell of ale and stale vomit in the gutters is quite welcoming, don't you think?~ [C0DRA018]
-  SAY AREA_DUNGEON ~Hah... I'd say a prayer, but I doubt even the gods could hear us where we are now.~ [C0DRA019]
-  SAY AREA_DAY ~Not a bad day to dish out some judgment, don't you think?~ [C0DRA020]
-  SAY AREA_NIGHT ~The lowest of the low thrive in the dark... and I'll be ready to put 'em right.~ [C0DRA021]
-  SAY SELECT_COMMON1 ~Yeah?~ [C0DRA022]
-  SAY SELECT_COMMON2 ~Need something?~ [C0DRA023]
-  SAY SELECT_COMMON3 ~I'm listening.~ [C0DRA024]
-  SAY SELECT_COMMON4 ~Give your orders.~ [C0DRA025]
-  SAY SELECT_COMMON5 ~What is it?~ [C0DRA026]
-  SAY SELECT_COMMON6 ~Got something to say?~ [C0DRA027]
-  SAY SELECT_ACTION1 ~Right, right.~ [C0DRA028]
-  SAY SELECT_ACTION2 ~Simple enough.~ [C0DRA029]
-  SAY SELECT_ACTION3 ~As you say, friend.~ [C0DRA030]
-  SAY SELECT_ACTION4 ~You going to give me something to do already?~ [C0DRA031]
-  SAY SELECT_ACTION5 ~What's wrong with you this time? Broken limbs?~ [C0DRA032]
-  SAY SELECT_ACTION6 ~Quiet, please... I've got one hell of a headache.~ [C0DRA033]
-  SAY SELECT_ACTION7 ~You still owe me several drinks, you know.~ [C0DRA034]
-  SAY CRITICAL_HIT ~Hah! Looks like the scales favor *me*!~ [C0DRA035]
-  SAY CRITICAL_MISS ~Tch...! You didn't see that.~ [C0DRA036]
-  SAY TARGET_IMMUNE ~Not even a scratch? Well now, this is something.~ [C0DRA037]
-  SAY INVENTORY_FULL ~Afraid even two hands aren't enough for this hunk of junk. Get someone else to hold it.~ [C0DRA038]
-  SAY SPELL_DISRUPTED ~Wasn't my fault for botching that prayer for once.~ [C0DRA039]
-  SAY SET_A_TRAP ~This'll give the next bugger a nice shock.~ [C0DRA040]
-  SAY HIDDEN_IN_SHADOWS ~No one expects justice coming from the shadows.~ [C0DRA041]
-  SAY PICKED_POCKET ~Whoops... you dropped this.~ [C0DRA042]
+  SAY MORALE ~No sense in fighting this one any longer!~ [C0DR001]
+  SAY HAPPY ~Not bad, not bad. You'd give any knight a run for his money.~ [C0DR002]
+  SAY UNHAPPY_ANNOYED ~I'll give you the benefit of the doubt this time, but watch yourself.~ [C0DR003]
+  SAY UNHAPPY_SERIOUS ~You're either hopelessly oblivious or utterly irredeemable. I pray you're the former.~ [C0DR004]
+  SAY UNHAPPY_BREAKING_POINT ~That's it. I'll need more than a few drinks to forget what I've seen. The next time we met, it'll be hammer first.~ [C0DR005]
+  SAY LEADER ~You're asking the wrong man for this. Seriously? You'd better not regret it.~ [C0DR006]
+  SAY TIRED ~What I wouldn't do for a hard drink and a soft bed right about now...~ [C0DR007]
+  SAY BORED ~I'm just about ready to piss myself, just like standing in attendance back at the Order. Might we get a move on?~ [C0DR008]
+  SAY BATTLE_CRY1 ~I'll bring you to judgment myself!~ [C0DR009]
+  SAY BATTLE_CRY2 ~You're just a dead man walking!~ [C0DR010]
+  SAY BATTLE_CRY3 ~Say your prayers while you still can!~ [C0DR011]
+  SAY BATTLE_CRY4 ~This one's on me!~ [C0DR012]
+  SAY BATTLE_CRY5 ~My hammer's waiting to meet your arse!~ [C0DR013]
+  SAY DAMAGE ~Oof!~ [C0DR014]
+  SAY DYING ~Ugh... damn it all...~ [C0DR015]
+  SAY HURT ~Agh... that all you got?~ [C0DR016]
+  SAY AREA_FOREST ~If I knew we'd be trekking through the forests, I'd have worn sturdier boots.~ [C0DR017]
+  SAY AREA_CITY ~Hawkers, foul odors, and cheap ale. Just the way I like it.~ [C0DR018]
+  SAY AREA_DUNGEON ~Watch your step. Fools rush in where angels fear to tread.~ [C0DR019]
+  SAY AREA_DAY ~The sun shines on above us, and I am again reminded that my armor still needs polishing.~ [C0DR020]
+  SAY AREA_NIGHT ~We could be getting drunk at a nice warm inn instead of lumbering about in the dark...~ [C0DR021]
+  SAY SELECT_COMMON1 ~Yeah?~ [C0DR022]
+  SAY SELECT_COMMON2 ~Need something?~ [C0DR023]
+  SAY SELECT_COMMON3 ~Give your orders.~ [C0DR024]
+  SAY SELECT_ACTION1 ~Sure, sure.~ [C0DR028]
+  SAY SELECT_ACTION2 ~Simple enough.~ [C0DR029]
+  SAY SELECT_ACTION3 ~On we march.~ [C0DR030]
+  SAY CRITICAL_HIT ~Ha! Looks like the scales favor *me*!~ [C0DR037]
+  SAY CRITICAL_MISS ~Tch... no one saw that.~ [C0DR038]	
+  SAY TARGET_IMMUNE ~No effect? Didn't see that one coming.~ [C0DR039]
+  SAY INVENTORY_FULL ~I'd need more than two hands for this junk. Get someone else to hold it.~ [C0DR040]
+  SAY SPELL_DISRUPTED ~Bloody hell!~ [C0DR041]
+  SAY SET_A_TRAP ~I pity the poor bastard who steps in this one.~ [C0DR042]
+  SAY HIDDEN_IN_SHADOWS ~Time to try a stealthy approach.~ [C0DR043]
+  SAY PICKED_POCKET ~Not very knightly, but nobody needs to know, eh?~ [C0DR044]
   WRITE_SHORT 0x246 (IDS_OF_SYMBOL (~kit~ ~OHTYR~))
   
-  COMPILE ~Drake/Dialogue/C0Drake.d~
-  COMPILE ~Drake/Dialogue/BC0Drake.d~
-  COMPILE ~Drake/Dialogue/C0DrakeJ.d~
-  COMPILE ~Drake/Dialogue/C0DrakeP.d~
-  COMPILE ~Drake/Dialogue/C0DStone.d~
-  COMPILE ~Drake/Dialogue/C0DThf01.d~
+  COMPILE EVAL ~Drake/Dialogue/C0Drake.d~
+		  	 ~Drake/Dialogue/BC0Drake.d~
+  			 ~Drake/Dialogue/C0DrakeJ.d~
+  			 ~Drake/Dialogue/C0DrakeP.d~
+  			 ~Drake/Dialogue/C0DStone.d~
+  			 ~Drake/Dialogue/C0DThf01.d~
   
-  COMPILE ~Drake/Scripts/C0Drake.baf~
-  COMPILE ~Drake/Scripts/C0DrakeD.baf~
-  COMPILE ~Drake/Scripts/C0DReset.baf~
-  COMPILE ~Drake/Scripts/C0DStone.baf~
-  COMPILE ~Drake/Scripts/C0DThf02.baf~
-  COMPILE ~Drake/Scripts/C0DAR1.baf~
+  COMPILE EVAL ~Drake/Scripts/C0Drake.baf~
+  			 ~Drake/Scripts/C0DrakeD.baf~
+  			 ~Drake/Scripts/C0DReset.baf~
+  			 ~Drake/Scripts/C0DStone.baf~
+  			 ~Drake/Scripts/C0DThf02.baf~
+  			 ~Drake/Scripts/C0DAR1.baf~
   
 APPEND ~pdialog.2da~
 ~C0Drake        C0DrakeP	C0DrakeJ	C0DrakeD~
@@ -264,30 +264,44 @@ COPY_EXISTING ~ohtyr2.spl~ ~override~
 	  resource = ICPRAYI
 END
 
+// Aura-Glam
+ACTION_IF MOD_IS_INSTALLED ~SETUP-GLAMNPCPACK.TP2~ ~0~
+THEN BEGIN
+  PRINT ~Adding crossmod banters between Drake and Glam's NPC Pack~
+COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/dialogue/crossmod/glamvrock.d~
+END
+
 // Drake-Sirene
-ACTION_IF FILE_EXISTS_IN_GAME ~bc0drake.dlg~ AND FILE_EXISTS_IN_GAME ~bc0siren.dlg~
+ACTION_IF FILE_EXISTS_IN_GAME ~bc0siren.dlg~
 THEN BEGIN
   PRINT ~Adding crossmod banters between Drake and Sirene~
 COMPILE ~Drake/dialogue/crossmod/sirene.d~
 END
 
 // Drake-White
-ACTION_IF FILE_EXISTS_IN_GAME ~bc0drake.dlg~ AND FILE_EXISTS_IN_GAME ~V#1WHIB.dlg~
+ACTION_IF FILE_EXISTS_IN_GAME ~V#1WHIB.dlg~
 THEN BEGIN
   PRINT ~Adding crossmod banters between Drake and White~
 COMPILE ~Drake/dialogue/crossmod/white.d~
 END
 
 // Drake-Verr
-ACTION_IF FILE_EXISTS_IN_GAME ~bc0drake.dlg~ AND FILE_EXISTS_IN_GAME ~L#1VerrB.dlg~
+ACTION_IF FILE_EXISTS_IN_GAME ~L#1VerrB.dlg~
 THEN BEGIN
   PRINT ~Adding crossmod banters between Drake and Verr'Sza~
 COMPILE ~Drake/dialogue/crossmod/verrsza.d~
 END
 
 // Drake-Aura
-ACTION_IF FILE_EXISTS_IN_GAME ~bc0drake.dlg~ AND FILE_EXISTS_IN_GAME ~bc0aura.dlg~
+ACTION_IF FILE_EXISTS_IN_GAME ~bc0aura.dlg~
 THEN BEGIN
   PRINT ~Adding crossmod banters between Drake and Aura~
 COMPILE ~Drake/dialogue/crossmod/Aura.d~
+END
+
+// Drake-SotSC
+ACTION_IF MOD_IS_INSTALLED ~Setup-SotSC.tp2~ ~0~
+THEN BEGIN
+  PRINT ~Adding crossmod content between Drake and Shades of the Sword Coast~
+COMPILE ~Drake/dialogue/crossmod/sotsc.d~
 END

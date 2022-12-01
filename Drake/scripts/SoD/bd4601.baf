@@ -7,5 +7,5 @@ THEN
   RESPONSE #100
     SetGlobal("bd_hellevator_ot_C0Drake","bd4601",1)
     SetGlobalTimer("bd_hellevator_timer","bd4601",7)
-    DisplayStringHead("C0Drake",~Up and up we go, where we'll end up, nobody knows... heh. I'd suggest preparing for the worst, whatever that may be.~)
+    DisplayStringHead("C0Drake",~Up and up we go, where we'll end up, nobody knows... I'd suggest preparing for the worst, whatever that may be.~)
 END

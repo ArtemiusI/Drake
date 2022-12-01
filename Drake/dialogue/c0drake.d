@@ -3,8 +3,9 @@
 BEGIN C0DRAKE
 
 IF ~Global("C0DrakeBG1Intro","GLOBAL",0)~ THEN BEGIN j0
- SAY ~Ho there! Yours is a fresh face I don't think I've seen around here. New to Beregost, are you?~ [C0DRAK01]
- + ~Gender(Player1,MALE)~ + ~I am, sir.~ DO ~SetGlobal("C0DrakeBG1Intro","GLOBAL",1)~ + j0.1a
+ SAY ~Ho there! Yours is a fresh face I don't think I've seen around here. New to Beregost, are you?~ [C0BLANK]
+ + ~Kit(Player1,OHTYR)~ + ~I see the insignia of a fellow Tyrran. Well met.~ + j0.tyr
+ + ~!Gender(Player1,FEMALE)~ + ~I am, sir.~ DO ~SetGlobal("C0DrakeBG1Intro","GLOBAL",1)~ + j0.1a
  + ~Gender(Player1,FEMALE)~ + ~I am, sir.~ DO ~SetGlobal("C0DrakeBG1Intro","GLOBAL",1)~ + j0.1b
  ++ ~You don't seem like a local either.~ DO ~SetGlobal("C0DrakeBG1Intro","GLOBAL",1)~ + j0.2
  ++ ~What business is that of yours?~ DO ~SetGlobal("C0DrakeBG1Intro","GLOBAL",1)~ + j0.3
@@ -14,6 +15,12 @@ END
 IF ~~ j0.x
  SAY ~Your loss. Come by again, if you've got the interest.~
 IF ~~ EXIT
+END
+
+IF ~~ j0.tyr
+ SAY ~Now, now. None of that here. We aren't exactly standing before Mount Celestia nor the Halls of Justice, are we?~
+IF ~!Gender(Player1,FEMALE)~ + j0.1a
+IF ~Gender(Player1,FEMALE)~ + j0.1b
 END
 
 IF ~~ j0.1a

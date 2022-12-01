@@ -3,6 +3,7 @@ IF
 THEN
 RESPONSE #100
 	SetGlobal("C0DrakeSpawns","AR3307",1)
-	CreateCreature("C0Drake",[236.133],S)
+	CreateCreature("C0Drake",[158.130],13)
+	ActionOverride("C0Drake",MakeGlobal())
 	Continue()
 END

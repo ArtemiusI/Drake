@@ -88,7 +88,7 @@ CHAIN C0DSTONE stoneheart9
 == C0DRAKEJ ~We'll be there. Won't we, <CHARNAME>?~
 == C0DSTONE ~I hope so. See you around.~
 END
-IF ~~ DO ~EscapeAreaMove("AR0225",3613,2221,SE)~ UNSOLVED_JOURNAL @1 EXIT
+IF ~~ DO ~AddJournalEntry(%Drake_BG1_Quest_1%,QUEST) EscapeAreaMove("AR0225",3613,2221,SE)~ EXIT
 
 CHAIN C0DSTONE stoneheart10
 ~I fear I have little to offer from my own pockets. I have no personal wealth, unlike your friend Caulfield here, and acquiring a reward from my superiors will take time.~
@@ -104,7 +104,7 @@ CHAIN C0DSTONE stoneheart11
 == C0DRAKEJ ~Think on it, <CHARNAME>. The Shadow Thieves are among the worst scum in human skin to walk Amn. It's a rare chance to be able to deal a blow to them.~
 == C0DSTONE ~I have no more time to spare, sadly. See you around... I hope.~
 END
-IF ~~ DO ~EscapeAreaMove("AR0225",3613,2221,SE)~ UNSOLVED_JOURNAL @1 EXIT
+IF ~~ DO ~AddJournalEntry(%Drake_BG1_Quest_1%,QUEST) EscapeAreaMove("AR0225",3613,2221,SE)~ EXIT
 
 CHAIN IF WEIGHT #-1
 ~OR(2)
@@ -266,4 +266,4 @@ DO ~GiveItemCreate("book06",Player1,0,0,0) GiveItemCreate("scrl1w",Player1,0,0,0
 == C0DRAKEJ IF ~InParty("C0Drake")~ THEN ~*snort* As though we didn't already spit fire at each other every time we spoke?~
 == C0DSTONE ~I hope this will suffice. With that, I think I will take my leave. May the gods watch over you, friend.~
 END
-IF ~~ DO ~RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",600) EscapeArea() EraseJournalEntry(@1)~ SOLVED_JOURNAL @2 EXIT
+IF ~~ DO ~RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",600) EscapeArea() AddJournalEntry(%Drake_BG1_Quest_2%,QUEST_DONE)~ EXIT

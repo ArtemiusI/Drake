@@ -1,6 +1,6 @@
 BACKUP ~Drake/backup~
-AUTHOR ~Artemius_I~
-VERSION ~1.6~
+AUTHOR ~The Artisan~
+VERSION ~1.7~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
@@ -20,304 +20,127 @@ THEN BEGIN
 INCLUDE ~%MOD_FOLDER%/lib/drake_sod.tpa~
 END
 
-PRINT ~OPTIONAL: Install Universal Crossbows, Crossbow Proficiency for Drake?
-[1] Yes
-[2] No~
-
-OUTER_SPRINT ~crossbow~ ~placeholder_value~
-OUTER_WHILE (!(IS_AN_INT ~crossbow~) OR (~crossbow~ > 0x5) OR (~crossbow~ < 0x1)) BEGIN
-  PRINT ~Please select 1 or 2 and press Enter.~
-  ACTION_READLN ~crossbow~
-END
-      ACTION_IF ("crossbow" = 1) THEN BEGIN
-	  
-//AMEND WEAPPROF.2da_______________________________________________________________
-//
-COPY_EXISTING ~weapprof.2da~ ~override~
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 6 1   // cleric
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 13 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 17 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 18 1  // multiclasses ^v
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 20 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 21 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 4 1   // MAGE
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 22 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 23 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 24 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 25 1  // specialists ^v
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 26 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 27 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 28 1
-	SET_2DA_ENTRY_LATER ~#weapprof~ 26 29 1
-//__________________________________________________________________________________
-
-
-//CROSSBOW PROF FOR OTHER CLERICS___________________________________________________
-//
-DEFINE_ACTION_FUNCTION mod_cleric_profs BEGIN
-	OUTER_SET count = 0
-
-	ACTION_FOR_EACH class IN
-                  cleric
-
-	BEGIN
-		OUTER_SPRINT $clerics("%count%") "%class%"
-		OUTER_SET ++count
-	END
-
-	COPY_EXISTING kitlist.2da override
-		READ_2DA_ENTRIES_NOW kitlist 3
-		FOR (row = 2; row < kitlist; ++row) BEGIN // Skip past the vanilla kits
-			READ_2DA_ENTRY_FORMER kitlist row 1 label
-			READ_2DA_ENTRY_FORMER kitlist row 8 class
-			PATCH_IF class = 3 BEGIN // cleric
-				SPRINT $clerics("%count%") "%label%"
-				++count
-			END
-		END
-	BUT_ONLY
-
-	COPY_EXISTING ~WEAPPROF.2DA~ override
-		READ_2DA_ENTRIES_NOW weapprof 3
-		COUNT_2DA_COLS cols
-		PHP_EACH clerics AS _ => name BEGIN
-			FOR (col = 0; col < cols - 1; ++col) BEGIN
-				READ_2DA_ENTRY_FORMER weapprof 0 col column_name
-				PATCH_IF "%column_name%" STRING_EQUAL_CASE "%name%" BEGIN
-					SET_2DA_ENTRY_LATER wweapprof 26 (col + 1) 1
-				END
-			END
-		END
-		SET_2DA_ENTRIES_NOW wweapprof 1
-		PRETTY_PRINT_2DA
-	BUT_ONLY
-END
-
-LAF mod_cleric_profs END
-//__________________________________________________________________________________
-
-
-//CROSSBOW USABILITY________________________________________________________________
-//
-DEFINE_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
-  INT_VAR
-    offset = 0
-  STR_VAR
-    desc = ~~
-    unusable_regexp = ~~
-    unusable_replacement = ~~
-    class_regexp = ~~ //
-    class_prefix = ~~ //
-BEGIN
-  INNER_PATCH_SAVE desc ~%desc%~ BEGIN
-    REPLACE_TEXTUALLY ~%unusable_regexp%~ ~%unusable_replacement%~
-  END
-  PATCH_IF ((~%desc%~ STRING_CONTAINS_REGEXP ~^%unusable_replacement%~) == 0) BEGIN
-    INNER_PATCH_SAVE usab_block ~%desc%~ BEGIN
-      REPLACE_TEXTUALLY ~\(.*[%LNL%%MNL%%WNL%]\)*%unusable_replacement%~ ~~
-    END
-    INNER_PATCH_SAVE usab_block_new ~%usab_block%~ BEGIN
-      REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%][- %TAB%]*$~ ~~
-      REPLACE_TEXTUALLY ~^[- %TAB%]*~ ~%class_prefix%~
-      REPLACE_TEXTUALLY ~%mage_regexp%~ ~~
-    END
-    INNER_PATCH_SAVE desc ~%desc%~ BEGIN
-      REPLACE_TEXTUALLY EXACT_MATCH ~%usab_block%~ ~%usab_block_new%~
-    END
-    INNER_PATCH_SAVE compare ~%desc%~ BEGIN 
-      REPLACE_TEXTUALLY ~^%unusable_replacement%.*[%LNL%%MNL%%WNL%]%class_prefix%[^- %TAB%]~ ~~
-    END
-    PATCH_IF (~%desc%~ STRING_EQUAL ~%compare%~) BEGIN
-      INNER_PATCH_SAVE desc ~%desc%~ BEGIN
-        REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]%unusable_replacement%.*~ ~~
-      END
-    END
-    SAY_EVALUATED ~%offset%~ ~%desc%~
-  END
-END
-
-COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
-  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
-    READ_BYTE 0x31 "prof" ELSE 0
-    PATCH_IF ("%prof%" = 103) BEGIN
-      READ_BYTE 0x1f "fighter"
-      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
-        READ_BYTE   0x20 "mage"
-        WRITE_BYTE 0x20 ("%mage%" BAND "0b11111011")
-        PATCH_FOR_EACH offset IN
-          ~0x50~
-          ~0x54~
-        BEGIN
-          READ_LONG ~%offset%~ desc_strref
-          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
-            READ_STRREF ~%offset%~ desc
-           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
-           	  STR_VAR
-           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
-           	    unusable_replacement = ~Not Usable By:~
-           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bMage.*~
-           	    class_prefix = ~ ~
-           	END
-          END
-        END
-      END
-    END
-    READ_SHORT ~0x1c~ ~type~
-    PATCH_IF (~%type%~ = ~31~) BEGIN
-      READ_BYTE 0x1f "fighter"
-      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
-        READ_BYTE   0x20 "mage"
-        WRITE_BYTE 0x20 ("%mage%" BAND "0b11111011")
-        PATCH_FOR_EACH offset IN
-          ~0x50~
-          ~0x54~
-        BEGIN
-          READ_LONG ~%offset%~ desc_strref
-          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
-            READ_STRREF ~%offset%~ desc
-           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
-           	  STR_VAR
-           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
-           	    unusable_replacement = ~Not Usable By:~
-           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bMage.*~
-           	    class_prefix = ~ ~
-           	END
-          END
-        END
-      END
-    END
-  END
-  BUT_ONLY_IF_IT_CHANGES
-
-COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
-  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
-    READ_BYTE 0x31 "prof" ELSE 0
-    PATCH_IF ("%prof%" = 103) BEGIN
-      READ_BYTE 0x1f "fighter"
-      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
-        READ_BYTE   0x1E "cleric"
-        WRITE_BYTE 0x1E ("%cleric%" BAND "0b01111111")
-        READ_BYTE   0x1F "cleric-mage"
-        WRITE_BYTE 0x1F ("%cleric-mage%" BAND "0b00111000")
-        PATCH_FOR_EACH offset IN
-          ~0x50~
-          ~0x54~
-        BEGIN
-          READ_LONG ~%offset%~ desc_strref
-          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
-            READ_STRREF ~%offset%~ desc
-           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
-           	  STR_VAR
-           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
-           	    unusable_replacement = ~Not Usable By:~
-           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bCleric.*~
-           	    class_prefix = ~ ~
-           	END
-          END
-        END
-      END
-    END
-    READ_SHORT ~0x1c~ ~type~
-    PATCH_IF (~%type%~ = ~31~) BEGIN
-      READ_BYTE 0x1f "fighter"
-      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
-        READ_BYTE   0x1E "cleric"
-        WRITE_BYTE 0x1E ("%cleric%" BAND "0b01111111")
-        READ_BYTE   0x1F "cleric-mage"
-        WRITE_BYTE 0x1F ("%cleric-mage%" BAND "0b00111000")
-        PATCH_FOR_EACH offset IN
-          ~0x50~
-          ~0x54~
-        BEGIN
-          READ_LONG ~%offset%~ desc_strref
-          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
-            READ_STRREF ~%offset%~ desc
-           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
-           	  STR_VAR
-           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
-           	    unusable_replacement = ~Not Usable By:~
-           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bCleric.*~
-           	    class_prefix = ~ ~
-           	END
-          END
-        END
-      END
-    END
-  END
-  BUT_ONLY_IF_IT_CHANGES
-  
-// Drake - proficiencies
-
-ACTION_IF FILE_EXISTS_IN_GAME ~c0drake.cre~ THEN BEGIN
-COPY_EXISTING ~C0Drake.cre~ ~override~
-  READ_LONG 0x2c4 "fx_off"
-  READ_LONG 0x2c8 "fx_num"
-  FOR (index = 0 ; index < fx_num ; index = index + 1) BEGIN
-    READ_LONG ("%fx_off%" + 0x08 + ("%index%" * 0x108)) "type"
-    READ_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) "weap"
-    PATCH_IF (("%type%" = 233) AND ("%weap%" = 107)) BEGIN // sling
-      WRITE_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) 103  // crossbow
-  REMOVE_CRE_ITEM ~slng01~
-  REMOVE_CRE_ITEM ~bull01~
-  ADD_CRE_ITEM ~xbow01~ #0 #0 #0 ~NONE~ ~inv1~
-  ADD_CRE_ITEM ~bolt01~ #20 #0 #0 ~NONE~ ~quiver1~
-  ADD_CRE_ITEM ~bolt01~ #20 #0 #0 ~NONE~ ~quiver2~
-  ADD_CRE_ITEM ~bolt01~ #20 #0 #0 ~NONE~ ~quiver3~
-  END
-  END
-  
-ACTION_IF FILE_EXISTS_IN_GAME ~c02drake.cre~ THEN BEGIN
-COPY_EXISTING ~C02Drake.cre~ ~override~
-  READ_LONG 0x2c4 "fx_off"
-  READ_LONG 0x2c8 "fx_num"
-  FOR (index = 0 ; index < fx_num ; index = index + 1) BEGIN
-    READ_LONG ("%fx_off%" + 0x08 + ("%index%" * 0x108)) "type"
-    READ_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) "weap"
-    PATCH_IF (("%type%" = 233) AND ("%weap%" = 107)) BEGIN // sling
-      WRITE_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) 103  // crossbow
-  REMOVE_CRE_ITEM ~slng02~
-  REMOVE_CRE_ITEM ~bull03~
-  REMOVE_CRE_ITEM ~bull02~
-  REMOVE_CRE_ITEM ~bull01~
-  ADD_CRE_ITEM ~xbow03~ #0 #0 #0 ~identified~ ~weapon2~
-  ADD_CRE_ITEM ~bolt03~ #40 #0 #0 ~identified~ ~quiver1~
-  ADD_CRE_ITEM ~bolt02~ #40 #0 #0 ~identified~ ~quiver2~
-  ADD_CRE_ITEM ~bolt01~ #40 #0 #0 ~identified~ ~quiver3~
-  END
-  END
-  END
-  END
-//__________________________________________________________________________________
-      END
-      ACTION_IF ("crossbow" = 2) THEN BEGIN
-      END
-	  
-PRINT ~Choose a portrait for Drake (check mod folder for portraits):~
-
-PRINT ~Please choose one of the following:
-[1] New BG1 Default by Artemius_I
-[2] BG2-style by Artemius_I
-[3] Original BG1 Default by Lava Del'Vortel~
-
-OUTER_SPRINT ~portrait~ ~placeholder_value~
-OUTER_WHILE (!(IS_AN_INT ~portrait~) OR (~portrait~ > 0x3) OR (~portrait~ < 0x1)) BEGIN
-  ACTION_READLN ~portrait~
-END
-      ACTION_IF ("portrait" = 1) THEN BEGIN
+BEGIN ~Default Portrait (The Artisan)~
+FORCED_SUBCOMPONENT ~Choose a portrait for Drake:~
+  REQUIRE_COMPONENT ~Setup-Drake.tp2~ ~0~ ~The main component must be installed.~
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
 		COPY ~%MOD_FOLDER%/portraits/DrakeL.bmp~ ~override/DrakeL.bmp~
 		COPY ~%MOD_FOLDER%/portraits/DrakeM.bmp~ ~override/DrakeM.bmp~
 		COPY ~%MOD_FOLDER%/portraits/DrakeS.bmp~ ~override/DrakeS.bmp~
-      PRINT ~Portrait: New BG1 Default by Artemius_I~
-      END
-      ACTION_IF ("portrait" = 2) THEN BEGIN
-		COPY ~%MOD_FOLDER%/alt-portrait/Drake2.bmp~ ~override/DrakeL.bmp~
-		COPY ~%MOD_FOLDER%/alt-portrait/Drake2.bmp~ ~override/DrakeM.bmp~
-		COPY ~%MOD_FOLDER%/alt-portrait/Drake2.bmp~ ~override/DrakeS.bmp~
-      PRINT ~Portrait: BG2-style by Artemius_I~
-      END
-      ACTION_IF ("portrait" = 3) THEN BEGIN
-		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeL.bmp~
-		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeM.bmp~
-		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeD.bmp~
-      PRINT ~Portrait: Alternate 1 by Original BG1 Default by Lava Del'Vortel~
-      END
+		
+BEGIN ~BG2-style (The Artisan)~
+FORCED_SUBCOMPONENT ~Choose a portrait for Drake:~
+  REQUIRE_COMPONENT ~Setup-Drake.tp2~ ~0~ ~The main component must be installed.~
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+		COPY ~%MOD_FOLDER%/portraits/Drake2.bmp~ ~override/DrakeL.bmp~
+		COPY ~%MOD_FOLDER%/portraits/Drake2.bmp~ ~override/DrakeM.bmp~
+		COPY ~%MOD_FOLDER%/portraits/Drake2.bmp~ ~override/DrakeS.bmp~
+		
+BEGIN ~Beta Portrait (Lava Del'Vortel)~
+FORCED_SUBCOMPONENT ~Choose a portrait for Drake:~
+  REQUIRE_COMPONENT ~Setup-Drake.tp2~ ~0~ ~The main component must be installed.~
+  REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
+		COPY ~%MOD_FOLDER%/portraits/Drake.bmp~ ~override/DrakeL.bmp~
+		COPY ~%MOD_FOLDER%/portraits/Drake.bmp~ ~override/DrakeM.bmp~
+		COPY ~%MOD_FOLDER%/portraits/Drake.bmp~ ~override/DrakeS.bmp~
+		
+BEGIN ~OPTIONAL: Install Universal Crossbows, Crossbow Proficiency for Drake?~
+
+INCLUDE ~%MOD_FOLDER%/lib/crossbows.tpa~
+
+BEGIN ~OPTIONAL: Original Soundset by BillyYank~
+
+
+LAF HANDLE_AUDIO 
+STR_VAR
+    audio_path = ~Drake/audio/original~
+    oggdec_path = ~Drake/audio~
+	END
+
+COPY_EXISTING ~C0Drake.cre~ ~override/C0Drake.cre~
+  SAY MORALE ~They say discretion is the better part of valor.~ [C0DRA001]
+  SAY HAPPY ~Hmm, not bad, not bad. Even those sods at the Order could learn a thing or two.~ [C0DRA002]
+  SAY UNHAPPY_ANNOYED ~You really sure you know what in the name of all nine layers of Hell you're doing?~ [C0DRA003]
+  SAY UNHAPPY_SERIOUS ~I can't tell if you're stupidly oblivious or... if you actually like making people hate you more than me. Either way, I suggest you stop.~ [C0DRA004]
+  SAY UNHAPPY_BREAKING_POINT ~That's it. I think even drinking myself into a stupor wouldn't be enough to ignore all of this tosh. Next time we meet, it'll be hammer first. To the Hells with you.~ [C0DRA005]
+  SAY LEADER ~Heh, so I'm the boss now, is that right? Wonder what the old coots in the Order would think if they saw where I am now... hope you won't regret this.~ [C0DRA006]
+  SAY TIRED ~Tyr's buttocks, what I wouldn't do for a warm fire and a stiff drink right now...~ [C0DRA007]
+  SAY BORED ~This standing around is just like waiting in attendance back in the Order, right down to the boredom. Can we get a move on?~ [C0DRA008]
+  SAY BATTLE_CRY1 ~I'll show you true justice!~ [C0DRA009]
+  SAY BATTLE_CRY2 ~I've got your judgment right here!~ [C0DRA010]
+  SAY BATTLE_CRY3 ~Best say your prayers... while you still can.~ [C0DRA011]
+  SAY BATTLE_CRY4 ~I've got a hammer and boot waiting to meet your arse!~ [C0DRA012]
+  SAY BATTLE_CRY5 ~Poor sod's just a dead man walking.~ [C0DRA013]
+  SAY DAMAGE ~Oof!~ [C0DRA014]
+  SAY DYING ~Ugh, how... shameful.~ [C0DRA015]
+  SAY HURT ~Agh... much as I'd like to see Tyr, I doubt he'd be eager to judge my arse this soon. Mind... offering a hand here?~ [C0DRA016]
+  SAY AREA_FOREST ~If I knew we'd be trekking through the forests, I'd have worn sturdier boots.~ [C0DRA017]
+  SAY AREA_CITY ~The smell of ale and stale vomit in the gutters is quite welcoming, don't you think?~ [C0DRA018]
+  SAY AREA_DUNGEON ~Hah... I'd say a prayer, but I doubt even the gods could hear us where we are now.~ [C0DRA019]
+  SAY AREA_DAY ~Not a bad day to dish out some judgment, don't you think?~ [C0DRA020]
+  SAY AREA_NIGHT ~The lowest of the low thrive in the dark... and I'll be ready to put 'em right.~ [C0DRA021]
+  SAY SELECT_COMMON1 ~Yeah?~ [C0DRA022]
+  SAY SELECT_COMMON2 ~Need something?~ [C0DRA023]
+  SAY SELECT_COMMON3 ~I'm listening.~ [C0DRA024]
+  SAY SELECT_COMMON4 ~Give your orders.~ [C0DRA025]
+  SAY SELECT_COMMON5 ~What is it?~ [C0DRA026]
+  SAY SELECT_COMMON6 ~Got something to say?~ [C0DRA027]
+  SAY SELECT_ACTION1 ~Right, right.~ [C0DRA028]
+  SAY SELECT_ACTION2 ~Simple enough.~ [C0DRA029]
+  SAY SELECT_ACTION3 ~As you say, friend.~ [C0DRA030]
+  SAY SELECT_ACTION4 ~You going to give me something to do already?~ [C0DRA031]
+  SAY SELECT_ACTION5 ~What's wrong with you this time? Broken limbs?~ [C0DRA032]
+  SAY SELECT_ACTION6 ~Quiet, please... I've got one hell of a headache.~ [C0DRA033]
+  SAY SELECT_ACTION7 ~You still owe me several drinks, you know.~ [C0DRA034]
+  SAY CRITICAL_HIT ~Hah! Looks like the scales favor *me*!~ [C0DRA035]
+  SAY CRITICAL_MISS ~Tch...! You didn't see that.~ [C0DRA036]
+  SAY TARGET_IMMUNE ~Not even a scratch? Well now, this is something.~ [C0DRA037]
+  SAY INVENTORY_FULL ~Afraid even two hands aren't enough for this hunk of junk. Get someone else to hold it.~ [C0DRA038]
+  SAY SPELL_DISRUPTED ~Wasn't my fault for botching that prayer for once.~ [C0DRA039]
+  SAY SET_A_TRAP ~This'll give the next bugger a nice shock.~ [C0DRA040]
+  SAY HIDDEN_IN_SHADOWS ~No one expects justice coming from the shadows.~ [C0DRA041]
+  SAY PICKED_POCKET ~Whoops... you dropped this.~ [C0DRA042]
+  
+COPY_EXISTING ~C02Drake.cre~ ~override/C02Drake.cre~
+  SAY MORALE ~They say discretion is the better part of valor.~ [C0DRA001]
+  SAY HAPPY ~Hmm, not bad, not bad. Even those sods at the Order could learn a thing or two.~ [C0DRA002]
+  SAY UNHAPPY_ANNOYED ~You really sure you know what in the name of all nine layers of Hell you're doing?~ [C0DRA003]
+  SAY UNHAPPY_SERIOUS ~I can't tell if you're stupidly oblivious or... if you actually like making people hate you more than me. Either way, I suggest you stop.~ [C0DRA004]
+  SAY UNHAPPY_BREAKING_POINT ~That's it. I think even drinking myself into a stupor wouldn't be enough to ignore all of this tosh. Next time we meet, it'll be hammer first. To the Hells with you.~ [C0DRA005]
+  SAY LEADER ~Heh, so I'm the boss now, is that right? Wonder what the old coots in the Order would think if they saw where I am now... hope you won't regret this.~ [C0DRA006]
+  SAY TIRED ~Tyr's buttocks, what I wouldn't do for a warm fire and a stiff drink right now...~ [C0DRA007]
+  SAY BORED ~This standing around is just like waiting in attendance back in the Order, right down to the boredom. Can we get a move on?~ [C0DRA008]
+  SAY BATTLE_CRY1 ~I'll show you true justice!~ [C0DRA009]
+  SAY BATTLE_CRY2 ~I've got your judgment right here!~ [C0DRA010]
+  SAY BATTLE_CRY3 ~Best say your prayers... while you still can.~ [C0DRA011]
+  SAY BATTLE_CRY4 ~I've got a hammer and boot waiting to meet your arse!~ [C0DRA012]
+  SAY BATTLE_CRY5 ~Poor sod's just a dead man walking.~ [C0DRA013]
+  SAY DAMAGE ~Oof!~ [C0DRA014]
+  SAY DYING ~Ugh, how... shameful.~ [C0DRA015]
+  SAY HURT ~Agh... much as I'd like to see Tyr, I doubt he'd be eager to judge my arse this soon. Mind... offering a hand here?~ [C0DRA016]
+  SAY AREA_FOREST ~If I knew we'd be trekking through the forests, I'd have worn sturdier boots.~ [C0DRA017]
+  SAY AREA_CITY ~The smell of ale and stale vomit in the gutters is quite welcoming, don't you think?~ [C0DRA018]
+  SAY AREA_DUNGEON ~Hah... I'd say a prayer, but I doubt even the gods could hear us where we are now.~ [C0DRA019]
+  SAY AREA_DAY ~Not a bad day to dish out some judgment, don't you think?~ [C0DRA020]
+  SAY AREA_NIGHT ~The lowest of the low thrive in the dark... and I'll be ready to put 'em right.~ [C0DRA021]
+  SAY SELECT_COMMON1 ~Yeah?~ [C0DRA022]
+  SAY SELECT_COMMON2 ~Need something?~ [C0DRA023]
+  SAY SELECT_COMMON3 ~I'm listening.~ [C0DRA024]
+  SAY SELECT_COMMON4 ~Give your orders.~ [C0DRA025]
+  SAY SELECT_COMMON5 ~What is it?~ [C0DRA026]
+  SAY SELECT_COMMON6 ~Got something to say?~ [C0DRA027]
+  SAY SELECT_ACTION1 ~Right, right.~ [C0DRA028]
+  SAY SELECT_ACTION2 ~Simple enough.~ [C0DRA029]
+  SAY SELECT_ACTION3 ~As you say, friend.~ [C0DRA030]
+  SAY SELECT_ACTION4 ~You going to give me something to do already?~ [C0DRA031]
+  SAY SELECT_ACTION5 ~What's wrong with you this time? Broken limbs?~ [C0DRA032]
+  SAY SELECT_ACTION6 ~Quiet, please... I've got one hell of a headache.~ [C0DRA033]
+  SAY SELECT_ACTION7 ~You still owe me several drinks, you know.~ [C0DRA034]
+  SAY CRITICAL_HIT ~Hah! Looks like the scales favor *me*!~ [C0DRA035]
+  SAY CRITICAL_MISS ~Tch...! You didn't see that.~ [C0DRA036]
+  SAY TARGET_IMMUNE ~Not even a scratch? Well now, this is something.~ [C0DRA037]
+  SAY INVENTORY_FULL ~Afraid even two hands aren't enough for this hunk of junk. Get someone else to hold it.~ [C0DRA038]
+  SAY SPELL_DISRUPTED ~Wasn't my fault for botching that prayer for once.~ [C0DRA039]
+  SAY SET_A_TRAP ~This'll give the next bugger a nice shock.~ [C0DRA040]
+  SAY HIDDEN_IN_SHADOWS ~No one expects justice coming from the shadows.~ [C0DRA041]
+  SAY PICKED_POCKET ~Whoops... you dropped this.~ [C0DRA042]

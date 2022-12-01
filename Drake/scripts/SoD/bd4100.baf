@@ -10,7 +10,7 @@ THEN
   RESPONSE #100
     SetGlobal("bd_C0Drake_ot","bd4100",1)
     SetGlobalTimer("bd_mdd1352_ot_timer","bd4100",ONE_ROUND)
-    DisplayStringHead("C0Drake",~Well... I thought things wouldn't ever get this bad. I suppose that makes me the fool.~)
+    DisplayStringHead("C0Drake",~Well... I didn't think things would ever get this bad. I suppose that makes me the fool.~)
 END
 
 IF

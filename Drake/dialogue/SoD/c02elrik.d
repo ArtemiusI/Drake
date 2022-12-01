@@ -61,7 +61,7 @@ CHAIN C02DRAKJ a2.5
 == C02TOMAS ~See you around, brother.~
 == C02DRAKJ ~If all goes well. Take care, kid. I'll talk with you later.~
 == C02ELRIK ~We take our leave. Stay safe, Drake.~
-DO ~EscapeArea()~ EXIT
+DO ~AddJournalEntry(%Drake_SoD_Quest_2%,QUEST_DONE) EscapeArea()~ EXIT
 
 CHAIN C02DRAKJ a2.6
 ~*shrug* You didn't ever say I couldn't. Besides, would you rather they hear it from someone who doesn't favor you?~
@@ -88,7 +88,7 @@ EXTERN C02ELRIK a1.5
 CHAIN C02ELRIK a1.5
 ~You have my thanks, my <PRO_LADYLORD>. We were meant to arrive many days ago, but faced much opposition on the way, from both the crusade and lawless raiders such as these orogs. We shall travel to the camp immediately and make arrangements with the leaders.~
 = ~Farewell.~
-DO ~EscapeArea()~ EXIT
+DO ~AddJournalEntry(%Drake_SoD_Quest_2%,QUEST_DONE) EscapeArea()~ EXIT
 
 CHAIN IF WEIGHT #-1 ~AreaCheck("bd3000")
 Global("bd_battle","global",0)

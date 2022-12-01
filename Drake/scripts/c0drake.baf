@@ -1,3 +1,36 @@
+// BLOCKING UNAPPROVED "CROSSMOD"
+
+IF
+  !Global("SanMeetC0Drake","Global",999)
+THEN
+  RESPONSE #100
+    SetGlobal("SanMeetC0Drake","GLOBAL",999)
+END
+
+IF
+AreaCheck("BG3700")
+!Global("SanDrakeChic","BG3700",999)
+THEN
+RESPONSE #100
+SetGlobal("SanDrakeChic","BG3700",999)
+END
+
+IF
+OR(2)
+Global("C0DrakeBassilus","GLOBAL",4)
+Global("C0DrakeBassilus","GLOBAL",5)
+THEN
+RESPONSE #100
+SetGlobal("C0DrakeBassilus","GLOBAL",999)
+END
+
+IF
+!Global("SanMeetC0Drake","Global",999)
+THEN
+RESPONSE #100
+SetGlobal("SanMeetC0Drake","Global",999)
+END
+
 // EXPERIENCE
 
 IF
@@ -83,7 +116,6 @@ END
 IF
     InParty(Myself)
     Dead("bassilus")
-	!Alignment(Player1,MASK_EVIL)
     ReputationGT(Player1,9)
     Global("C0DrakeTalk","GLOBAL",0)
 THEN
@@ -535,6 +567,19 @@ THEN
 RESPONSE #100
 SetGlobal("C0DrakeDrunkTalk","GLOBAL",4)
 StartDialogueNoSet(Player1)
+END
+
+// SEX CHANGE
+
+IF
+    InParty(Myself)
+	HasItemEquiped("belt05",Myself)
+    Global("C0DrakeSexChange","GLOBAL",0)
+THEN
+  RESPONSE #100
+	Wait(1)
+	SetGlobal("C0DrakeSexChange","GLOBAL",1)
+	StartDialogueNoSet(Player1)
 END
 
 // Frozen Aegis

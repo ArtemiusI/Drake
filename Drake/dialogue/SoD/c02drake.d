@@ -132,7 +132,7 @@ END
 CHAIN C02DRAKE j8.2
 ~You think so, do you? Well, can't say I'm opposed to the idea. Your company would be infinitely more pleasant than the Fist, given they're still not overly fond of Amnians.~
 = ~Once more unto the breach then. You have my hammer, <CHARNAME>.~
-DO ~AddJournalEntry(@4,INFO)
+DO ~AddJournalEntry(%Drake_SoD_Recruit_Journal%,INFO)
 SetGlobal("bd_joined","LOCALS",1)
 JoinParty()~ EXIT
 
@@ -150,6 +150,26 @@ CHAIN IF WEIGHT #-1 ~Global("C02DrakeBegin","GLOBAL",3)~ THEN C02DRAKE k0
 END
 ++ ~Would you like to join me? I could use your skills in my group.~ + j8.2
 ++ ~Nothing for now.~ EXIT
+
+APPEND C02DRAKE
+
+IF ~GlobalGT("Chapter","GLOBAL",7)~ p4
+ SAY ~Well, well. Look who's here.~
+	++ ~Would you join me, Drake?~ + p5
+	++ ~And look who's leaving.~ + p6
+END
+
+IF ~~ p5
+ SAY ~Is that even up for debate? Let's move, my friend.~
+IF ~~ DO ~SetGlobal("bd_joined","LOCALS",1) JoinParty()~ EXIT
+END
+
+IF ~~ p6
+ SAY ~What a shame.~
+IF ~~ EXIT
+END
+
+END
 
 BEGIN C02DRAKP
 
@@ -198,7 +218,7 @@ IF ~~ DO ~SetGlobal("bd_joined","LOCALS",0) EscapeAreaMove("BD0120",837,1777,NE)
 END
 
 IF ~Global("bd_joined","LOCALS",0)~ p4
- SAY ~Look who's back.~
+ SAY ~Well, well. Look who's here.~
 	++ ~I am. Would you rejoin me, Drake?~ + p5
 	++ ~And look who's leaving.~ + p6
 END

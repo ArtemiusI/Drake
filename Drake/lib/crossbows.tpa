@@ -1,0 +1,257 @@
+//AMEND WEAPPROF.2da_______________________________________________________________
+//
+COPY_EXISTING ~weapprof.2da~ ~override~
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 6 1   // cleric
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 13 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 17 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 18 1  // multiclasses ^v
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 20 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 21 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 4 1   // MAGE
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 22 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 23 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 24 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 25 1  // specialists ^v
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 26 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 27 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 28 1
+	SET_2DA_ENTRY_LATER ~#weapprof~ 26 29 1
+//__________________________________________________________________________________
+
+
+//CROSSBOW PROF FOR OTHER CLERICS___________________________________________________
+//
+DEFINE_ACTION_FUNCTION mod_cleric_profs BEGIN
+	OUTER_SET count = 0
+
+	ACTION_FOR_EACH class IN
+                  cleric
+
+	BEGIN
+		OUTER_SPRINT $clerics("%count%") "%class%"
+		OUTER_SET ++count
+	END
+
+	COPY_EXISTING kitlist.2da override
+		READ_2DA_ENTRIES_NOW kitlist 3
+		FOR (row = 2; row < kitlist; ++row) BEGIN // Skip past the vanilla kits
+			READ_2DA_ENTRY_FORMER kitlist row 1 label
+			READ_2DA_ENTRY_FORMER kitlist row 8 class
+			PATCH_IF class = 3 BEGIN // cleric
+				SPRINT $clerics("%count%") "%label%"
+				++count
+			END
+		END
+	BUT_ONLY
+
+	COPY_EXISTING ~WEAPPROF.2DA~ override
+		READ_2DA_ENTRIES_NOW weapprof 3
+		COUNT_2DA_COLS cols
+		PHP_EACH clerics AS _ => name BEGIN
+			FOR (col = 0; col < cols - 1; ++col) BEGIN
+				READ_2DA_ENTRY_FORMER weapprof 0 col column_name
+				PATCH_IF "%column_name%" STRING_EQUAL_CASE "%name%" BEGIN
+					SET_2DA_ENTRY_LATER wweapprof 26 (col + 1) 1
+				END
+			END
+		END
+		SET_2DA_ENTRIES_NOW wweapprof 1
+		PRETTY_PRINT_2DA
+	BUT_ONLY
+END
+
+LAF mod_cleric_profs END
+//__________________________________________________________________________________
+
+
+//CROSSBOW USABILITY________________________________________________________________
+//
+DEFINE_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+  INT_VAR
+    offset = 0
+  STR_VAR
+    desc = ~~
+    unusable_regexp = ~~
+    unusable_replacement = ~~
+    class_regexp = ~~ //
+    class_prefix = ~~ //
+BEGIN
+  INNER_PATCH_SAVE desc ~%desc%~ BEGIN
+    REPLACE_TEXTUALLY ~%unusable_regexp%~ ~%unusable_replacement%~
+  END
+  PATCH_IF ((~%desc%~ STRING_CONTAINS_REGEXP ~^%unusable_replacement%~) == 0) BEGIN
+    INNER_PATCH_SAVE usab_block ~%desc%~ BEGIN
+      REPLACE_TEXTUALLY ~\(.*[%LNL%%MNL%%WNL%]\)*%unusable_replacement%~ ~~
+    END
+    INNER_PATCH_SAVE usab_block_new ~%usab_block%~ BEGIN
+      REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%][- %TAB%]*$~ ~~
+      REPLACE_TEXTUALLY ~^[- %TAB%]*~ ~%class_prefix%~
+      REPLACE_TEXTUALLY ~%mage_regexp%~ ~~
+    END
+    INNER_PATCH_SAVE desc ~%desc%~ BEGIN
+      REPLACE_TEXTUALLY EXACT_MATCH ~%usab_block%~ ~%usab_block_new%~
+    END
+    INNER_PATCH_SAVE compare ~%desc%~ BEGIN 
+      REPLACE_TEXTUALLY ~^%unusable_replacement%.*[%LNL%%MNL%%WNL%]%class_prefix%[^- %TAB%]~ ~~
+    END
+    PATCH_IF (~%desc%~ STRING_EQUAL ~%compare%~) BEGIN
+      INNER_PATCH_SAVE desc ~%desc%~ BEGIN
+        REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]%unusable_replacement%.*~ ~~
+      END
+    END
+    SAY_EVALUATED ~%offset%~ ~%desc%~
+  END
+END
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+    READ_BYTE 0x31 "prof" ELSE 0
+    PATCH_IF ("%prof%" = 103) BEGIN
+      READ_BYTE 0x1f "fighter"
+      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
+        READ_BYTE   0x20 "mage"
+        WRITE_BYTE 0x20 ("%mage%" BAND "0b11111011")
+        PATCH_FOR_EACH offset IN
+          ~0x50~
+          ~0x54~
+        BEGIN
+          READ_LONG ~%offset%~ desc_strref
+          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
+            READ_STRREF ~%offset%~ desc
+           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+           	  STR_VAR
+           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
+           	    unusable_replacement = ~Not Usable By:~
+           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bMage.*~
+           	    class_prefix = ~ ~
+           	END
+          END
+        END
+      END
+    END
+    READ_SHORT ~0x1c~ ~type~
+    PATCH_IF (~%type%~ = ~31~) BEGIN
+      READ_BYTE 0x1f "fighter"
+      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
+        READ_BYTE   0x20 "mage"
+        WRITE_BYTE 0x20 ("%mage%" BAND "0b11111011")
+        PATCH_FOR_EACH offset IN
+          ~0x50~
+          ~0x54~
+        BEGIN
+          READ_LONG ~%offset%~ desc_strref
+          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
+            READ_STRREF ~%offset%~ desc
+           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+           	  STR_VAR
+           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
+           	    unusable_replacement = ~Not Usable By:~
+           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bMage.*~
+           	    class_prefix = ~ ~
+           	END
+          END
+        END
+      END
+    END
+  END
+  BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+    READ_BYTE 0x31 "prof" ELSE 0
+    PATCH_IF ("%prof%" = 103) BEGIN
+      READ_BYTE 0x1f "fighter"
+      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
+        READ_BYTE   0x1E "cleric"
+        WRITE_BYTE 0x1E ("%cleric%" BAND "0b01111111")
+        READ_BYTE   0x1F "cleric-mage"
+        WRITE_BYTE 0x1F ("%cleric-mage%" BAND "0b00111000")
+        PATCH_FOR_EACH offset IN
+          ~0x50~
+          ~0x54~
+        BEGIN
+          READ_LONG ~%offset%~ desc_strref
+          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
+            READ_STRREF ~%offset%~ desc
+           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+           	  STR_VAR
+           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
+           	    unusable_replacement = ~Not Usable By:~
+           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bCleric.*~
+           	    class_prefix = ~ ~
+           	END
+          END
+        END
+      END
+    END
+    READ_SHORT ~0x1c~ ~type~
+    PATCH_IF (~%type%~ = ~31~) BEGIN
+      READ_BYTE 0x1f "fighter"
+      PATCH_IF (("%fighter%" BAND "0b00001000") = "0b00000000") BEGIN
+        READ_BYTE   0x1E "cleric"
+        WRITE_BYTE 0x1E ("%cleric%" BAND "0b01111111")
+        READ_BYTE   0x1F "cleric-mage"
+        WRITE_BYTE 0x1F ("%cleric-mage%" BAND "0b00111000")
+        PATCH_FOR_EACH offset IN
+          ~0x50~
+          ~0x54~
+        BEGIN
+          READ_LONG ~%offset%~ desc_strref
+          PATCH_IF (desc_strref >= 0 && desc_strref < 2147483646) BEGIN
+            READ_STRREF ~%offset%~ desc
+           	LAUNCH_PATCH_FUNCTION ~REMOVE_CLASS_LINE_FROM_USABILITIES~
+           	  STR_VAR
+           	    unusable_regexp = EVALUATE_BUFFER ~^[ %TAB%]*\(Unusable By\|Not Usable By\).*~
+           	    unusable_replacement = ~Not Usable By:~
+           	    class_regexp = EVALUATE_BUFFER ~[%LNL%%MNL%%WNL%].*\bCleric.*~
+           	    class_prefix = ~ ~
+           	END
+          END
+        END
+      END
+    END
+  END
+  BUT_ONLY_IF_IT_CHANGES
+  
+// Drake - proficiencies
+
+ACTION_IF FILE_EXISTS_IN_GAME ~c0drake.cre~ THEN BEGIN
+COPY_EXISTING ~C0Drake.cre~ ~override~
+  READ_LONG 0x2c4 "fx_off"
+  READ_LONG 0x2c8 "fx_num"
+  FOR (index = 0 ; index < fx_num ; index = index + 1) BEGIN
+    READ_LONG ("%fx_off%" + 0x08 + ("%index%" * 0x108)) "type"
+    READ_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) "weap"
+    PATCH_IF (("%type%" = 233) AND ("%weap%" = 107)) BEGIN // sling
+      WRITE_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) 103  // crossbow
+  REMOVE_CRE_ITEM ~slng01~
+  REMOVE_CRE_ITEM ~bull01~
+  ADD_CRE_ITEM ~xbow01~ #0 #0 #0 ~NONE~ ~inv1~
+  ADD_CRE_ITEM ~bolt01~ #20 #0 #0 ~NONE~ ~quiver1~
+  ADD_CRE_ITEM ~bolt01~ #20 #0 #0 ~NONE~ ~quiver2~
+  ADD_CRE_ITEM ~bolt01~ #20 #0 #0 ~NONE~ ~quiver3~
+  END
+  END
+  
+ACTION_IF FILE_EXISTS_IN_GAME ~c02drake.cre~ THEN BEGIN
+COPY_EXISTING ~C02Drake.cre~ ~override~
+  READ_LONG 0x2c4 "fx_off"
+  READ_LONG 0x2c8 "fx_num"
+  FOR (index = 0 ; index < fx_num ; index = index + 1) BEGIN
+    READ_LONG ("%fx_off%" + 0x08 + ("%index%" * 0x108)) "type"
+    READ_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) "weap"
+    PATCH_IF (("%type%" = 233) AND ("%weap%" = 107)) BEGIN // sling
+      WRITE_LONG ("%fx_off%" + 0x18 + ("%index%" * 0x108)) 103  // crossbow
+  REMOVE_CRE_ITEM ~slng02~
+  REMOVE_CRE_ITEM ~bull03~
+  REMOVE_CRE_ITEM ~bull02~
+  REMOVE_CRE_ITEM ~bull01~
+  ADD_CRE_ITEM ~xbow03~ #0 #0 #0 ~identified~ ~weapon2~
+  ADD_CRE_ITEM ~bolt03~ #40 #0 #0 ~identified~ ~quiver1~
+  ADD_CRE_ITEM ~bolt02~ #40 #0 #0 ~identified~ ~quiver2~
+  ADD_CRE_ITEM ~bolt01~ #40 #0 #0 ~identified~ ~quiver3~
+  END
+  END
+  END
+  END
+	  
