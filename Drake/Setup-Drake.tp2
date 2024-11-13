@@ -21,7 +21,7 @@ INCLUDE ~%MOD_FOLDER%/lib/drake_sod.tpa~
 END
 
 BEGIN ~Default Portrait (The Artisan)~
-FORCED_SUBCOMPONENT ~Choose a portrait for Drake:~ 
+FORCED_SUBCOMPONENT ~Choose a portrait for Drake:~
   REQUIRE_COMPONENT ~Setup-Drake.tp2~ ~0~ ~The main component must be installed.~
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
 		COPY ~%MOD_FOLDER%/portraits/DrakeL.bmp~ ~override/DrakeL.bmp~
