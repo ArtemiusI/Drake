@@ -1,6 +1,6 @@
 BACKUP ~Drake/backup~
 AUTHOR ~The Artisan~
-VERSION ~1.7~
+VERSION ~1.7a~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
@@ -32,17 +32,17 @@ BEGIN ~BG2-style (The Artisan)~
 FORCED_SUBCOMPONENT ~Choose a portrait for Drake:~
   REQUIRE_COMPONENT ~Setup-Drake.tp2~ ~0~ ~The main component must be installed.~
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
-		COPY ~%MOD_FOLDER%/portraits/Drake2.bmp~ ~override/DrakeL.bmp~
-		COPY ~%MOD_FOLDER%/portraits/Drake2.bmp~ ~override/DrakeM.bmp~
-		COPY ~%MOD_FOLDER%/portraits/Drake2.bmp~ ~override/DrakeS.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake2.bmp~ ~override/DrakeL.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake2.bmp~ ~override/DrakeM.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake2.bmp~ ~override/DrakeS.bmp~
 		
 BEGIN ~Beta Portrait (Lava Del'Vortel)~
 FORCED_SUBCOMPONENT ~Choose a portrait for Drake:~
   REQUIRE_COMPONENT ~Setup-Drake.tp2~ ~0~ ~The main component must be installed.~
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE or EET.~
-		COPY ~%MOD_FOLDER%/portraits/Drake.bmp~ ~override/DrakeL.bmp~
-		COPY ~%MOD_FOLDER%/portraits/Drake.bmp~ ~override/DrakeM.bmp~
-		COPY ~%MOD_FOLDER%/portraits/Drake.bmp~ ~override/DrakeS.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeL.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeM.bmp~
+		COPY ~%MOD_FOLDER%/alt-portrait/Drake.bmp~ ~override/DrakeS.bmp~
 		
 BEGIN ~OPTIONAL: Install Universal Crossbows, Crossbow Proficiency for Drake?~
 
