@@ -14,7 +14,7 @@ END
 
 IF ~~ p2
  SAY ~How very disappointing. In that case, you'll find me drowning in a tankard of ale at the Friendly Arm Inn. Do come by and say hello.~
-IF ~~ DO ~SetGlobal("C0DrakeJoined","LOCALS",0) EscapeAreaMove("AR2301",593,530,NW)~ EXIT
+IF ~~ DO ~SetGlobal("C0DrakeJoined","LOCALS",0) EscapeAreaMove("%FriendlyArmInn_L1%",593,530,NW)~ EXIT
 END
 
 IF ~~ p3

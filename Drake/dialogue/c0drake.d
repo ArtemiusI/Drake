@@ -48,11 +48,11 @@ END
 IF ~~ j0.4
  SAY ~Ah, but I really should remember my manners... that is, where I put them. The name's Drake Caulfield, priest of Tyr and member of the Radiant Heart, Most Holy Order of blah blah blah, you probably don't want to hear all about it, pleasure to meet you and all that.~
  + ~!IsValidForPartyDialog("Ajantis")~ + ~Most Holy Order of what now?~ + j0.5a
- + ~IsValidForPartyDialog("Ajantis")~ + ~Most Holy Order of what now?~ EXTERN AJANTJ j0.5b
+ + ~IsValidForPartyDialog("Ajantis")~ + ~Most Holy Order of what now?~ EXTERN %AJANTIS_JOINED% j0.5b
  + ~Gender(Player1,MALE)~ + ~I'm <CHARNAME>.~ + j0.6a
  + ~Gender(Player1,FEMALE)~ + ~I'm <CHARNAME>.~ + j0.6b
  + ~!IsValidForPartyDialog("Ajantis")~ + ~You don't seem much like a Tyrran priest.~ + j0.7a
- + ~IsValidForPartyDialog("Ajantis")~ + ~You don't seem much like a Tyrran priest.~ EXTERN AJANTJ j0.5b
+ + ~IsValidForPartyDialog("Ajantis")~ + ~You don't seem much like a Tyrran priest.~ EXTERN %AJANTIS_JOINED% j0.5b
 END
 
 IF ~~ j0.5a
@@ -162,10 +162,10 @@ IF ~~ j0.17
 IF ~~ EXIT
 END
 
-CHAIN AJANTJ j0.5b
+CHAIN %AJANTIS_JOINED% j0.5b
 ~If I may, <CHARNAME>. This man is, in fact, one of my fellows, although I hesitate to brand him as such. His... reputation precedes him.~
 == C0DRAKE ~Well, at least I am remembered among the Order, so I'll consider that a compliment. I recognize your emblem, squire. House Ilvastarr, is it?~
-== AJANTJ ~Yes. It is an... honor to meet you, master Caulfield.~
+== %AJANTIS_JOINED% ~Yes. It is an... honor to meet you, master Caulfield.~
 EXTERN C0DRAKE j0.5c
 
 // Talked to again, not in party

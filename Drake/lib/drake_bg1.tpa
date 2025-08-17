@@ -7,8 +7,8 @@ COPY ~Drake/audio~ ~override~
 COPY ~Drake/items~ ~override~
 COPY ~Drake/Portraits~ ~override~
 
-EXTEND_TOP ~AR3307.bcs~ ~Drake/Scripts/AR3307.baf~
-EXTEND_TOP ~AR0705.bcs~ ~Drake/Scripts/AR0705.baf~
+EXTEND_TOP ~%Beregost_BurningWizard_L1_BCS%.bcs~ ~Drake/Scripts/ar3307.baf~
+EXTEND_TOP ~%EBaldursGate_ElfsongTavern_L1_BCS%.bcs~ ~Drake/Scripts/ar0705.baf~
 
 // Journal
 ADD_JOURNAL TITLE (@0) @1 @2 USING ~%MOD_FOLDER%/translations/english/journal.tra~

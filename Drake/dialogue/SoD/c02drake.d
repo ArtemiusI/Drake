@@ -153,7 +153,7 @@ END
 
 APPEND C02DRAKE
 
-IF ~GlobalGT("Chapter","GLOBAL",7)~ p4
+IF ~GlobalGT("Chapter","GLOBAL",%tutu_chapter_7%)~ p4
  SAY ~Well, well. Look who's here.~
 	++ ~Would you join me, Drake?~ + p5
 	++ ~And look who's leaving.~ + p6

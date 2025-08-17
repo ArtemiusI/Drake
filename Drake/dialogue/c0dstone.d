@@ -88,7 +88,7 @@ CHAIN C0DSTONE stoneheart9
 == C0DRAKEJ ~We'll be there. Won't we, <CHARNAME>?~
 == C0DSTONE ~I hope so. See you around.~
 END
-IF ~~ DO ~AddJournalEntry(%Drake_BG1_Quest_1%,QUEST) EscapeAreaMove("AR0225",3613,2221,SE)~ EXIT
+IF ~~ DO ~AddJournalEntry(%Drake_BG1_Quest_1%,QUEST) EscapeAreaMove("%CentralSewers%",3613,2221,SE)~ EXIT
 
 CHAIN C0DSTONE stoneheart10
 ~I fear I have little to offer from my own pockets. I have no personal wealth, unlike your friend Caulfield here, and acquiring a reward from my superiors will take time.~
@@ -104,7 +104,7 @@ CHAIN C0DSTONE stoneheart11
 == C0DRAKEJ ~Think on it, <CHARNAME>. The Shadow Thieves are among the worst scum in human skin to walk Amn. It's a rare chance to be able to deal a blow to them.~
 == C0DSTONE ~I have no more time to spare, sadly. See you around... I hope.~
 END
-IF ~~ DO ~AddJournalEntry(%Drake_BG1_Quest_1%,QUEST) EscapeAreaMove("AR0225",3613,2221,SE)~ EXIT
+IF ~~ DO ~AddJournalEntry(%Drake_BG1_Quest_1%,QUEST) EscapeAreaMove("%CentralSewers%",3613,2221,SE)~ EXIT
 
 CHAIN IF WEIGHT #-1
 ~OR(2)

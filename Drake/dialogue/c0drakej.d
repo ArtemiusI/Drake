@@ -77,7 +77,7 @@ CHAIN IF ~Global("C0DrakeTalk","GLOBAL",4)~ THEN C0DRAKEJ t2
 ~So what's this business with this man you're after, then? I suppose you've got some sort of personal grudge against him.~ [C0DRAK18]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
 RealSetGlobalTimer("C0DrakeTalkTimer","GLOBAL",2700)~
-== C0DRAKEJ IF ~InParty("Imoen")~ THEN ~I've, ah, heard a thing or two from your friend, Imoen, but she'd rather you tell me yourself if you're willing. Not that any of this is my business at all, mind you.~
+== C0DRAKEJ IF ~InParty("%IMOEN_DV%")~ THEN ~I've, ah, heard a thing or two from your friend, Imoen, but she'd rather you tell me yourself if you're willing. Not that any of this is my business at all, mind you.~
 END
 ++ ~He killed my foster father, Gorion.~ + t2.1
 ++ ~I'm not going after anyone, Drake. I'm just out here to see the world.~ + t2.2
@@ -846,7 +846,7 @@ END
 
 // TALK 9
 
-CHAIN IF ~GlobalGT("Chapter","GLOBAL",4)
+CHAIN IF ~GlobalGT("Chapter","GLOBAL",%tutu_chapter_4%)
 Global("C0DrakeTalk","GLOBAL",18)~ THEN C0DRAKEJ t9
 ~It's good that we managed to put a stop to those scum working in those mines, but I'll admit the whole affair still leaves a bitter taste in my mouth.~ [C0DRAK09]
 DO ~IncrementGlobal("C0DrakeTalk","GLOBAL",1)
@@ -1624,14 +1624,14 @@ END
 
 // Neb
 
-I_C_T NEB 2 C0DrakeNEB2
+I_C_T NEB%eet_var% 2 C0DrakeNEB2
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~...<CHARNAME>, give me leave to kill him.~
-== NEB ~What's this, heh heh? Why such hate, big one?~
+== NEB%eet_var% ~What's this, heh heh? Why such hate, big one?~
 == C0DRAKEJ ~You're the kind of monster my sister looks under the bed for at night. I said I'd crush any one of them I found - never thought I'd actually find one, and in this stink-hole of all places.~
-== NEB ~Hee, hee, kill me, that you may, but however will you escape from this pickle, will you?~
+== NEB%eet_var% ~Hee, hee, kill me, that you may, but however will you escape from this pickle, will you?~
 END
 
-I_C_T2 NEB 17 C0DrakeNEB17
+I_C_T2 NEB%eet_var% 17 C0DrakeNEB17
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~That's how it should have been. Ahh... it's only a pity he got away.~
 END
 
@@ -1649,7 +1649,7 @@ INTERJECT PHANDA 0 C0DrakePHANDA0
 == C0DRAKEJ ~I'm no knight, but that's besides the point. Do you really think I haven't noticed things about who I travel with? Regardless, I have accepted their presence, and they are therefore under my protection. I assure you, you will not be looked upon fondly by the Order should you continue to force this issue.~
 == PHANDA ~...Very well, you may pass. But should anything occur because of this, on your own head be it.~
 DO ~EscapeArea()~
-== AJANTJ IF ~InParty("AJANTIS")~ THEN ~You should not have stopped him, Drake. The evil that has sunk its roots in our band should be eradicated as soon as possible.~
+== %AJANTIS_JOINED% IF ~InParty("AJANTIS")~ THEN ~You should not have stopped him, Drake. The evil that has sunk its roots in our band should be eradicated as soon as possible.~
 == C0DRAKEJ IF ~InParty("AJANTIS")~ THEN ~Sure, sure. But murdering people in public will set a bad precedent. Might we set this matter aside for the moment?~
 EXIT
 
@@ -1698,16 +1698,16 @@ END
 
 // Sendai
 
-I_C_T SENDAI 2 C0DrakeSENDAI2
+I_C_T SENDAI%eet_var% 2 C0DrakeSENDAI2
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~Is this really necessary, <CHARNAME>? *sigh* Well, best not to let word of this get around. I've no love for the Argrim bastards, but they wouldn't take this sort of thing sitting down if they found out.~
-== SENDAI ~No one will know - or care - about your death, barbarians!~
+== SENDAI%eet_var% ~No one will know - or care - about your death, barbarians!~
 END
 
-I_C_T SENDAI 3 C0DrakeSENDAI3
+I_C_T SENDAI%eet_var% 3 C0DrakeSENDAI3
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~Oh, dear. Best that I don't mention my family name if she's really an Argrim. Not unless you want things to get really ugly.~
 END
 
-I_C_T2 SENDAI 4 C0DrakeSENDAI4
+I_C_T2 SENDAI%eet_var% 4 C0DrakeSENDAI4
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~Nice restraint, <CHARNAME>. Can't say I haven't busted the teeth of some Argrim bastards back home, or suffered the price for it.~
 END
 
@@ -1732,15 +1732,15 @@ END
 
 // Theodon
 
-I_C_T WILLIA 4 C0DrakeWILLIA4
+I_C_T WILLIA%eet_var% 4 C0DrakeWILLIA4
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~Ha! Well, go on then, old coot, what else?~
 END
 
-I_C_T WILLIA 8 C0DrakeWILLIA8
+I_C_T WILLIA%eet_var% 8 C0DrakeWILLIA8
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~Bw-ahahahaha, ha-aa!~
 END
 
-INTERJECT WILLIA 10 C0DrakeWILLIA10
+INTERJECT WILLIA%eet_var% 10 C0DrakeWILLIA10
 == C0DRAKEJ IF ~InParty("C0Drake") InMyArea("C0Drake") !StateCheck("C0Drake",CD_STATE_NOTVALID)~ THEN ~Oh, I am going to make a shiny copper out of this tale, I am sure... ha!~
 END
 ++ ~Don't you dare.~ EXTERN C0DrakeJ theodon1
@@ -1898,7 +1898,7 @@ END
 
 IF ~~ bassilus.7
  SAY ~Too bad. I thought I'd found a decent drinking partner at last. Well, what can you do? If you change your mind, I'll be at the Friendly Arm Inn, hopefully sober enough to string two words together.~
-IF ~~ DO ~SetGlobal("C0DrakeBassilus","GLOBAL",3) SetGlobal("C0DrakeJoined","LOCALS",0) EscapeAreaMove("AR2301",593,530,NW)~ EXIT
+IF ~~ DO ~SetGlobal("C0DrakeBassilus","GLOBAL",3) SetGlobal("C0DrakeJoined","LOCALS",0) EscapeAreaMove("%FriendlyArmInn_L1%",593,530,NW)~ EXIT
 END
 
 IF ~~ bassilus.8
@@ -1913,9 +1913,9 @@ CHAIN IF ~Global("C0DrakeUndercellar","GLOBAL",1)~ THEN C0DrakeJ cellar
 ~*sniff* Smell that, <CHARNAME>? That is the smell of cheap lotus. Poor sods are destroying themselves here and they don't even know it.~ [C0DRAK15]
 DO ~SetGlobal("C0DrakeUndercellar","GLOBAL",2)~
 == C0DRAKEJ ~Or perhaps they do, but they despise their lives so much that they don't even care. Sad, really.~
-== XANJ IF ~InParty("XAN")~ THEN ~I can certainly sympathize with them if that was the case. At least they have accepted the futility of life and are attempting to wring some pleasure from it.~
+== %XAN_JOINED% IF ~InParty("XAN")~ THEN ~I can certainly sympathize with them if that was the case. At least they have accepted the futility of life and are attempting to wring some pleasure from it.~
 == C0DRAKEJ IF ~InParty("XAN")~ THEN ~Really, now? Then would you consider taking a seat and joining them?~
-== XANJ IF ~InParty("XAN")~ THEN ~I fear I must decline. I have no doubt the delusions are finite, just like the contents of my purse.~
+== %XAN_JOINED% IF ~InParty("XAN")~ THEN ~I fear I must decline. I have no doubt the delusions are finite, just like the contents of my purse.~
 == C0DRAKEJ IF ~InParty("XAN")~ THEN ~Ha! You've got that much sense in you then, at least. Good on you, Xan.~
 END
 	++ ~You sound like you know that much from experience, Drake.~ + cellar1
@@ -1925,7 +1925,7 @@ END
 	
 CHAIN C0DRAKEJ cellar4
 ~I experimented with almost anything you could imagine in my youth. Lotus was just one of them.~
-== AJANTJ IF ~InParty("Ajantis")~ THEN ~By Helm, Drake! If word got around in the Order...~
+== %AJANTIS_JOINED% IF ~InParty("Ajantis")~ THEN ~By Helm, Drake! If word got around in the Order...~
 == C0DRAKEJ IF ~InParty("Ajantis")~ THEN ~Hey now, are you really going to hold it against me, Ajantis? That was a long time ago, long before I got involved with our lot. Besides, my father already knows all about it.~
 == C0DRAKEJ ~Not exactly my proudest moment, that. I keep a more open mind than most, but I wouldn't wish that poison on my worst enemy. The things it does to you are unspeakable.~
 END

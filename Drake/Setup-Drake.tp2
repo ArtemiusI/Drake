@@ -1,10 +1,10 @@
-BACKUP ~Drake/backup~
+BACKUP ~weidu_external/backup/Drake_BG1~
 AUTHOR ~The Artisan~
-VERSION ~1.7~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
   INCLUDE ~%MOD_FOLDER%/lib/alter_script.tpa~
+  INCLUDE ~%MOD_FOLDER%/lib/g3_bgee_cpmvars.tpa~
 END
 AUTO_TRA ~Drake/translations/%s~
 LANGUAGE ~English~
@@ -13,6 +13,16 @@ LANGUAGE ~English~
 
   BEGIN ~Drake NPC for Baldur's Gate: Enhanced Edition~
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE.~
+
+ACTION_IF GAME_IS ~BGEE~ THEN BEGIN
+OUTER_SPRINT "bg1_eet_symbol" AR
+END
+
+ACTION_IF GAME_IS ~EET~ THEN BEGIN
+INCLUDE ~EET/other/cpmvars/eet_cpmvars.tpa~
+OUTER_SPRINT "bg1_eet_symbol" BG
+END
+
 INCLUDE ~%MOD_FOLDER%/lib/drake_bg1.tpa~
 ACTION_IF GAME_INCLUDES ~sod~
 THEN BEGIN
