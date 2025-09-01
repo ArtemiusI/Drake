@@ -4,7 +4,6 @@ ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
   INCLUDE ~%MOD_FOLDER%/lib/alter_script.tpa~
-  INCLUDE ~%MOD_FOLDER%/lib/g3_bgee_cpmvars.tpa~
 END
 AUTO_TRA ~Drake/translations/%s~
 LANGUAGE ~English~
@@ -15,6 +14,7 @@ LANGUAGE ~English~
   REQUIRE_PREDICATE (GAME_IS ~bgee eet~) ~This component must be installed on BG:EE.~
 
 ACTION_IF GAME_IS ~BGEE~ THEN BEGIN
+INCLUDE ~%MOD_FOLDER%/lib/liam_bgee_vars.tpa~
 OUTER_SPRINT "bg1_eet_symbol" AR
 END
 
