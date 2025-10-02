@@ -169,10 +169,6 @@ IF ~~ p6
 IF ~~ EXIT
 END
 
-END
-
-BEGIN C02DRAKP
-
 IF ~AreaCheck("bd4700")
 GlobalLT("bd_plot","global",570)~ r0
 SAY ~Ha! This is one battle I couldn't walk away from if I wanted to, <CHARNAME>!~
@@ -246,4 +242,6 @@ END
 IF ~~ q3
 SAY ~Do I have a choice? Ah, do as you will. You know where to find me.~
 IF ~~ DO ~SetGlobal("bd_joined","LOCALS",0)~ EXIT
+END
+
 END
