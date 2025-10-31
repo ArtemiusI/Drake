@@ -10,6 +10,14 @@ COPY ~Drake/Portraits~ ~override~
 EXTEND_TOP ~%Beregost_BurningWizard_L1_BCS%.bcs~ ~Drake/Scripts/ar3307.baf~ EVAL
 EXTEND_TOP ~%EBaldursGate_ElfsongTavern_L1_BCS%.bcs~ ~Drake/Scripts/ar0705.baf~ EVAL
 
+ACTION_IF GAME_IS ~EET~ THEN BEGIN
+
+COPY_EXISTING ~C0DAR1.ARE~ ~OVERRIDE~
+  WRITE_ASCII 0x8 BD5101
+  WRITE_ASCII 0x145 BD0225
+
+  END
+
 // Journal
 ADD_JOURNAL TITLE (@0) @1 @2 USING ~%MOD_FOLDER%/translations/english/journal.tra~
 LOAD_TRA ~%MOD_FOLDER%/translations/%LANGUAGE%/journal.tra~
